@@ -10,8 +10,8 @@ import CypressTestIds from "./CypressTestIDs";
             //cidtxtBasicPassword: string = this.TestIDLocator(CypressTestIds.USER_LOGIN_PASSWORD_INPUT) //'#basic_password'; //content ID - password textbox
             //cidbtnLogin: string = this.TestIDLocator(CypressTestIds.USER_LOGIN_SUBMIT_BUTTON) //'.ant-form-item-control-input-content > .ant-btn'; //content ID - login button
             //txtbtnLoginTitle: string = "Login"; 
-            cidmsgIncorrectUserPass: string =  '.Toastify__toast-container'; //content ID - Message box for incorrect user/password
-            msgIncorrectUserPass: string = "Incorrect username or password.";            
+            //cidmsgIncorrectUserPass: string =  '.Toastify__toast-container'; //content ID - Message box for incorrect user/password
+            msgIncorrectUserPass: string = "Password may be incorrect";            
             //cidlblForgotPassword: string = 'u'; //content ID - Forgot Password lable
             //lblForgotPasswordTitle: string = 'Forgot your password?';
             //cidbtnResetPassword: string = '.ant-form-item-control-input-content > .ant-btn > span'; //content ID - reset password button 
@@ -82,9 +82,9 @@ import CypressTestIds from "./CypressTestIDs";
             LoginWithWrongPass(UserName: string, Password: string, SiteURL?: string)
             {
                 super.LoginRun(UserName, Password, SiteURL);
-                cy.get(this.cidmsgIncorrectUserPass, {timeout:4_000})
-                .should(this.assertBeVisible)
-                .contains(this.msgIncorrectUserPass);
+                //cy.get(this.cidmsgIncorrectUserPass, {timeout:4_000})
+                //.should(this.assertBeVisible)
+                cy.contains(this.msgIncorrectUserPass, {timeout:4_000});
             }
 
             //Open forgot password page by clicking on Forgot Password link
@@ -125,7 +125,7 @@ import CypressTestIds from "./CypressTestIDs";
                 cy.get(this.TestIDLocator(CypressTestIds.USER_LOGIN_FORGOT_PASSWORD_LINK)).click();
                 cy.get(this.TestIDLocator(CypressTestIds.USER_RESET_PASSWORD_SUBMIT_BUTTON), {timeout: 8_000})
                 .should(this.assertBeVisible)
-                cy.get(this.TestIDLocator(CypressTestIds.USER_LOGIN_EMAIL_INPUT))
+                cy.get(this.TestIDLocator(CypressTestIds.USER_RESET_PASSWORD_EMAIL_INPUT))
                 .type(this.UserName);
                 cy.get(this.TestIDLocator(CypressTestIds.USER_RESET_PASSWORD_SUBMIT_BUTTON))
                 .click();

@@ -32,6 +32,8 @@ const CypressTestIds = {
     USER_LOGIN_SUBMIT_BUTTON: "user-login-submit-button",
     USER_LOGIN_FORGOT_PASSWORD_LINK: "user-login-forgot-password-link",
     USER_LOGIN_RESEND_VERIFY_EMAIL_LINK: "user-login-resend-verify-email-link",
+    USER_LOGIN_NEW_USER_RADIO: "user-login-new-user-radio",
+    USER_LOGIN_EXISTING_USER_RADIO: "user-login-existing-user-radio",
 
     // Reset Password
     USER_RESET_PASSWORD_BACKTOLOGIN_BUTTON:
@@ -129,7 +131,8 @@ const CypressTestIds = {
     MANAGE_SCHEMA_MODEL_SAVE_PUBLISH_BUTTON:
         "manage-schema-model-save-publish-button",
     MANAGE_SCHEMA_MODEL_EXPORT_BUTTON: "manage-schema-model-export-button",
-
+    UPLOAD_SCHEMA_FILE_INPUT_ICON_BUTTON: "upload-schema-file-input-icon-button",
+    
     // Schema Model List
     SCHEMA_LIST_EDIT_BUTTON: "schema-list-edit-button",
     SCHEMA_LIST_VIEW_BUTTON: "schema-list-view-button",
@@ -138,6 +141,7 @@ const CypressTestIds = {
         "schema-list-visualise-relationships-button",
     SCHEMA_LIST_DELETE_BUTTON: "schema-list-delete-button",
     SCHEMA_LIST_SHARING_CHECKBOX: "schema-list-sharing-checkbox",
+    SCHEMA_LIST_TABLE: "schema-list-table",
 
     // Schema Model Field List
     SCHEMA_FIELD_ISPRIMARY_CHECKBOX: "schema-field-isprimary-checkbox",
@@ -149,6 +153,13 @@ const CypressTestIds = {
     SCHEMA_FIELD_DATATYPE_SELECT: "schema-field-datatype-select",
     SCHEMA_FIELD_DELETE_BUTTON: "schema-field-delete-button",
     SCHEMA_FIELD_ADD_BUTTON: "schema-field-add-button",
+    SCHEMA_FIELD_TABLE: "schema-field-table",
+
+    SCHEMA_CREATE_NEW_SCHEMA_CLONE_SCHEMA_TREE: "schema-create-new-schema-clone-schema-tree",
+    SCHEMA_CREATE_NEW_SCHEMA_CLONE_SCHEMA_NAME_INPUT: "schema-create-new-schema-clone-schema-name-input",
+    SCHEMA_CREATE_NEW_SCHEMA_CLONE_SCHEMA_DESC_INPUT: "schema-create-new-schema-clone-schema-desc-input",
+    SCHEMA_CREATE_NEW_SCHEMA_CLONE_SCHEMA_CREATE_BUTTON: "schema-create-new-schema-clone-schema-create-button",
+    
 
     // Min/Max Length property
     SCHEMA_MAX_LENGTH_PROPERTY_INPUT: "schema-max-length-property-input",
@@ -162,6 +173,10 @@ const CypressTestIds = {
 
     // Classifier property
     SCHEMA_CLASSIFIERS_PROPERTY_SELECT: "schema-classifier-property-select",
+
+    //common objects
+    COMMON_OBJECTS_EVENT_LIST_TABLE: "common-objects-event-list-table",
+    COMMON_OBJECTS_REVISIONS_LIST_TABLE: "common-objects-revesions-list-table"
 };
 
 export default CypressTestIds;

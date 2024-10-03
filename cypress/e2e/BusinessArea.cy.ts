@@ -50,7 +50,7 @@ const objBusinessAreaTest: BusinessAreaTest = new BusinessAreaTest();
 
         
 
-        /*
+        
         
         it('Edit Business Area', () =>
         {
@@ -74,15 +74,9 @@ const objBusinessAreaTest: BusinessAreaTest = new BusinessAreaTest();
             objBusinessAreaTest.BusinessAreaRemoveUser();
         });
         
-        it('Cancel Deletion Business Area', () =>
-            {
-                objBusinessAreaTest.CancelDeleteBusinessArea();
-            });       
+        
             
-        it('Delete Business Area', () =>
-        {
-            objBusinessAreaTest.DeleteBusinessArea();
-        });
+        
         
         //Create Business Area and Assign User in one go
         it('Create Business Area and Assign User', () =>
@@ -90,26 +84,33 @@ const objBusinessAreaTest: BusinessAreaTest = new BusinessAreaTest();
             objBusinessAreaTest.CreateBusinessAreaAndAssignUser();
         })
 
+        it('Add credentials', () =>
+            {
+                objBusinessAreaTest.AddCredentials();
+            })
+    
+            it('Uncheck All Permissions credentials', () =>
+            {
+                objBusinessAreaTest.UncheckAllPermissions();
+            })
+    
+            it('Remove credentials', () =>
+            {
+                objBusinessAreaTest.RemoveCredentials();
+            })
+
+            it('Cancel Deletion Business Area', () =>
+                {
+                    objBusinessAreaTest.CancelDeleteBusinessArea();
+                });       
+                
         it('Delete Business Area', () =>
         {
             objBusinessAreaTest.DeleteBusinessArea();
         });
 
-        */
+        
 
-        it('Add credentials', () =>
-        {
-            objBusinessAreaTest.AddCredentials();
-        })
-
-        it('Uncheck All Permissions credentials', () =>
-        {
-            objBusinessAreaTest.UncheckAllPermissions();
-        })
-
-        it('Remove credentials', () =>
-        {
-            objBusinessAreaTest.RemoveCredentials();
-        })
+       
     });
     

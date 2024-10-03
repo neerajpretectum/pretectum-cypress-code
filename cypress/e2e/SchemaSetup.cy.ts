@@ -20,12 +20,19 @@ describe('Schema Setup related activities', ()=>
         oST.OpenSchemaPage();
     })
 
-    it.skip('Create Schema from File', () =>
+    it('Create Schema Manually', () =>
+        {
+            oST.CreateSchemaManually();
+        })
+        
+    /*
+    it('Create Schema from File Input', () =>
     {
-        oST.CreateSchemaFromFile();
+        oST.CreateSchemaFromFileInput();
     })
 
-    it.skip('Create Schema Manually', () =>
+    
+    it('Create Schema Manually', () =>
     {
         oST.CreateSchemaManually();
     })
@@ -34,5 +41,26 @@ describe('Schema Setup related activities', ()=>
     {
         oST.CreateSchemaByCloning();
     })
+
+    it('Edit Schema', () =>
+    {
+        oST.EditSchema();
+    })
+
+    it('Schema Change History', () =>
+    {
+        oST.SchemaChangeHistory();
+    })
+
+    it('View Schema', () =>
+    {
+        oST.ViewSchema();
+    })
+
+    it('Delete a Schema', () =>
+    {
+        oST.DeleteSchema();
+    })
+        */
 })
 

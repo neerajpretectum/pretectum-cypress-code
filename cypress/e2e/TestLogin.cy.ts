@@ -16,20 +16,22 @@ import { LoginTest } from "../classes/LoginTest";
 
     objLoginTest.SetInits(BaseURL, UserName, CorrectPassword);
     
+    /*
     it("test", () =>{
         cy.viewport(1920,1080);
         objLoginTest.OpenURL(BaseURL);
         objLoginTest.LoginWithCorrectPass (UserName, CorrectPassword); 
     })
+        */
     //describe - Password reset's initial operations
 
-    /*
     
-    describe.skip("Password reset's initial operations", ()=> 
+    
+    describe("Password reset's initial operations", ()=> 
     {
         
         //cy.log("spec describe - Password reset's initial operation - started");
-        /* beforeEach(()=>
+         beforeEach(()=>
         {
             //cy.log("spec before each - visit url - started");
             objLoginTest.OpenURL(BaseURL);
@@ -37,7 +39,7 @@ import { LoginTest } from "../classes/LoginTest";
         }) 
  
         //Open Reset Password Window
-        it.skip("Open Forgot Password Page", () => 
+        it("Open Forgot Password Page", () => 
         {   
             cy.log("spec open forgot password page - started");          
             objLoginTest.OpenForgotPasswordPage(); 
@@ -46,7 +48,7 @@ import { LoginTest } from "../classes/LoginTest";
         });
 
         //back to login
-        it.skip("Click Back to login", () => 
+        it("Click Back to login", () => 
         {         
             cy.log("spec back to login - started");    
             objLoginTest.BackToLogin();   
@@ -54,7 +56,7 @@ import { LoginTest } from "../classes/LoginTest";
         }) 
 
         //Click on reset button without entering email id
-        it.skip("Click Reset button without Entering Email", () => 
+        it("Click Reset button without Entering Email", () => 
         {     
             cy.log("spec click reset button without email - started");        
             objLoginTest.ClickResetWithoutEmail(); 
@@ -62,7 +64,7 @@ import { LoginTest } from "../classes/LoginTest";
         }) 
 
         //Click on reset button with registered email
-        it.skip("Click Reset button", () => 
+        it("Click Reset button", () => 
         {        
             cy.log("spec click reset button - started");      
             objLoginTest.ClickResetValidEmail(); 
@@ -71,8 +73,9 @@ import { LoginTest } from "../classes/LoginTest";
         //cy.log("spec describe - Password reset's initial operation - finished");
     })
 
+    /*
     // describe - Password reset page operations. Check complexity and length related parameters
-    describe.skip('Password reset page operations', () => 
+    describe('Password reset page operations', () => 
     {
         //cy.log("spec describe - Password reset page operations - started");
         beforeEach(()=>
@@ -92,8 +95,10 @@ import { LoginTest } from "../classes/LoginTest";
         //cy.log("spec describe - Password reset page operations - finished");    
     })
 
+    */
+   
     // describe - Login operations like login with correct and incorrect password
-    describe.skip("Login operations", () =>
+    describe("Login operations", () =>
     {
         
         //cy.log("spec describe - Login operations - started");
@@ -121,5 +126,5 @@ import { LoginTest } from "../classes/LoginTest";
         })
         //cy.log("spec describe - Login operations - finished");
     })
-*/
+
 
