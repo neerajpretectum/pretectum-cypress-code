@@ -196,8 +196,6 @@ const CypressTestIds = {
     // Classifier property
     SCHEMA_CLASSIFIERS_PROPERTY_SELECT: "schema-classifier-property-select",
 
-
-
     //Users Page
     USERS_USERSLIST_TABLE: "users-userlist-table",
     USERS_ADD_USER_BUTTON: "users-add-user-button",
@@ -227,8 +225,7 @@ const CypressTestIds = {
     DATATAGS_DATATAG_NAME_INPUT: "datatags-datatag-name-input",
     DATATAGS_DATATAG_DESCRIPTION_INPUT: "datatags-datatag-description-input",
 
-    
-
+  
     //common objects
     COMMON_OBJECTS_EVENT_LIST_TABLE: "common-objects-event-list-table",
     COMMON_OBJECTS_REVISIONS_LIST_TABLE: "common-objects-revesions-list-table"

@@ -2,16 +2,15 @@ import CypressTestIds from  "../classes/CypressTestIDs";
 import { TestBase } from "./TestBase";
 
 
-//Variables and const
-var regex = new RegExp('[:.]', 'gi');
-const TimeStamp = new Date().toISOString().replace(regex,'-');
-const strBusinessAreaName1: string = 'BA1-' + TimeStamp;
-const strBusinessAreaName2: string = 'BA2-' + TimeStamp;
+
 
 
 
 export class BusinessAreaTest extends TestBase
 {
+        //Timestamp const
+        strBusinessAreaName1: string = 'BA1-' + this.TimeStamp;
+
         //Open business area
         OpenBusinessArea()
         {
@@ -30,12 +29,12 @@ export class BusinessAreaTest extends TestBase
             //Open Config
             cy.get(this.TestIDLocator(CypressTestIds.HEADER_MENU_CONFIGURATION), {timeout: 20000})
             .should(this.assertBeVisible)
-            .click({force: true});
+            .click();
 
             //Open Business Area
             cy.get(this.TestIDLocator(CypressTestIds.VERTICAL_MENU_BUSINESSAREAS))
             .should(this.assertBeVisible)
-            .click({force: true});
+            .click();
         }
         
         //Add Business Area Button is visible
@@ -50,21 +49,21 @@ export class BusinessAreaTest extends TestBase
         {
             //Click on Add Business Area Button
             cy.get(this.TestIDLocator(CypressTestIds.ADD_BUSINESS_AREA_BUTTON), {timeout: 20_000})
-            .click({force: true});
+            .click({});
 
             //New Business Area Form is visible
             //type BA Name
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_NAME_INPUT))
             .should(this.assertBeVisible)
-            .type(strBusinessAreaName1, {force: true});
+            .type(this.strBusinessAreaName1, {});
 
             //type BA Description
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DESCRIPTION_INPUT))
-            .type(strBusinessAreaName1 + ' Description', {force: true});
+            .type(this.strBusinessAreaName1 + ' Description', {});
 
             //save Business Area
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_SAVE_BUTTON))
-            .click({force: true});
+            .click({});
 
             //Success message shown
             cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
@@ -74,21 +73,21 @@ export class BusinessAreaTest extends TestBase
         //Edit Business Area
         EditBusinessArea()
         {
-            cy.contains(strBusinessAreaName1, {timeout: 20_000})
+            cy.contains(this.strBusinessAreaName1, {timeout: 20_000})
             .parent(this.TD)
             .parent(this.TR)
             .find(this.TestIDLocator(CypressTestIds.EDIT_BUSINESS_AREA_BUTTON))
-            .click({force: true});
+            .click({});
                 
             //get the description
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DESCRIPTION_INPUT))
             .should(this.assertBeVisible)
-            .clear({force: true})
-            .type(strBusinessAreaName1 + ' Description - 1', {force: true});
+            .clear({})
+            .type(this.strBusinessAreaName1 + ' Description - 1', {});
 
             //save Business Area
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_SAVE_BUTTON))
-            .click({force: true});
+            .click({});
 
             //Success message shown
             cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
@@ -99,15 +98,15 @@ export class BusinessAreaTest extends TestBase
         BusinessAreaAssignUser()
         {
             //Open Edit Window
-            cy.contains(strBusinessAreaName1, {timeout: 20_000})
+            cy.contains(this.strBusinessAreaName1, {timeout: 20_000})
             .parent(this.TD)
             .parent(this.TR)
             .find(this.TestIDLocator(CypressTestIds.EDIT_BUSINESS_AREA_BUTTON))
-            .click({force: true});
+            .click({});
 
             //Click on Add User Button
             cy.get(this.TestIDLocator(CypressTestIds.ADD_BUSINESS_AREA_USER_BUTTON))
-            .click({force: true});
+            .click({});
 
             //get the drop down
             //cy.get(this.TestIDLocator(CypressTestIds.BUSINESS_AREA_USER_SELECT))
@@ -115,7 +114,7 @@ export class BusinessAreaTest extends TestBase
             this.selectDropdown(this.TestIDLocator(CypressTestIds.BUSINESS_AREA_USER_SELECT),this.UserName);
             //save Business Area
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_SAVE_BUTTON))
-            .click({force: true});      
+            .click({});      
             
              //Success message shown
              cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
@@ -125,11 +124,11 @@ export class BusinessAreaTest extends TestBase
         BusinessAreaRemoveUser()
         {
             //Open Edit Window
-            cy.contains(strBusinessAreaName1, {timeout: 20_000})
+            cy.contains(this.strBusinessAreaName1, {timeout: 20_000})
             .parent(this.TD)
             .parent(this.TR)
             .find(this.TestIDLocator(CypressTestIds.EDIT_BUSINESS_AREA_BUTTON))
-            .click({force: true});
+            .click({});
 
             //get the description
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DESCRIPTION_INPUT))
@@ -155,11 +154,11 @@ export class BusinessAreaTest extends TestBase
             .parent(this.TD)
             .parent(this.TR)
             .find(this.TestIDLocator(CypressTestIds.DELETE_BUSINESS_AREA_USER_BUTTON))
-            .click({force: true});
+            .click({});
 
             //save Business Area
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_SAVE_BUTTON))
-            .click({force: true});    
+            .click({});    
             
              //Success message shown
              cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
@@ -168,16 +167,16 @@ export class BusinessAreaTest extends TestBase
         
         DeleteBusinessArea()
         {
-            cy.contains(strBusinessAreaName1, {timeout: 20_000})
+            cy.contains(this.strBusinessAreaName1, {timeout: 20_000})
             .parent(this.TD)
             .parent(this.TR)
             .find(this.TestIDLocator(CypressTestIds.DELETE_BUSINESS_AREA_BUTTON))
-            .click({force: true});
+            .click();
             
             // confirmation message
             cy.get(this.TestIDLocator(CypressTestIds.CONFIRMATION_BOX_OK_BUTTON), {timeout: 8_000})
             .should(this.assertBeVisible)
-            .click({force: true})
+            .click()
 
             // confirmation message
             /*
@@ -193,16 +192,16 @@ export class BusinessAreaTest extends TestBase
 
         CancelDeleteBusinessArea()
         {
-            cy.contains(strBusinessAreaName1, {timeout: 20_000})
+            cy.contains(this.strBusinessAreaName1, {timeout: 20_000})
             .parent(this.TD)
             .parent(this.TR)
             .find(this.TestIDLocator(CypressTestIds.DELETE_BUSINESS_AREA_BUTTON))
-            .click({force: true});
+            .click();
             
             // confirmation message
             cy.get(this.TestIDLocator(CypressTestIds.CONFIRMATION_BOX_CANCEL_BUTTON), {timeout: 8_000})
             .should(this.assertBeVisible)
-            .click({force: true})
+            .click()
             /*
             cy.get('.ant-modal-content')
             .find('.ant-modal-footer > .ant-btn-default')
@@ -214,17 +213,17 @@ export class BusinessAreaTest extends TestBase
         {
             //Click on Add Business Area Button
             cy.get(this.TestIDLocator(CypressTestIds.ADD_BUSINESS_AREA_BUTTON), {timeout: 20_000})
-            .click({force: true});
+            .click();
 
             //New Business Area Form is visible
             //type BA Name
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_NAME_INPUT))
             .should(this.assertBeVisible)
-            .type(strBusinessAreaName1, {force: true});
+            .type(this.strBusinessAreaName1, {});
 
             //type BA Description
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DESCRIPTION_INPUT))
-            .type(strBusinessAreaName1 + ' Description', {force: true});
+            .type(this.strBusinessAreaName1 + ' Description', {});
 
             //Click on Add User Button
             cy.get(this.TestIDLocator(CypressTestIds.ADD_BUSINESS_AREA_USER_BUTTON))
@@ -236,7 +235,7 @@ export class BusinessAreaTest extends TestBase
             this.selectDropdown(this.TestIDLocator(CypressTestIds.BUSINESS_AREA_USER_SELECT),this.UserName);
             //save Business Area
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_SAVE_BUTTON))
-            .click({force: true});      
+            .click();      
             
              //Success message shown
              cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
@@ -245,11 +244,11 @@ export class BusinessAreaTest extends TestBase
 
         AddCredentials()
         {
-            cy.contains(strBusinessAreaName1, {timeout: 20_000})
+            cy.contains(this.strBusinessAreaName1, {timeout: 20_000})
             .parent(this.TD)
             .parent(this.TR)
             .find(this.TestIDLocator(CypressTestIds.EDIT_BUSINESS_AREA_BUTTON))
-            .click({force: true});
+            .click();
 
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_TAB_CREDENTIALS))
             .click({}) 
@@ -269,17 +268,17 @@ export class BusinessAreaTest extends TestBase
 
         RemoveCredentials()
         {
-            cy.contains(strBusinessAreaName1, {timeout: 20_000})
+            cy.contains(this.strBusinessAreaName1, {timeout: 20_000})
             .parent(this.TD)
             .parent(this.TR)
             .find(this.TestIDLocator(CypressTestIds.EDIT_BUSINESS_AREA_BUTTON))
-            .click({force: true});
+            .click();
 
-            cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_TAB_CREDENTIALS))
-            .click({}) 
+            cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_TAB_CREDENTIALS), {timeout: 20_000})
+            .click() 
 
             //get table's first row
-            cy.get("[data-testid='business-area-client-list-table']")
+            cy.get("[data-testid='business-area-client-list-table']", {timeout: 20_000})
             .eq(0)
             .find((this.TestIDLocator(CypressTestIds.BUSINESS_AREA_CLIENT_LIST_DELETE_BUTTON)))
             .click()
@@ -301,14 +300,14 @@ export class BusinessAreaTest extends TestBase
 
         UncheckAllPermissions()
         {
-            cy.contains(strBusinessAreaName1, {timeout: 20_000})
+            cy.contains(this.strBusinessAreaName1, {timeout: 20_000})
             .parent(this.TD)
             .parent(this.TR)
             .find(this.TestIDLocator(CypressTestIds.EDIT_BUSINESS_AREA_BUTTON))
-            .click({force: true});
+            .click();
 
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_TAB_CREDENTIALS))
-            .click({}) 
+            .click() 
 
             cy.get('.right > :nth-child(2) > .ui').click()
             
