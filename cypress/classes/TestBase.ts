@@ -28,14 +28,15 @@ export class TestBase
     UserName: string = 'testing1@malaymo.com';
     Password: string = 'Maria@027';
     TestIDText: string = "[data-testid=\"";
-   
+    business_area: string='DEFAULT'
+   email1 :string = 'Testing1@mnniskor.com'
 
 
     
 
         
 
-    selectDropdown(testId: string, optionText: string) 
+   selectDropdown(testId: string, optionText: string) 
         {
             // open select
             cy.get(testId).click();
@@ -49,6 +50,7 @@ export class TestBase
                 }
         });  
     }
+
 
     selectDropdownFromATableRow(tableID: string, rowID:string, testID: string, optionText: string) 
         {
@@ -106,9 +108,11 @@ public LoginRun(UserName: string, Password: string, SiteURL?: string)
     LoginWithCorrectPass(UserName: string, Password: string, SiteURL?: string)
     {
         this.LoginRun(UserName, Password, SiteURL);
-        //cy.get(this.TestIDLocator(CypressTestIds.HEADER_MENU_SCHEMA), {timeout:30_000})
-        //.should(this.assertBeVisible)
-        cy.contains('Schema', {timeout: 8_000})
+
+        cy.get(this.TestIDLocator(CypressTestIds.HEADER_MENU_SCHEMA), {timeout:30_000})
+        .should(this.assertBeVisible)
+        //cy.contains('Schema', {timeout: 8_000})
+
         
     }
     
