@@ -20,6 +20,14 @@ const CypressTestIds = {
     // Configuration > VerticleMenuContent
     // NOTE: This is generated automatically for all menus
     VERTICAL_MENU_BUSINESSAREAS: "vertical-menu-configuration-businessareas",
+    VERTICAL_MENU_BUSINESSAREADATA: "vertical-menu-configuration-businessareadata",
+    VERTICAL_MENU_DATACLASSIFIERS: "vertical-menu-configuration-dataclassifiers",
+    VERTICAL_MENU_ROLES: "vertical-menu-configuration-roles",
+    VERTICAL_MENU_USERS: "vertical-menu-configuration-users",
+    VERTICAL_MENU_CREDENTIALS: "vertical-menu-configuration-credentials",
+    VERTICAL_MENU_SYSTEMCONNECTIONS: "vertical-menu-configuration-systemconnections",
+    VERTICAL_MENU_SYSTEMKEYS: "vertical-menu-configuration-systemkeys",
+    VERTICAL_MENU_CHANGEDATACAPTURE: "vertical-menu-configuration-changedatacapture",
 
     // OkCancelConfirmationBox
     CONFIRMATION_BOX_OK_BUTTON: "confirmation-box-ok-button",
@@ -121,6 +129,27 @@ const CypressTestIds = {
      MANAGE_BUSINESS_AREA_DATA_SAVE_BUTTON: "manage-business-area-data-save-button",
      MANAGE_BUSINESS_AREA_DATA_DOMAIN_DATA_PREVIEW_LIST: "manage-business-area-data-domain-data-preview-list",
     
+        //Business Area Data
+        BUSINESS_AREA_DATA_LIST_TABLE: "business-area-data-list-table",
+        BUSINESS_AREA_DATA_LIST_EDIT_BUTTON: "business-area-data-list-edit-button",
+        BUSINESS_AREA_DATA_LIST_VIEW_BUTTON: "business-area-data-list-view-button",
+        BUSINESS_AREA_DATA_LIST_VIEW_HISTORY_BUTTON: "business-area-data-list-view-history-button",
+        BUSINESS_AREA_DATA_LIST_DELETE_BUTTON: "business-area-data-list-delete-button",
+    
+        BUSINESS_AREA_DATA_ADD_NEW_BUTTON: "business-area-data-add-new-button",
+        MANAGE_BUSINESS_AREA_DATA_BUSINESS_AREA_NAME_SELECT: "manage-business-area-data-business-area-name-select",
+        MANAGE_BUSINESS_AREA_DATA_DOMAIN_NAME_INPUT: "manage-business-area-data-domain-name-input",
+        MANAGE_BUSINESS_AREA_DATA_DESCRIPTION_INPUT: "manage-business-area-data-description-input",
+        MANAGE_BUSINESS_AREA_DATA_PURPOSE_INPUT: "manage-business-area-data-purpose-input",
+        MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT: "manage-business-area-data-tags-select",
+        MANAGE_BUSINESS_AREA_DATA_FILE_INPUT: "manage-business-area-data-file-input",
+        MANAGE_BUSINESS_AREA_DATA_REPLACE_DATA_OPTION: "manage-business-area-data-replace-data-option",
+        //UPLOAD_SCHEMA_FIRST_ROW_CHECKBOX: "upload-schema-first-row-checkbox",
+        MANAGE_BUSINESS_AREA_DATA_APPEND_DATA_OPTION: "manage-business-area-data-append-the-data-option",
+        MANAGE_BUSINESS_AREA_DATA_CANCEL_BUTTON: "manage-business-area-data-cancel-button",
+        MANAGE_BUSINESS_AREA_DATA_SAVE_BUTTON: "manage-business-area-data-save-button",
+        MANAGE_BUSINESS_AREA_DATA_DOMAIN_DATA_PREVIEW_LIST: "manage-business-area-data-domain-data-preview-list",
+
     // RoleUserList
     ADD_ROLE_USER_BUTTON: "add-role-user-button",
 

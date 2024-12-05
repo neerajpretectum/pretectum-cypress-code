@@ -8,6 +8,8 @@ export class SchemaSetupTest extends TestBase
     strSchemaNameManual: string = this.TimeStamp('SNM-');
     strSchemaNameClone: string = this.TimeStamp('SNC-');
     strDescription: string = ' Description';
+    strSchemaNameWithDataSet: string = 'Schema with a Dataset';
+    strSchemaDataSet: string = 'Dataset test';
 
     OpenSchemaPage()
     {
@@ -19,7 +21,7 @@ export class SchemaSetupTest extends TestBase
         this.Login();
 
         //Open Schema Page
-        cy.contains('Schema', {timeout: 8_000})
+        cy.contains('Schema', {timeout: 20_000})
         .click();
 
         //Page is loaded
@@ -29,6 +31,7 @@ export class SchemaSetupTest extends TestBase
         cy.get('[data-testid="schema-list-table"]', {timeout: 8_000})
         .should(this.assertBeVisible)
 
+       
     }
 
     //Click on create button. Common function for all create activities
@@ -66,6 +69,49 @@ export class SchemaSetupTest extends TestBase
         .clear()
         .type(this.strSchemaNameFile + this.strDescription)
 
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_SAVE_AS_DRAFT_BUTTON))
+        .should(this.assertBeVisible)
+        .click()
+        
+        cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
+        .should(this.assertBeVisible)
+    }
+
+    //Without header row
+    CreateSchemaFromFileInputWHR()
+    {
+        this.ClickOnCreateButton();
+/*
+        cy.get(this.TestIDLocator(CypressTestIds.UPLOAD_SCHEMA_FILE_INPUT_ICON_BUTTON), {timeout: 8_000})
+        .click({force:true});
+*/
+        
+        cy.get(this.TestIDLocator(CypressTestIds.UPLOAD_SCHEMA_FILE_INPUT), {timeout: 8_000})
+        .attachFile('countriesFixturescopy.csv');
+
+        //cy.get('[data-cy="dropzone"]')
+  //.attachFile('myfixture.json', { subjectType: 'drag-n-drop' });
+
+        //header row checkbox
+        cy.get(this.TestIDLocator(CypressTestIds.UPLOAD_SCHEMA_FIRST_ROW_CHECKBOX), {timeout: 8_000})
+        //.should(this.assertBeVisible)
+        .uncheck()
+
+        cy.get(this.TestIDLocator(CypressTestIds.UPLOAD_SCHEMA_NEXT_BUTTON), {timeout: 8_000})
+        .should(this.assertBeVisible)
+        .click()
+
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_NAME_INPUT), {timeout: 8_000})
+        .should(this.assertBeVisible)
+        .clear()
+        .type(this.strSchemaNameFile)
+
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_DESCRIPTION_INPUT))
+        .clear()
+        .type(this.strSchemaNameFile + this.strDescription)
+
+        
+        
         cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_SAVE_AS_DRAFT_BUTTON))
         .should(this.assertBeVisible)
         .click()
@@ -187,7 +233,7 @@ export class SchemaSetupTest extends TestBase
         // .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)))
 
         strRowID = '[data-row-key="' + intRowCount.toString() + '"]';
-        this.selectDropdownFromATableRow(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), strRowID, (this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)), "Float")
+        this.selectDropdownFromATableRow(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), strRowID, (this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)), "Email")
 
         //IsRequired
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
@@ -246,7 +292,7 @@ export class SchemaSetupTest extends TestBase
         // .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)))
 
         strRowID = '[data-row-key="' + intRowCount.toString() + '"]';
-        this.selectDropdownFromATableRow(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), strRowID, (this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)), "Email")
+        //this.selectDropdownFromATableRow(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), strRowID, (this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)), "String")
 
         //IsRequired
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
@@ -303,13 +349,13 @@ export class SchemaSetupTest extends TestBase
         // .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)))
 
         strRowID = '[data-row-key="' + intRowCount.toString() + '"]';
-        this.selectDropdownFromATableRow(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), strRowID, (this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)), "Phone")
+        //this.selectDropdownFromATableRow(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), strRowID, (this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)), "String")
 
         //IsRequired
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
         .find('[data-row-key="' + intRowCount.toString() + '"]')
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISREQUIRED_CHECKBOX)))
-        .check()
+        .uncheck()
 
         //Delete
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
@@ -361,13 +407,13 @@ export class SchemaSetupTest extends TestBase
         // .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)))
 
         strRowID = '[data-row-key="' + intRowCount.toString() + '"]';
-        this.selectDropdownFromATableRow(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), strRowID, (this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)), "String")
+        //this.selectDropdownFromATableRow(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), strRowID, (this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)), "String")
 
         //IsRequired
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
         .find('[data-row-key="' + intRowCount.toString() + '"]')
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISREQUIRED_CHECKBOX)))
-        .check()
+        .uncheck()
 
         //Delete
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
@@ -419,7 +465,7 @@ export class SchemaSetupTest extends TestBase
         // .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)))
 
         strRowID = '[data-row-key="' + intRowCount.toString() + '"]';
-        this.selectDropdownFromATableRow(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), strRowID, (this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)), "URL")
+        //this.selectDropdownFromATableRow(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), strRowID, (this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)), "String")
         //IsRequired
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
         .find('[data-row-key="' + intRowCount.toString() + '"]')
@@ -434,10 +480,15 @@ export class SchemaSetupTest extends TestBase
 
         //intRowCount= intRowCount+1;
 
-
+        //Save
+        //Till the time, Save & Publish is not available, we will use Save as Draft
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_SAVE_AS_DRAFT_BUTTON))
+        .click()
+        cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
         //
         //})
 
+        /*
         for(intRowCount=0; intRowCount++; intRowCount<=7)
         {
             //Add Field Row
@@ -459,8 +510,11 @@ export class SchemaSetupTest extends TestBase
             .eq(intRowCount)
             .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DESCRIPTION_INPUT)))
             .type('Field Description - ' + intRowCount.toString())
+            
+
         //
         }
+        */
         //cy.get('[data-row-key="0"]')
     }
 
@@ -497,17 +551,76 @@ export class SchemaSetupTest extends TestBase
         .parent(this.TD)
         .parent(this.TR)
         .find(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_EDIT_BUTTON))
-        .click({});
+        .click();
         
-        
-        /*
-            cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_TABLE), {timeout: 20_000})
-            .eq(0)
-            .find((this.TestIDLocator(CypressTestIds.SCHEMA_LIST_EDIT_BUTTON)))
-            .click()
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_NAME_INPUT), {timeout: 8_000})
+        .should(this.assertBeVisible)
+        .clear()
+        .type(this.strSchemaNameFile + ' modified')
 
-            cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_TABLE).find("tr").find("td").contains("Germany");
-        */
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_DESCRIPTION_INPUT))
+        .clear()
+        .type(this.strSchemaNameFile + this.strDescription + ' modified')
+
+        //table
+        cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
+        .find('[data-row-key="0"]')
+        .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISPRIMARY_CHECKBOX)))
+        .check()
+
+        //IsSortKey
+        cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
+        .find('[data-row-key="0"]')
+        .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISSORTKEY_CHECKBOX)))
+        .check()
+
+        //IsActive
+        cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
+        .find('[data-row-key="0"]')
+        .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISACTIVE_CHECKBOX)))
+        .uncheck()
+        
+        //field name
+        cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), {timeout:8_000})
+        .find('[data-row-key="0"]')
+        .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_NAME_INPUT)))
+        .type('Modified Col ')
+
+        //field description
+        cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
+        .find('[data-row-key="0"]')
+        .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DESCRIPTION_INPUT)))
+        .type('Modified Des')
+
+        cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
+        .find('[data-row-key="4"]')
+        .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DELETE_BUTTON)))
+        .click()
+
+        //IsSortKey
+        cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
+        .find('[data-row-key="0"]')
+        .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISREQUIRED_CHECKBOX)))
+        .check()
+
+
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_SAVE_AS_DRAFT_BUTTON))
+        .click()
+        cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
+        
+        //Find the table
+        cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_TABLE), {timeout: 20_000})
+
+        cy.contains(this.strSchemaNameFile, {timeout: 8_000})
+        .parent(this.TD)
+        .parent(this.TR)
+        .find(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_EDIT_BUTTON))
+        .click();
+
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_NAME_INPUT), {timeout: 8_000})
+        .should(this.assertBeVisible)
+        .should('have.value', this.strSchemaNameFile + ' modified')
+
     }
 
     ViewSchema()
@@ -558,5 +671,20 @@ export class SchemaSetupTest extends TestBase
         cy.get('[data-testid="schema-list-table"]', {timeout: 8_000})
         .should(this.assertBeVisible)
         .should('not.have.text', this.strSchemaNameFile)
+    }
+
+    ViewDataSetsOfASchema()
+    {
+        //select schema row
+        cy.contains(this.strSchemaNameWithDataSet, {timeout: 20_000})
+        .parent(this.TD)
+        .parent(this.TR)
+        .click();
+
+        //dataset table is visible
+
+        //dataset is visible
+        cy.contains(this.strSchemaDataSet, {timeout: 20_000})
+        .should(this.assertBeVisible)
     }
 }
