@@ -24,7 +24,7 @@ describe('DATATAG ACTIVITIES',()=>{
     })
 
 // add datatag
-it.skip(' Add  and Save DataTag',()=>{
+it(' Add  and Save DataTag',()=>{
     objDataTagTest.addDataTag();
   
 })
@@ -36,27 +36,22 @@ it(' View DataTag',()=>{
 })
 
 //Edit data tag
-it.skip('Edit DataTag',()=>{
+it('Edit DataTag',()=>{
     objDataTagTest.editdatatag();
   
 })
 
 // view History 
-it.skip('View Data Classifiers History',()=>{
+it('View Data Classifiers History',()=>{
 
     objDataTagTest.viewHistory();
 
 })
 
-//Delete Tag
- it.skip('Delete Tag',()=>{
-
-    objDataTagTest.deleteTag();
- }) 
 
 
-//default business area :Tag visible to everyone
-it.skip('Business Area is Default :Tag visible to everyne',()=>{
+//default business area : c Business area tags are visible
+it('default business area :Business area tags are visible',()=>{
 
 
     objDataTagTest.default_business_area();
@@ -64,6 +59,21 @@ it.skip('Business Area is Default :Tag visible to everyne',()=>{
 })
 
 
+
+//Specific business area :DBA and SBA both tags are visible
+it('Specific Business Area  :DBA and SBA both tags are visible',()=>{
+
+
+   objDataTagTest.specific_business_area();
+
+})
+
+
+//Delete Tag
+it('Delete Tag',()=>{
+
+    objDataTagTest.deleteTag();
+ }) 
 
 })
 
