@@ -4,15 +4,18 @@ import { TestBase } from "./TestBase";
 
 //variables
 let corporateEmail = 'testing4@malaymo.com'
-var firstname ='sanam'
-var lastname ='khan'
-var newfirstname ='Sara'
-var newlastname ='Abbasi'
-var newpassword='Maria@102'
+var newpassword='Maria@027'
+
 
 export class UsersTest extends TestBase{    
-openUsers(){
+    strUserFirstName: string = this.TimeStamp('UFN1-'); 
+    strUserLastName: string = this.TimeStamp('ULN1-'); 
+    strUserNEWFirstName: string = this.TimeStamp('UNFN1-'); 
+    strUserNEWLastName: string = this.TimeStamp('UNLN1-'); 
 
+
+openUsers(){
+ 
     //open portal
     this.OpenURL();
 
@@ -26,7 +29,6 @@ openUsers(){
 
     //open Users section
     cy.get('[data-testid="vertical-menu-configuration-users"] > .ant-menu-title-content') 
-   //cy.get(this.TestIDLocator(CypressTestIds.USERS_USERSLIST_TABLE), {timeout: 20_000})
     .should(this.assertBeVisible)
     .click();
 
@@ -40,6 +42,14 @@ openUsers(){
 
     }
 
+    // user list is visible
+
+    UserListVisible(){
+        cy.get(this.TestIDLocator(CypressTestIds.USERS_USERSLIST_TABLE),{timeout: 20_000})
+        .should(this.assertBeVisible)
+
+    }
+
     //add user
     adduser(){
 
@@ -47,8 +57,7 @@ openUsers(){
         cy.get(this.TestIDLocator(CypressTestIds.USERS_ADD_USER_BUTTON),{timeout: 20_000})
         .click ()
         
-        //type corporate email address
-       // cy.get('#basic_email')
+       
        cy.get(this.TestIDLocator(CypressTestIds.USERS_EMAIL_INPUT),{timeout: 8000})
        .should(this.assertBeVisible)
         .type(corporateEmail)
@@ -56,12 +65,12 @@ openUsers(){
         //type first name
         cy.get(this.TestIDLocator(CypressTestIds.USERS_FIRST_NAME_INPUT),{timeout: 8000})
         .should(this.assertBeVisible)
-        .type(firstname)
+        .type(this.strUserFirstName)
         
         //type last name 
         cy.get(this.TestIDLocator(CypressTestIds.USERS_LAST_NAME_INPUT),{timeout: 8_000})
         .should(this.assertBeVisible)
-        .type(lastname)
+        .type(this.strUserLastName)
 
         //save user
         cy.get(this.TestIDLocator(CypressTestIds.USERS_SAVE_BUTTON),{timeout: 8_000})
@@ -88,13 +97,14 @@ openUsers(){
         cy.get(this.TestIDLocator(CypressTestIds.USERS_FIRST_NAME_INPUT),{timeout: 8000})  
         .should(this.assertBeVisible)
         .type('{selectall}{backspace}')
-         .type(newfirstname)
+         .type(this.strUserNEWFirstName)
+
+
         //edit last name 
         cy.get(this.TestIDLocator(CypressTestIds.USERS_LAST_NAME_INPUT),{timeout: 8_000}) 
         .should(this.assertBeVisible)
         .type('{selectall}{backspace}')
-        
-        .type(newlastname)
+        .type(this.strUserNEWLastName)
 
         //Save User
         cy.get(this.TestIDLocator(CypressTestIds.USERS_SAVE_BUTTON),{timeout: 8_000})
@@ -139,18 +149,17 @@ openUsers(){
 
 
     //Reset Password 
-    resetPassword(){
-   const  verificationLink='https://www.pretectum.net/resetpassword?code=695038&username=360e4a0e-a62a-4524-84ca-b4ae7820b45b&clientId=null&region=us-east-2&email=testing4@malaymo.com';
+   send_resetPassowrd_link(){
+   
         cy.contains(corporateEmail ,{timeout: 20_000})
-        //.parent(this.SPAN)
         .parent(this.TD)
         .parent(this.TR)
-       // .find(this.TestIDLocator(CypressTestIds.USERS_USERSLIST_EDIT_BUTTON), {timeout: 20_000})
-       // .click();
+        .find(this.TestIDLocator(CypressTestIds.USERS_USERSLIST_EDIT_BUTTON), {timeout: 20_000})
+        .click();
 
         //get reset password button
-        cy.get(this.TestIDLocator(CypressTestIds.USERS_RESETPASSWORD_BUTTON), {timeout: 20_000})
-        //cy.get('.ant-space > :nth-child(2) > .ant-btn', {timeout: 20_000})
+        //cy.get(this.TestIDLocator(CypressTestIds.USERS_RESETPASSWORD_BUTTON), {timeout: 20_000})
+        cy.get('.ant-space > :nth-child(2) > .ant-btn', {timeout: 20_000})
         .should(this.assertBeVisible)
         .click()
         
@@ -158,8 +167,12 @@ openUsers(){
         //success message 
         cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 20_000})
          .should(this.assertBeVisible)
+   }
 
-         
+
+   reset_Passowrd(){
+     const  verificationLink='http://localhost:3000/resetpassword?code=156841&username=360e4a0e-a62a-4524-84ca-b4ae7820b45b&clientId=null&region=us-east-2&email=testing4@malaymo.com'
+     
          cy.visit(verificationLink,{ timeout: 120000 });
     
          cy.get(this.TestIDLocator(CypressTestIds.USER_CHANGE_PASSWORD_INPUT), {timeout: 20_000})
@@ -171,15 +184,14 @@ openUsers(){
          .click ()
 
          //success message 
-        cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 20_000})
+        cy.get('[data-testid="user-change-password-success-message"]', {timeout: 20_000})
         .should(this.assertBeVisible)
-      
-    
+   }
     
 
     }
     
-}
+
 
 
 
