@@ -24,9 +24,9 @@ export class DataSetup extends TestBase{
     .click();
 
     //select schema
-    //cy.get('[data-row-key="A2n07HnxAyM5nX8SNJCsT6"] > :nth-child(3) > span',{timeout: 8_000})
-    cy.get('[data-row-key="A2n07HnxAyM5nX8SNJCsT6"] > :nth-child(3) > span',{timeout: 8_000})
+    cy.get('[data-row-key="7z2PasLkGtE0MVxvrrqtth"] > :nth-child(3) > span',{timeout: 8_000})
     .click()
+
 
     }
 
