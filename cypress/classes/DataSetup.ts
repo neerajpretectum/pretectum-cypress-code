@@ -278,19 +278,6 @@ export class DataSetup extends TestBase{
   
     cy.get(this.TestIDLocator(CypressTestIds.DATASET_MANAGE_DATASET_DESCRIPTION_INPUT),{timeout:20_000})
     .type(this.strDSName + '  New Description - 1', {});
-
-
-   /* cy.get('.ant-table-body',{timeout:8000})
-    .contains('E02387')
-    //.find('tr') 
-    //.contains('td', 'E02387')
-    .click() 
-
-    cy.get('#basic_BlFUXQ0v8rPDPQEg5xvFjh',{timeout:20_000})
-    .clear()
-    .type('IT and Sales')*/
-    
-
   
      //save
    cy.get(this.TestIDLocator(CypressTestIds.DATASET_MANAGE_DATASET_SAVE_BUTTON),{timeout:20_000})
@@ -425,7 +412,8 @@ verify_data(){
   .click()
 
   cy.get('[data-row-key="202412120937038654rUQx4dRN6rEXlp"] > :nth-child(5) > .ant-space > .ant-space-item > .ant-row > .ant-col > .ant-typography',{timeout:8000})
-  .should(this.assertBeVisible)
+  .scrollIntoView()
+   .should(this.assertBeVisible)
 
 }
 
