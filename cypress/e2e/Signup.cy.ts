@@ -1,24 +1,27 @@
 //import { LoginTest } from "../classes/LoginTest";
 import {SignUpTest}  from "../classes/SignupTest";
+import { TestBase } from "../classes/TestBase";
 
 
 //create  Object
 const objSignUpTest :SignUpTest = new SignUpTest ();
+const objTestBase:TestBase= new TestBase();
 
 let email = 'Testing1@mnniskor.com';
 let password = 'Maria@027';
-let firstName = 'Ayeza';
-let lastName = 'khan';
+const strUserFirstName: string = objTestBase.TimeStamp('UFN-');
+const strUserLastName: string = objTestBase.TimeStamp('ULN-');
+
 let Verification_link = 'https://www.pretectum.net/verifyemail?code=416825&username=01e6fa46-d573-4cda-9045-ef98f8d0dbec&clientId=61junkfaas0egho45e9q71uljj&region=us-east-2&email=Testing1@mnniskor.com';
 
 
 
 
-/*it('Open Signup URL ',()=>{
+it('Open Signup URL ',()=>{
     objSignUpTest.openSignupURL();
     
 
-})*/
+})
 
 describe('SIGN UP ACTIVITIES',()=>{
     
@@ -28,30 +31,30 @@ describe('SIGN UP ACTIVITIES',()=>{
     })
 
 // Signing up Empty Fields
-it.skip('Signing up Empty Fields',()=>{
+it('Signing up Empty Fields',()=>{
 
     objSignUpTest.signing_up_emptyfields();
 
 })
 
 //Signing up  with Unchecked box
-it.skip('Signing up  with Unchecked box',()=>{
-
-    objSignUpTest.unchecked_box(email, password, firstName, lastName);
+it('Signing up  with Unchecked box',()=>{
+    
+    objSignUpTest.unchecked_box(email, password,strUserFirstName , strUserLastName);
 
 })
 //Sign up Process
 
-it.skip('sign up',()=>{
+it('sign up',()=>{
 
-    objSignUpTest.signUp(email, password, firstName, lastName, Verification_link);
+    objSignUpTest.signUp(objTestBase.email1, password, strUserFirstName , strUserLastName, Verification_link);
 
 })
 
 
 
 // edge case scenarios
-it.skip('Edge Case Scenario:invalid email ',()=>{
+it('Edge Case Scenario:invalid email ',()=>{
 
    // let email = 'Testing1@jonesassociates.biz';
     let email = 'Testing1#%jonesassociates.biz';
@@ -68,7 +71,7 @@ it.skip('Edge Case Scenario:invalid email ',()=>{
 
 
 //duplicate email
-it.skip('Edge Case Scenario: duplicate email ',()=>{
+it('Edge Case Scenario: duplicate email ',()=>{
 
     // let email = 'Testing1@jonesassociates.biz';
      let email = 'Testing1@mnniskor.com';
@@ -84,7 +87,7 @@ it.skip('Edge Case Scenario: duplicate email ',()=>{
 
 
  //Without Password
- it.skip('Edge Case Scenario: Without Password ',()=>{
+ it('Edge Case Scenario: Without Password ',()=>{
 
      let email = 'Testing1@jonesassociates.biz';
      let password = 'Maria@027';
@@ -98,7 +101,7 @@ it.skip('Edge Case Scenario: duplicate email ',()=>{
 
 
 //password less than minimum length (i.e 8 characters)
- it.skip('Edge Case Scenario: password less than minimum length ',()=>{
+ it('Edge Case Scenario: password less than minimum length ',()=>{
 
     let email = 'Testing1@jonesassociates.biz';
     let password = 'Maria';
@@ -112,7 +115,7 @@ it.skip('Edge Case Scenario: duplicate email ',()=>{
 
 
 //password without special character
-it.skip('Edge Case Scenario: password without special character ',()=>{
+it('Edge Case Scenario: password without special character ',()=>{
 
     let email = 'Testing1@jonesassociates.biz';
     let password = 'Maria1234';
@@ -127,7 +130,7 @@ it.skip('Edge Case Scenario: password without special character ',()=>{
 
 //passsword contains only lower case letters 
 
-it.skip('Edge Case Scenario: passsword contains only lower case letters  ',()=>{
+it('Edge Case Scenario: passsword contains only lower case letters  ',()=>{
 
     let email = 'Testing1@jonesassociates.biz';
     let password = 'maria@1234';
@@ -141,7 +144,7 @@ it.skip('Edge Case Scenario: passsword contains only lower case letters  ',()=>{
 
 //passsword contains only Upper case letters 
 
-it.skip('Edge Case Scenario: passsword contains only upper case letters  ',()=>{
+it('Edge Case Scenario: passsword contains only upper case letters  ',()=>{
 
     let email = 'Testing1@jonesassociates.biz';
     let password = 'MARIA@1234';
@@ -188,7 +191,7 @@ it('Edge Case Scenario: First name input length less then minimum ',()=>{
 })
 //check login process
 
-it.skip('test login ',()=>{
+it('test login ',()=>{
 
     objSignUpTest.open_login_Page();
     objSignUpTest.test_login(email,password);     
@@ -207,21 +210,21 @@ describe('TEST LOGIN ACTIVITIES ',()=>{
 
 
 
-it.skip('schema_model_disabled ',()=>{
+it('schema_model_disabled ',()=>{
 
     objSignUpTest.schema_model_disabled();
    
 
 })
     
-it.skip('data_set_disabled',()=>{
+it('data_set_disabled',()=>{
 
     objSignUpTest.data_set_disabled();
 
 })
 
 
-it.skip('Assign   roles  to customer',()=>{
+it('Assign   roles  to customer',()=>{
 
     objSignUpTest.assign_Roles();
 
@@ -229,7 +232,7 @@ it.skip('Assign   roles  to customer',()=>{
 
 //verfication 
 
-it.skip('Schema Models and Datasets are enabled',()=>{
+it('Schema Models and Datasets are enabled',()=>{
 
     objSignUpTest.verificaion();
 
@@ -239,6 +242,3 @@ it.skip('Schema Models and Datasets are enabled',()=>{
 })
 
 
-//cy.get('.ant-alert-description')
-//cy.get('.middle-row > .ant-col > .ant-btn')
-// cy.get('u')
