@@ -9,7 +9,8 @@ const objDataSetupTest:DataSetup= new DataSetup();
 
 //first check schema section is accessible to access Dataset
 it(' Open Schema',()=>{
-    objDataSetupTest.openSchema();
+  
+  objDataSetupTest.openSchema();
     
 
 })
@@ -19,17 +20,15 @@ describe(' DATASET UP ACTIVITIES',()=>{
     beforeEach(()=>{
         
         objDataSetupTest.openSchema();
-        
+
     })
 
-// Open New data set window
-
+    // Open New data set window
     it('Open New dataset window',()=>{
-
         objDataSetupTest.open_new_dataset_window();
 
     })
-
+  
     //save dataset container
 
     it('Save Dataset container',()=>{
@@ -97,3 +96,5 @@ describe(' DATASET UP ACTIVITIES',()=>{
     })
 
     })
+
+    

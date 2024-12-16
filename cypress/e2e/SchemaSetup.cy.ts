@@ -20,18 +20,27 @@ describe('Schema Setup related activities', ()=>
         oST.OpenSchemaPage();
     })
 
-    it('Create Schema Manually', () =>
-        {
-            oST.CreateSchemaManually();
-        })
-        
+    
+
+        it('View Dataset of a Schema', () =>
+            {
+                oST.ViewDataSetsOfASchema();
+            })
+
+            
     /*
+    
+
     it('Create Schema from File Input', () =>
     {
         oST.CreateSchemaFromFileInput();
     })
 
-    
+    it('Create Schema from File Input Without Header Row', () =>
+    {
+        oST.CreateSchemaFromFileInputWHR();
+    })
+
     it('Create Schema Manually', () =>
     {
         oST.CreateSchemaManually();
