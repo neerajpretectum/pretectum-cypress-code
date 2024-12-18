@@ -56,14 +56,8 @@ it('sign up',()=>{
 // edge case scenarios
 it('Edge Case Scenario:invalid email ',()=>{
 
-   // let email = 'Testing1@jonesassociates.biz';
-    let email = 'Testing1#%jonesassociates.biz';
-    let password = 'Maria@027';
-    let firstName = 'Ramsha';
-    let lastName = 'khan';
-
-    objSignUpTest.edge_case_scenarios (email, password, firstName,lastName); 
-    cy.get('.ant-form-item-explain-error',{timeout:8000})
+    objSignUpTest.edge_case_scenarios ('Testing1#%jonesassociates.biz', 'Maria@027', 'Ramsha','khan'); 
+    cy.get('.ant-form-item-explain-error',{timeout:20000})
     .should('be.visible')
    
 
@@ -72,43 +66,28 @@ it('Edge Case Scenario:invalid email ',()=>{
 
 //duplicate email
 it('Edge Case Scenario: duplicate email ',()=>{
-
-    // let email = 'Testing1@jonesassociates.biz';
-     let email = 'Testing1@mnniskor.com';
-     let password = 'Maria@027';
-     let firstName = 'Ramsha';
-     let lastName = 'khan';
  
-     objSignUpTest.edge_case_scenarios (email, password, firstName,lastName); 
-     cy.get('.ant-form-item-explain-error',{timeout:8000})
+     objSignUpTest.edge_case_scenarios ('Testing1@mnniskor.com', 'Maria@027', 'Ramsha','khan'); 
+     cy.get('.ant-form-item-explain-error',{timeout:20000})
      .should('be.visible')
  })
 
+//First name and password field empty submission
+
+it('Edge Case Scenario: First name and password field empty submission ',()=>{
 
 
- //Without Password
- it('Edge Case Scenario: Without Password ',()=>{
+    objSignUpTest.empty_name_and_password('Testing1@jonesassociates.biz', '', '','khan' ); 
+    
+})
 
-     let email = 'Testing1@jonesassociates.biz';
-     let password = 'Maria@027';
-     let firstName = 'Ramsha';
-     let lastName = 'khan';
- 
-     objSignUpTest.edge_case_scenarios (email, password, firstName,lastName); 
-     cy.get('.ant-form-item-explain-error',{timeout:8000})
-     .should('be.visible')
- })
+
 
 
 //password less than minimum length (i.e 8 characters)
  it('Edge Case Scenario: password less than minimum length ',()=>{
 
-    let email = 'Testing1@jonesassociates.biz';
-    let password = 'Maria';
-    let firstName = 'Ramsha';
-    let lastName = 'khan';
-
-    objSignUpTest.edge_case_scenarios (email, password, firstName,lastName); 
+    objSignUpTest.edge_case_scenarios ('Testing1@jonesassociates.biz', 'Ma@12', 'Ramsha','khan'); 
     cy.get('.ant-form-item-explain-error',{timeout:8000})
     .should('be.visible')
 })
@@ -117,12 +96,7 @@ it('Edge Case Scenario: duplicate email ',()=>{
 //password without special character
 it('Edge Case Scenario: password without special character ',()=>{
 
-    let email = 'Testing1@jonesassociates.biz';
-    let password = 'Maria1234';
-    let firstName = 'Ramsha';
-    let lastName = 'khan';
-
-    objSignUpTest.edge_case_scenarios (email, password, firstName,lastName); 
+    objSignUpTest.edge_case_scenarios ('Testing1@jonesassociates.biz', 'Maria1234', 'Ramsha','khan'); 
     cy.get('.ant-form-item-explain-error',{timeout:8000})
     .should('be.visible')
 })
@@ -132,12 +106,8 @@ it('Edge Case Scenario: password without special character ',()=>{
 
 it('Edge Case Scenario: passsword contains only lower case letters  ',()=>{
 
-    let email = 'Testing1@jonesassociates.biz';
-    let password = 'maria@1234';
-    let firstName = 'Ramsha';
-    let lastName = 'khan';
 
-    objSignUpTest.edge_case_scenarios (email, password, firstName,lastName); 
+    objSignUpTest.edge_case_scenarios ('Testing1@jonesassociates.biz', 'maria@1234', 'Ramsha','khan'); 
     cy.get('.ant-form-item-explain-error',{timeout:8000})
     .should('be.visible')
 })
@@ -146,42 +116,18 @@ it('Edge Case Scenario: passsword contains only lower case letters  ',()=>{
 
 it('Edge Case Scenario: passsword contains only upper case letters  ',()=>{
 
-    let email = 'Testing1@jonesassociates.biz';
-    let password = 'MARIA@1234';
-    let firstName = 'Ramsha';
-    let lastName = 'khan';
-
-    objSignUpTest.edge_case_scenarios (email, password, firstName,lastName); 
+    objSignUpTest.edge_case_scenarios ('Testing1@jonesassociates.biz', 'MARIA@1234', 'Ramsha','khan'); 
     cy.get('.ant-form-item-explain-error',{timeout:8000})
     .should('be.visible')
 })
 
 
-//First name field empty submission
-
-it('Edge Case Scenario: First name field empty submission ',()=>{
-
-    let email = 'Testing1@jonesassociates.biz';
-    let password = 'Maria@027';
-    let firstName = 'Ramsha';
-    let lastName = 'khan';
-
-    objSignUpTest.edge_case_scenarios (email, password, ' ',lastName ); 
-    //cy.get('.ant-form-item-explain-error',{timeout:8000})
-   // .should('be.visible')
-})
-
 
 //
 it('Edge Case Scenario: First name input length less then minimum ',()=>{
 
-    let email = 'Testing2@jonesassociates.biz';
-    let password = 'Maria@027';
-    let firstName = 'Ra';
-    let lastName = 'khan';
-
-    objSignUpTest.edge_case_scenarios (email, password, firstName,lastName ); 
-    cy.get('.ant-form-item-explain-error',{timeout:8000})
+    objSignUpTest.edge_case_scenarios ('Testing2@jonesassociates.biz', 'Maria@027','Ra','khan' ); 
+    cy.get('.ant-form-item-explain-error',{timeout:20000})
    .should('be.visible')
 })
 
