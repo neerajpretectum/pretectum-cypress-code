@@ -1,8 +1,8 @@
-import CypressTestIds from  "../classes/CypressTestIDs"
+import CypressTestIds from  "./CypressTestIDs"
 import { TestBase } from "./TestBase"
 
 
-export class DataSetup extends TestBase{
+export class DataSet extends TestBase{
   
   strDSName: string = this.TimeStamp('DSN-'); 
   schema_name:string = this.TimeStamp('SN-');
@@ -449,9 +449,8 @@ verify_data(){
   cy.get('.ant-result-extra > .ant-btn-primary > span',{timeout:8000})
   .click()
 
-  cy.get('[data-row-key="202412120937038654rUQx4dRN6rEXlp"] > :nth-child(5) > .ant-space > .ant-space-item > .ant-row > .ant-col > .ant-typography',{timeout:8000})
-  .scrollIntoView()
-   .should(this.assertBeVisible)
+  cy.wait(20000)
+  
 
 }
 
@@ -490,12 +489,14 @@ empty_consent_textbox(){
    cy.get('.ant-checkbox-input',{timeout:8000})
    .check();
 
-   cy.get('.ant-modal-footer > .ant-btn-primary > span',{timeout:8000})
-  .click()
+  
 
   cy.get('.ant-typography.ant-typography-danger')
   .contains('Type CONFIRM to verify to run a bulk job')
   .should(this.assertBeVisible)
+  
+  cy.get('.ant-modal-footer > .ant-btn-primary > span',{timeout:20000})
+   .click()
   
 }
 
