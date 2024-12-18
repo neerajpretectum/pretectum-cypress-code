@@ -1,34 +1,35 @@
-import { DataSetup} from "../classes/DataSetupTest"
+import { DataSet } from "../classes/DataSet";
 import { TestBase } from "../classes/TestBase"
 
 //var blnUsersopened: Boolean=false;
 
-//create Datasetup Object
-const objDataSetupTest:DataSetup= new DataSetup();
+//create Dataset Object
+const objDataSetupTest:DataSet= new DataSet();
 
 
-//first check schema section is accessible to access Dataset
-it(' Open Schema',()=>{
-  
-  objDataSetupTest.openSchema();
+
+it(' create Schema',()=>{
+    objDataSetupTest.createSchema();
     
 
 })
 
-describe(' DATASET UP ACTIVITIES',()=>{
+describe(' DATASET ACTIVITIES',()=>{
 
     beforeEach(()=>{
         
-        objDataSetupTest.openSchema();
-
+        objDataSetupTest.select_schema();
+        
     })
 
-    // Open New data set window
+// Open New data set window
+
     it('Open New dataset window',()=>{
+
         objDataSetupTest.open_new_dataset_window();
 
     })
-  
+
     //save dataset container
 
     it('Save Dataset container',()=>{
@@ -51,7 +52,7 @@ describe(' DATASET UP ACTIVITIES',()=>{
 
     })
 
-    //Edit Dataset
+   //Edit Dataset
       it('Edit Dataset',()=>{
 
             objDataSetupTest.Edit_DataSet();
@@ -95,6 +96,11 @@ describe(' DATASET UP ACTIVITIES',()=>{
 
     })
 
+     //Delete schema
+     it('Delete schema',()=>{
+
+        objDataSetupTest.DeleteSchema();
+
     })
 
-    
+    })

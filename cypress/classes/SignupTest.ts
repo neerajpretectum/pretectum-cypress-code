@@ -26,11 +26,9 @@ openSignupURL(){
 
 signing_up_emptyfields(){
 
-   
-    
-    // submit
-    cy.get('.ant-form-item-control-input-content > .ant-btn > span',{timeout:8_000})
-    .click()
+   // sign up
+   cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_SIGNUP_BUTTON), {timeout: 20_000})
+   .click()
 
     cy.get('#basic_email_help > .ant-form-item-explain-error',{timeout:20000})
     .should(this.assertBeVisible)
@@ -112,8 +110,8 @@ signUp(email: string = '', password: string = '', firstName: string = '', lastNa
   .click({force:true}); 
 
    //Success message shown
-   /*cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
-   .should(this.assertBeVisible)*/ 
+   cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
+   .should(this.assertBeVisible) 
 
 }
 
@@ -143,6 +141,28 @@ edge_case_scenarios(email: string = '', password: string = '', firstName: string
      .click()
  
 
+
+}
+
+empty_name_and_password(email: string = '', password: string = '', firstName: string = '', lastName: string = ''){
+
+    cy.get(this.TestIDLocator(CypressTestIds. USER_SIGNUP_CORPORATE_EMAIL_INPUT), {timeout: 20_000})
+    .type(email)
+
+     //enter last name
+     cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_LAST_NAME_INPUT), {timeout: 20_000})
+     .type(lastName)
+  
+     // //check 
+     cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_AGREE_TERMS_CHECKBOX), {timeout: 20_000})
+     .check()
+ 
+     // sign up
+     cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_SIGNUP_BUTTON), {timeout: 20_000})
+     .click()
+ 
+     cy.get('.ant-form-item-explain-error',{timeout:8000})
+     .should('be.visible')
 
 }
 
@@ -180,9 +200,9 @@ test_login(email:string=' ', password:string=' '){
     //schema model disabled
     schema_model_disabled() {
 
-    cy.get(':nth-child(1) > :nth-child(1) > .ant-layout > .ant-layout-header > .ant-typography',{timeout:8_000})
+    cy.get(':nth-child(1) > :nth-child(1) > .ant-layout > .ant-layout-header > .ant-typography',{timeout:20_000})
     .should(this.assertBeVisible)
-    cy.get(':nth-child(1) > .ant-layout > .ant-layout-content > .ui',{timeout:8_000})
+    cy.get(':nth-child(1) > .ant-layout > .ant-layout-content > .ui',{timeout:20_000})
     .should(this.assertBeVisible)
 
     }
@@ -190,9 +210,9 @@ test_login(email:string=' ', password:string=' '){
     //data set disabled
     data_set_disabled(){
 
-    cy.get(':nth-child(1) > :nth-child(2) > .ant-layout > .ant-layout-header > .ant-typography',{timeout:8_000})
+    cy.get(':nth-child(1) > :nth-child(2) > .ant-layout > .ant-layout-header > .ant-typography',{timeout:20_000})
     .should('be.visible')
-    cy.get(':nth-child(2) > .ant-layout > .ant-layout-content > .ui',{timeout:8_000})
+    cy.get(':nth-child(2) > .ant-layout > .ant-layout-content > .ui',{timeout:20_000})
     .should('be.visible')
     }
     
