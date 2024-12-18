@@ -1,9 +1,8 @@
 import CypressTestIds from  "../classes/CypressTestIDs"
 import { TestBase } from "./TestBase";
 
-//var defaultBAdataTag='language(English)'
-var tagdesc='Female'
-var newtagdesc=' the description of data tag gender'
+
+var newtagdesc=' new description of data tag'
 var business_area_specific= 'Test Business Area'
 
 
@@ -29,17 +28,17 @@ openDataTag(){
     .should(this.assertBeVisible)
     .click ()
    
-    //list is visible
-    cy.get('[title="Business Area"]',{timeout:20_000})
-    .should('be.visible')
-
+    
+    cy.get(this.TestIDLocator(CypressTestIds.DATATAGS_DATATAGLIST_TABLE), {timeout: 20_000})
+    .should(this.assertBeVisible)
+  
 }
 
 //add DataTag
 addDataTag(){
     //add datatag button is visible
     cy.get(this.TestIDLocator(CypressTestIds.DATATAGS_ADD_DATATAG_BUTTON), {timeout: 8_000})
-    .should('be.visible')
+    .should(this.assertBeVisible)
     .click()
 
     //select business area 
@@ -52,7 +51,7 @@ addDataTag(){
     
     //tag description
     cy.get(this.TestIDLocator(CypressTestIds.DATATAGS_DATATAG_DESCRIPTION_INPUT),{timeout:8000})
-    .type(tagdesc)
+    .type(this.strDTName+ ' Description', {})
     .click()
 
     //save
@@ -72,11 +71,12 @@ viewdatatag(){
     .parent(this.TD)
     .parent(this.TR)  
     .find(this.TestIDLocator(CypressTestIds.DATATAGS_DATATAGLIST_HISTORY_BUTTON), {timeout: 8_000})
-        .should(this.assertBeVisible)
-        .click()
+    .scrollIntoView()
+    .should(this.assertBeVisible)
+     .click()
  
-    cy.get('.ant-form-item-required',{timeout:8_000})
-    .should('be.visible')
+     cy.get(this.TestIDLocator(CypressTestIds.DATATAGS_DATATAG_NAME_INPUT),{timeout: 8_000})
+    .should(this.assertBeVisible)
 
 }
 //edit datatag
@@ -112,12 +112,12 @@ viewHistory(){
     .parent(this.TD)
     .parent(this.TR)
     .find(this.TestIDLocator(CypressTestIds.DATATAGS_DATATAGLIST_VIEW_BUTTON), {timeout: 8_000})
+    .scrollIntoView()
     .should(this.assertBeVisible)
     .click()
 
-   // cy.get('#rc-tabs-0-tab-2',{timeout:20_000})
    cy.get(this.TestIDLocator(CypressTestIds.COMMON_OBJECTS_EVENT_LIST_TABLE), {timeout: 8_000})
-    .should('be.visible')
+   .should(this.assertBeVisible)
 
 
 }
@@ -156,30 +156,26 @@ viewHistory(){
     cy.get(this.TestIDLocator(CypressTestIds.BUSINESS_AREA_DATA_ADD_NEW_BUTTON), {timeout: 8_000})
     .click()
     
-     cy.get('.ant-select-selector') // This targets the dropdown container
-     .first()
-     .click({force:true});  // This will open the dropdown
+    //select Buisness Area
+    this.selectDropdown(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_BUSINESS_AREA_NAME_SELECT),this.business_area)
 
-   // Step 3: Select the option from the dropdown
-    cy.get('.ant-select-dropdown') 
-    .first()
-     .find('.ant-select-item')  // This finds individual dropdown items
-     .contains('DEFAULT')  // Filter items to find the one containing "DEFAULT"
-     .click({force:true});
-
-    cy.get('[data-testid="manage-business-area-data-tags-select"] .ant-select-selector', { timeout: 10000 })
-    .click() 
-    cy.get('[title= "language (English)"]> .ant-select-item-option-content')
+    //select datatags
+    cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT), {timeout: 8_000})
+    .last()
     .click()
-    .should(this.assertBeVisible)
 
-    cy.get('[title="Gender (Female)"] > .ant-select-item-option-content')
-  .click()
-  .should(this.assertBeVisible)
-  .then(() => {
-    cy.log('Visible: Default Data Tags are visible');
+    // Verify the first tag
+    cy.get('[title="language (English)"] > .ant-select-item-option-content', {timeout: 20_000})
+    .should(this.assertBeVisible)
     
-  });
+
+    // Verify the second tag
+    cy.get('[title="Gender (Female)"] > .ant-select-item-option-content', {timeout: 20_000})
+    .should(this.assertBeVisible)
+    
+    .then(() => {
+        cy.log('Visible: Default Data Tags are visible');
+    });
 
     }
 
@@ -190,41 +186,40 @@ viewHistory(){
         cy.get(this.TestIDLocator(CypressTestIds.VERTICAL_MENU_BUSINESSAREADATA), {timeout: 8_000})
         .click()
         cy.get(this.TestIDLocator(CypressTestIds.BUSINESS_AREA_DATA_ADD_NEW_BUTTON), {timeout: 20_000})
-        .click({force:true});
-    
-        //select specific business area 
-        cy.get('.ant-select-selection-item', {timeout: 20000})
         .click();
-        cy.get('.ant-select-item-option-content', { timeout: 20000 })
-        .contains(business_area_specific)
-        .click({force:true})
-        .debug();
     
+       //select specific business area 
+       this.selectDropdown(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_BUSINESS_AREA_NAME_SELECT),business_area_specific)
     
-        cy.get('[data-testid="manage-business-area-data-tags-select"] .ant-select-selector', { timeout: 10000 })
+        //select datatags
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT), {timeout: 8_000})
+        .last()
         .click()
-        //.debug() 
-        cy.get('[title= "language (English)"]> .ant-select-item-option-content')
-        .click()
+
+        //verify "language (English)"
+        cy.get('[title= "language (English)"]> .ant-select-item-option-content', {timeout: 20_000})
         .should(this.assertBeVisible)
+        
+        
     
-        cy.get('[title="Gender (Female)"] > .ant-select-item-option-content')
-        .click()
+        // Verify "Gender (Female)"
+        cy.get('[title="Gender (Female)"] > .ant-select-item-option-content', {timeout: 20_000})
         .should(this.assertBeVisible)
-    
-        cy.get('[title="Test Tag for Neeraj (Description)"] > .ant-select-item-option-content')
-        .click()
+        
+
+        // Verify "Test Tag for Neeraj (Description)"
+       cy.get('[title="Test Tag for Neeraj (Description)"] > .ant-select-item-option-content', {timeout: 20_000})
         .should(this.assertBeVisible)
-    
-        cy.get('[title="Date (start date of business )"] > .ant-select-item-option-content')
-        .click()
+        
+
+        // Verify "Date (start date of business)"
+        cy.get('[title="Date (start date of business )"] > .ant-select-item-option-content', {timeout: 20_000})
         .should(this.assertBeVisible)
-    
-    
+       
         .then(() => {
-        cy.log('Both Default Data Tag and Specific Data Tag are visible');
-    
+            cy.log('Both Default Data Tag and Specific Data Tag are visible');
         });
+
 
     }
 
