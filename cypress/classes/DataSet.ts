@@ -1,17 +1,13 @@
 import CypressTestIds from  "../classes/CypressTestIDs"
 import { TestBase } from "./TestBase"
 
- //var Dataset_Name ='Employee_Data123'
- //var Dataset_Desc='Description of Employee Data set'
- var data_set_file='Dataset.csv'
- 
 
 export class DataSetup extends TestBase{
   
   strDSName: string = this.TimeStamp('DSN-'); 
-  strSchema1:string = this.TimeStamp('SN-');
+  schema_name:string = this.TimeStamp('SN-');
 
-    openSchema(){
+    createSchema(){
 
     //open portal
     this.OpenURL();
@@ -20,16 +16,58 @@ export class DataSetup extends TestBase{
     this.Login();
 
     //Open Schema Page
-    cy.contains('Schema', {timeout: 8_000})
-    .click();
+    cy.get(this.TestIDLocator(CypressTestIds. HEADER_MENU_SCHEMA), {timeout: 20_000})
+    .click()
 
-    //select schema
-    cy.get('[data-row-key="7z2PasLkGtE0MVxvrrqtth"] > :nth-child(3) > span',{timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.CREATE_NEW_SCHEMA_BUTTON), {timeout: 20_000})
+    .click()
+
+    cy.get(this.TestIDLocator(CypressTestIds.UPLOAD_SCHEMA_FILE_INPUT), {timeout: 8_000})
+    .attachFile('Dataset.csv', { subjectType: 'drag-n-drop' });
+
+    cy.get(this.TestIDLocator(CypressTestIds.UPLOAD_SCHEMA_NEXT_BUTTON), {timeout: 8_000})
+    .should(this.assertBeVisible)
+    .click()
+
+    cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_NAME_INPUT), {timeout: 20_000})
+    .should(this.assertBeVisible)
+    .clear()
+    .type(this.schema_name)
+
+    cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_DESCRIPTION_INPUT), {timeout: 20_000})
+    .clear()
+    .type('Description')
+
+    cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_SAVE_AS_DRAFT_BUTTON), {timeout: 20_000})
+    .should(this.assertBeVisible)
+    .click()
+    
+    cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
+    .should(this.assertBeVisible)
+    
+    cy.wait(8000)
+    cy.reload();
+    
+    }
+
+    select_schema(){
+
+      this.OpenURL();
+
+    //login into portal with valid creadentials         
+      this.Login();
+
+    //Open Schema Page
+    cy.get(this.TestIDLocator(CypressTestIds. HEADER_MENU_SCHEMA), {timeout: 20_000})
+    .click()
+
+    //cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_TABLE), {timeout: 8_000})
+    //.should(this.assertBeVisible)
+    cy.contains(this.schema_name, {timeout: 20_000})
     .click()
 
 
     }
-
     //open new data set window
     open_new_dataset_window(){
 
@@ -379,8 +417,8 @@ verify_data(){
   cy.get('.ant-col-4 > .ant-space > :nth-child(2) > .ant-btn > :nth-child(1)',{timeout:8000})
   .click()
 
-   cy.get('.ant-card-head-title',{timeout:8000})
-  .contains('Choose data attribute for verification')
+  // cy.get('.ant-card-head-title',{timeout:8000})
+  cy.contains('Choose data attribute for verification')
   .click()
   
   //select attributes
@@ -394,7 +432,7 @@ verify_data(){
   .click()
 
  //check box
-  cy.get('.ant-checkbox-input',{timeout:8000})
+  cy.get('.ant-checkbox-input',{timeout:8000} )
   .check();
 
   //type confirm
@@ -472,12 +510,11 @@ uncheck_consent_box(){
    .find(this.TestIDLocator(CypressTestIds.DATASET_LIST_EDIT_BUTTON), {timeout:8000})
    .click()
  
-   cy.wait(8000);
+   cy.wait(10000);
    //request verification
- 
    cy.get('.ant-col-4 > .ant-space > :nth-child(2) > .ant-btn > :nth-child(1)',{timeout:8000})
    .click()
-    cy.get('.ant-card-head-title',{timeout:8000})
+    cy.get('.ant-card-head-title',{timeout:20000})
    .contains('Choose data attribute for verification')
    .click()
    
@@ -492,11 +529,11 @@ uncheck_consent_box(){
    .click()
  
    //type confirm
-   cy.get(':nth-child(2) > .ant-input',{timeout:8000})
+   cy.get(':nth-child(2) > .ant-input',{timeout:20000})
    .should(this.assertBeVisible)
    .type('CONFIRM')
  
-   cy.get('.ant-modal-footer > .ant-btn-primary > span',{timeout:8000})
+   cy.get('.ant-modal-footer > .ant-btn-primary > span',{timeout:20000})
    .click()
 
   
@@ -526,5 +563,18 @@ delete_dataset(){
 
 
 }
+DeleteSchema()
+    {
+        cy.contains(this.schema_name, {timeout: 20_000})
+        .parent(this.TD)
+        .parent(this.TR)
+        .find(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_DELETE_BUTTON))
+        .click();
+        // confirmation message
+        cy.get(this.TestIDLocator(CypressTestIds.CONFIRMATION_BOX_OK_BUTTON), {timeout: 8_000})
+        .should(this.assertBeVisible)
+        .click()
+      
+    }
 
 }
