@@ -1,10 +1,10 @@
-import { DataSetup} from "../classes/DataSetup"
+import { DataSet } from "../classes/DataSet";
 import { TestBase } from "../classes/TestBase"
 
 //var blnUsersopened: Boolean=false;
 
-//create Datasetup Object
-const objDataSetupTest:DataSetup= new DataSetup();
+//create Dataset Object
+const objDataSetupTest:DataSet= new DataSet();
 
 
 
@@ -14,7 +14,7 @@ it(' create Schema',()=>{
 
 })
 
-describe(' DATASET UP ACTIVITIES',()=>{
+describe(' DATASET ACTIVITIES',()=>{
 
     beforeEach(()=>{
         
@@ -52,7 +52,7 @@ describe(' DATASET UP ACTIVITIES',()=>{
 
     })
 
-    //Edit Dataset
+   //Edit Dataset
       it('Edit Dataset',()=>{
 
             objDataSetupTest.Edit_DataSet();
