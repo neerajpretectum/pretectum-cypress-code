@@ -4,6 +4,7 @@ import CypressTestIds from  "../classes/CypressTestIDs";
 export class SchemaSetupTest extends TestBase
 {
     strSchemaNameFile: string = this.TimeStamp('SNF-');
+    strSchemaNameFileWH: string = this.TimeStamp('SNFWH-');
     strSchemaNameDragDrop: string = this.TimeStamp('SNDD-');
     strSchemaNameManual: string = this.TimeStamp('SNM-');
     strSchemaNameClone: string = this.TimeStamp('SNC-');
@@ -104,7 +105,7 @@ export class SchemaSetupTest extends TestBase
         cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_NAME_INPUT), {timeout: 8_000})
         .should(this.assertBeVisible)
         .clear()
-        .type(this.strSchemaNameFile)
+        .type(this.strSchemaNameFileWH)
 
         cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_DESCRIPTION_INPUT))
         .clear()

@@ -9,7 +9,8 @@ import { TestBase } from "../classes/TestBase";
     
 export class SignUpTest extends TestBase{
 
-
+    strRole: string = this.TimeStamp('role-');
+     
 
 openSignupURL(){
 
@@ -25,26 +26,24 @@ openSignupURL(){
 
 signing_up_emptyfields(){
 
-    
-    
-    // submit
-    cy.get('.ant-form-item-control-input-content > .ant-btn > span',{timeout:8_000})
-    .click()
+   // sign up
+   cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_SIGNUP_BUTTON), {timeout: 20_000})
+   .click()
 
     cy.get('#basic_email_help > .ant-form-item-explain-error',{timeout:20000})
-    .should('be.visible')
+    .should(this.assertBeVisible)
 
     cy.get('#basic_password_help > .ant-form-show-help-item-appear',{timeout:20_000})
-    .should('be.visible')
+    .should(this.assertBeVisible)
 
     cy.get('#basic_firstName_help > .ant-form-show-help-item-appear',{timeout:20_000})
-   .should('be.visible')
+    .should(this.assertBeVisible)
 
    cy.get('#basic_lastName_help > .ant-form-show-help-item-appear',{timeout:20_000})
-   .should('be.visible')
+   .should(this.assertBeVisible)
 
    cy.get('#basic_termsAndConditions_help > .ant-form-show-help-item-appear',{timeout:20_000})
-    .should('be.visible')
+   .should(this.assertBeVisible)
 }
 
 //signing_up_with_unchecked_box
@@ -52,23 +51,25 @@ signing_up_emptyfields(){
 unchecked_box(email: string = '', password: string = '', firstName: string = '', lastName: string = ''){
 
     //enter email
-    cy.get('#basic_email', {timeout:20_000})
+   
+    cy.get(this.TestIDLocator(CypressTestIds. USER_SIGNUP_CORPORATE_EMAIL_INPUT), {timeout: 20_000})
    .type(email)
 
     //enter Password
-    cy.get('#basic_password', {timeout:20_000})
+    cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_PASSWORD_INPUT), {timeout: 20_000})
     .type(password)
 
     //enter fisrt name
-    cy.get('#basic_firstName',{timeout:8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_FIRST_NAME_INPUT), {timeout: 20_000})
     .type(firstName)
 
     //enter last name
-    cy.get('#basic_lastName',{timeout:8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_LAST_NAME_INPUT), {timeout: 20_000})
     .type(lastName)
  
-    // submit
-    cy.get('.ant-form-item-control-input-content > .ant-btn > span',{timeout:8_000})
+    // sign up
+    cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_SIGNUP_BUTTON), {timeout: 20_000})
+    //cy.get('.ant-form-item-control-input-content > .ant-btn > span',{timeout:8_000})
     .click()
     
     cy.get('#basic_termsAndConditions_help > .ant-form-show-help-item-appear',{timeout:20_000})
@@ -79,76 +80,91 @@ unchecked_box(email: string = '', password: string = '', firstName: string = '',
  // sign up process
 signUp(email: string = '', password: string = '', firstName: string = '', lastName: string = '',Verification_link=''){
 
-    // enter email
-    cy.get('#basic_email', {timeout:20_000})
+   cy.get(this.TestIDLocator(CypressTestIds. USER_SIGNUP_CORPORATE_EMAIL_INPUT), {timeout: 20_000})
    .type(email)
 
     //enter Password
-    cy.get('#basic_password', {timeout:20_000})
+    cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_PASSWORD_INPUT), {timeout: 20_000})
     .type(password)
 
     //enter fisrt name
-    cy.get('#basic_firstName',{timeout:8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_FIRST_NAME_INPUT), {timeout: 20_000})
     .type(firstName)
 
     //enter last name
-    cy.get('#basic_lastName',{timeout:8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_LAST_NAME_INPUT), {timeout: 20_000})
     .type(lastName)
-
-    //check 
-    cy.get('#basic_termsAndConditions')
+ 
+    // //check 
+    cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_AGREE_TERMS_CHECKBOX), {timeout: 20_000})
     .check()
 
-   // submit
-   cy.get('.ant-form-item-control-input-content > .ant-btn > span',{timeout:8_000})
-   .click()
+    // sign up
+    cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_SIGNUP_BUTTON), {timeout: 20_000})
+    .click()
 
+   
    // email verification 
   cy.visit(Verification_link, {timeout: 20000});
-   cy.contains(Verification_link)
-   .click({force:true}); 
+  cy.contains(Verification_link)
+  .click({force:true}); 
 
-   //
    //Success message shown
-   /*cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
-   .should(this.assertBeVisible)*/
-    
+   cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
+   .should(this.assertBeVisible) 
 
 }
 
 edge_case_scenarios(email: string = '', password: string = '', firstName: string = '', lastName: string = ''){
 
-// enter email
-cy.get('#basic_email', {timeout:20_000})
-.type(email)
-
- //enter Password
- cy.get('#basic_password', {timeout:20_000})
- .type(password)
-
- //enter fisrt name
- cy.get('#basic_firstName',{timeout:8_000})
- .type(firstName)
-
- //enter last name
- cy.get('#basic_lastName',{timeout:8_000})
- .type(lastName)
-
- //check 
- cy.get('#basic_termsAndConditions')
- .check()
-
-// submit
-cy.get('.ant-form-item-control-input-content > .ant-btn > span',{timeout:8_000})
-.click()
-
+    cy.get(this.TestIDLocator(CypressTestIds. USER_SIGNUP_CORPORATE_EMAIL_INPUT), {timeout: 20_000})
+    .type(email)
+ 
+     //enter Password
+     cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_PASSWORD_INPUT), {timeout: 20_000})
+     .type(password)
+ 
+     //enter fisrt name
+     cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_FIRST_NAME_INPUT), {timeout: 20_000})
+     .type(firstName)
+ 
+     //enter last name
+     cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_LAST_NAME_INPUT), {timeout: 20_000})
+     .type(lastName)
+  
+     // //check 
+     cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_AGREE_TERMS_CHECKBOX), {timeout: 20_000})
+     .check()
+ 
+     // sign up
+     cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_SIGNUP_BUTTON), {timeout: 20_000})
+     .click()
+ 
 
 
 }
 
+empty_name_and_password(email: string = '', password: string = '', firstName: string = '', lastName: string = ''){
 
+    cy.get(this.TestIDLocator(CypressTestIds. USER_SIGNUP_CORPORATE_EMAIL_INPUT), {timeout: 20_000})
+    .type(email)
 
+     //enter last name
+     cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_LAST_NAME_INPUT), {timeout: 20_000})
+     .type(lastName)
+  
+     // //check 
+     cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_AGREE_TERMS_CHECKBOX), {timeout: 20_000})
+     .check()
+ 
+     // sign up
+     cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_SIGNUP_BUTTON), {timeout: 20_000})
+     .click()
+ 
+     cy.get('.ant-form-item-explain-error',{timeout:8000})
+     .should('be.visible')
 
+}
 
 //open login page
 open_login_Page(){
@@ -160,20 +176,22 @@ open_login_Page(){
 
 // test_login 
 test_login(email:string=' ', password:string=' '){
-    
-    cy.get('[data-testid="user-login-email-input"]',{timeout:8_000})
-    .should('be.visible')
+
+    //type user and password
+    cy.get(this.TestIDLocator(CypressTestIds.USER_LOGIN_EMAIL_INPUT),{timeout:8_000})
+    .should(this.assertBeVisible)
     .type(email)
 
-    cy.get('[data-testid="user-login-password-input"]',{timeout:8_000})
-    .type(password)
-
-    cy.get('[data-testid="user-login-submit-button"]',{timeout:8_000})
-    .click()
+    cy.get( this.TestIDLocator(CypressTestIds.USER_LOGIN_PASSWORD_INPUT))
+    .type(password, {})
+    //click on button
+    cy.get(this.TestIDLocator(CypressTestIds.USER_LOGIN_SUBMIT_BUTTON))
+    .click({}) 
+    
 
     //landing pages
     cy.get('.ant-layout-header > :nth-child(1) > :nth-child(2)',{timeout:20_000})
-    .should('be.visible')
+    .should(this.assertBeVisible)
 
     
 }
@@ -182,21 +200,20 @@ test_login(email:string=' ', password:string=' '){
     //schema model disabled
     schema_model_disabled() {
 
-    cy.get(':nth-child(1) > :nth-child(1) > .ant-layout > .ant-layout-header > .ant-typography',{timeout:8_000})
-    .should('be.visible')
-    cy.get(':nth-child(1) > .ant-layout > .ant-layout-content > .ui',{timeout:8_000})
-    .should('be.visible')
+    cy.get(':nth-child(1) > :nth-child(1) > .ant-layout > .ant-layout-header > .ant-typography',{timeout:20_000})
+    .should(this.assertBeVisible)
+    cy.get(':nth-child(1) > .ant-layout > .ant-layout-content > .ui',{timeout:20_000})
+    .should(this.assertBeVisible)
 
     }
 
     //data set disabled
     data_set_disabled(){
 
-    cy.get(':nth-child(1) > :nth-child(2) > .ant-layout > .ant-layout-header > .ant-typography',{timeout:8_000})
+    cy.get(':nth-child(1) > :nth-child(2) > .ant-layout > .ant-layout-header > .ant-typography',{timeout:20_000})
     .should('be.visible')
-    cy.get(':nth-child(2) > .ant-layout > .ant-layout-content > .ui',{timeout:8_000})
+    cy.get(':nth-child(2) > .ant-layout > .ant-layout-content > .ui',{timeout:20_000})
     .should('be.visible')
-
     }
     
 
@@ -206,24 +223,25 @@ test_login(email:string=' ', password:string=' '){
     cy.get(this.TestIDLocator(CypressTestIds.HEADER_MENU_CONFIGURATION), {timeout: 20_000})
     .should(this.assertBeVisible)
     .click();
-
+   
     //
-    cy.get('[data-testid="vertical-menu-configuration-roles"]',{timeout:20000})
-    .click()
+    cy.get(this.TestIDLocator(CypressTestIds.VERTICAL_MENU_ROLES), {timeout: 20_000})
+    .should(this.assertBeVisible)
+    .click();
 
-    cy.get('[style="padding-top: 1rem;"] > .ant-row > .ant-col > .ant-btn',{timeout:20000})
-    .click()
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_ADD_ROLE_BUTTON), {timeout: 20_000})
+    .should(this.assertBeVisible)
+    .click();
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_MANAGE_ROLE_NAME_INPUT), {timeout: 20_000})
+    .type(this.strRole)
 
-    cy.get('#basic_name',{timeout:8000})
-    .type('Super User')
-
-    cy.get('#basic_description',{timeout:8000})
-    .type('Role of Super User')
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_MANAGE_ROLE_DESCRIPTION_INPUT), {timeout: 20_000})
+    .type(this.strRole + ' Description - 1', {});
 
     // click on add permissions
-    cy.get('.ant-form-item-control-input-content > .ant-btn',{timeout:8000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_PERMISSIONS_LIST_ADD_PERMISSION_BUTTON), {timeout: 20_000})
     .click()
-    
+   // this.selectDropdown1(this.TestIDLocator(CypressTestIds.ROLES_PERMISSIONS_LIST_PERMISSION_NAME_SELECT),permissionName);
     //add schema model
     cy.get('#basic_permissions_0_name',{timeout:20000})
     .type(Permision1)
@@ -235,7 +253,7 @@ test_login(email:string=' ', password:string=' '){
 
     // add Datasets
 
-    cy.get('.ant-form-item-control-input-content > .ant-btn > :nth-child(2)', {timeout:8000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_PERMISSIONS_LIST_ADD_PERMISSION_BUTTON), {timeout: 20_000})
     .click()
     
     cy.get('#basic_permissions_1_name',  {timeout:8000})
@@ -249,31 +267,25 @@ test_login(email:string=' ', password:string=' '){
 
    
     //add user
-    cy.get('#rc-tabs-0-tab-2', {timeout:8000})
+    cy.get('#rc-tabs-0-tab-2', {timeout: 20_000})
+    //cy.get(this.TestIDLocator(CypressTestIds. ROLES_MANAGE_ROLE_TAB_USERS_TAB), {timeout: 20_000})
     .click()
 
     //click on add user
-    cy.get('[data-testid="add-role-user-button"]',{timeout:20000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_USER_LIST_ADD_USER_BUTTON), {timeout: 20_000})
     .click()
-    this.selectDropdown(this.TestIDLocator(CypressTestIds.BUSINESS_AREA_USER_SELECT),this.email1);
+    this.selectDropdown(this.TestIDLocator(CypressTestIds.ROLES_USER_LIST_USER_ID_SELECT),this.email1);
 
 
-
-   // Select the desired option from the dropdown
-    //cy.get('.ant-select-item-option', {timeout:20000})
-   // cy.get(':nth-child(5) > .ant-select-dropdown > :nth-child(1) > .rc-virtual-list > .rc-virtual-list-holder > :nth-child(1) > .rc-virtual-list-holder-inner > .ant-select-item')
-    //.should('be.visible')
-    //.contains(email)  
-    //.click();
+   //Save
+   cy.get(this.TestIDLocator(CypressTestIds.ROLES_MANAGE_ROLE_SAVE_BUTTON), {timeout: 20_000})
+   .should(this.assertBeVisible)
+   .click({force:true}) 
 
 
-     //save
-    cy.get('.ant-space > :nth-child(2) > .ant-btn', {timeout:8000})
-    .click()
-
-   //success message shown
-    cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
-    .should(this.assertBeVisible)
+    //Success Message
+ cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
+ .should(this.assertBeVisible)
 
 
       
@@ -282,8 +294,28 @@ test_login(email:string=' ', password:string=' '){
 
 
 }
-//verify roles are enabled
+
 verificaion(){
+
+this.test_login();
+//Open Schema Page
+cy.contains('Schema', {timeout: 8_000})
+.click();
+
+cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_TABLE), {timeout: 20_000})
+.should(this.assertBeVisible)
+.find('tr:nth-child(2)')
+.click()
+
+//create new dataset button
+cy.get(this.TestIDLocator(CypressTestIds.DATASET_LIST_CREATE_NEW_DATASET_BUTTON), {timeout: 20_000})
+.should('be.enabled')
+
+.then(($btn) => {
+   
+   cy.log('✅ The  add button is enabled as expected.');
+
+})
 
 
 

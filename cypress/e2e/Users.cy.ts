@@ -14,7 +14,7 @@ it(' Open Users',()=>{
 
 })
 
-//Users Section Axtivities
+//Users Section Activities
 describe('USERS ACTIVITIES',()=>{
 
 beforeEach(()=>{
@@ -29,6 +29,14 @@ beforeEach(()=>{
 it('Add User Button Is Visible',()=>{
 
     objUsersTest.AddUsersButtonIsVisible();
+
+})
+
+// user list is visible
+
+it(' User List Is Visible',()=>{
+
+    objUsersTest.UserListVisible();
 
 })
 
@@ -58,24 +66,26 @@ it('View User',()=>{
 
 })
 
-
-
 //view user histoty
 it('View User History',()=>{
     objUsersTest.viewUserHistory();
 
 })
 
+
+//send reset password link
+it('send reset password link',()=>{
+     objUsersTest.send_resetPassowrd_link();
+ 
+ })
+
+
 //reset password
-it.skip('Reset Password',()=>{
-    objUsersTest.resetPassword();
+it('Reset Password',()=>{
+    
+    objUsersTest.reset_Passowrd();
 
 })
-
-
-
-
-
 
 
 })

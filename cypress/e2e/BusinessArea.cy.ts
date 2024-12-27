@@ -74,9 +74,11 @@ const objBusinessAreaTest: BusinessAreaTest = new BusinessAreaTest();
             objBusinessAreaTest.BusinessAreaRemoveUser();
         });
         
-        
-            
-        
+        //delete business area to recreate to assign user
+        it('Delete Business Area', () =>
+            {
+                objBusinessAreaTest.DeleteBusinessArea();
+            });
         
         //Create Business Area and Assign User in one go
         it('Create Business Area and Assign User', () =>

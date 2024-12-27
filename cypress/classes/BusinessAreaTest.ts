@@ -9,7 +9,7 @@ import { TestBase } from "./TestBase";
 export class BusinessAreaTest extends TestBase
 {
         //Timestamp const
-        strBusinessAreaName1: string = 'BA1-' + this.TimeStamp;
+        strBusinessAreaName1: string = this.TimeStamp('BA1-');
 
         //Open business area
         OpenBusinessArea()
@@ -309,7 +309,7 @@ export class BusinessAreaTest extends TestBase
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_TAB_CREDENTIALS))
             .click() 
 
-            cy.get('.right > :nth-child(2) > .ui').click()
+            //cy.get('.right > :nth-child(2) > .ui').click()
             
 
             //get table's first row
