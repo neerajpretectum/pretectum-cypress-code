@@ -11,9 +11,11 @@
   "description": "",
   "dependencies": {
     "cypress": "^13.16.0",
+    "mailslurp-client": "^15.20.2",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "@types/node": "^22.10.2",
     "cypress-file-upload": "^5.0.8"
   }
 }

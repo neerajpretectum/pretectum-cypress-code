@@ -33,6 +33,15 @@ const CypressTestIds = {
     CONFIRMATION_BOX_OK_BUTTON: "confirmation-box-ok-button",
     CONFIRMATION_BOX_CANCEL_BUTTON: "confirmation-box-cancel-button",
 
+    //User Signup
+
+    USER_SIGNUP_EMAIL_INPUT: "user-signup-corporate-email-input",
+    USER_SIGNUP_PASSWORD_INPUT: "user-signup-password-input",
+    USER_SIGNUP_FIRST_NAME_INPUT: "user-signup-first-name-input",
+    USER_SIGNUP_LAST_NAME_INPUT: "user-signup-last-name-input",
+    USER_SIGUP_CHECKBOX: "user-signup-agree-terms-checkbox",
+    USER_SIGNUP_SUBMIT_BUTTON: "user-signup-signup-button",
+
     // User Login
     USER_LOGIN_EMAIL_LINK_SENT_MESSAGE: "user-login-email-link-sent-message",
     USER_LOGIN_EMAIL_INPUT: "user-login-email-input",
