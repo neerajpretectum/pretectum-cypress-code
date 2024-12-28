@@ -154,7 +154,121 @@ export class SchemaSetupTest extends TestBase
         .should(this.assertBeVisible)
     }
 
-    CreateSchemaManually()
+    CreateSchemaManually() {
+        // Initial setup
+        this.ClickOnCreateButton();
+        
+        cy.contains('Define', { timeout: 8_000 })
+            .should(this.assertBeVisible)
+            .click();
+    
+        // Schema details
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_NAME_INPUT), { timeout: 8_000 })
+            .clear()
+            .type(this.strSchemaNameManual);
+        
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_DESCRIPTION_INPUT), { timeout: 8_000 })
+            .clear()
+            .type(this.strSchemaNameManual + this.strDescription);
+    
+        // Define field configurations
+        const fieldConfigs = [
+            {
+                isPrimary: true,
+                isSortKey: true,
+                isRequired: true,
+                dataType: "Email"
+            },
+            {
+                isPrimary: false,
+                isSortKey: true,
+                isRequired: true,
+                dataType: "String"
+            },
+            {
+                isPrimary: false,
+                isSortKey: true,
+                isRequired: false,
+                dataType: "String"
+            },
+            {
+                isPrimary: false,
+                isSortKey: true,
+                isRequired: false,
+                dataType: "String"
+            }
+        ];
+    
+        // Add and configure each row sequentially
+        cy.wrap(fieldConfigs).each((config: { 
+            isPrimary: boolean; 
+            isSortKey: boolean; 
+            isRequired: boolean; 
+            dataType: string 
+        }, index: number) => {
+            // Add new field row
+            cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ADD_BUTTON))
+                .click()
+                .then(() => {
+                    const rowKey = `[data-row-key="${index}"]`;
+                    
+                    // Wait for row to be present
+                    cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
+                        .find(rowKey)
+                        .should('exist')
+                        .within(() => {
+                            // Configure checkboxes
+                            if (config.isPrimary) {
+                                cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISPRIMARY_CHECKBOX))
+                                    .check();
+                            }
+                            
+                            if (config.isSortKey) {
+                                cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISSORTKEY_CHECKBOX))
+                                    .check();
+                            }
+        
+                            cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISACTIVE_CHECKBOX))
+                                .check();
+        
+                            if (config.isRequired) {
+                                cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISREQUIRED_CHECKBOX))
+                                    .check();
+                            } else {
+                                cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISREQUIRED_CHECKBOX))
+                                    .uncheck();
+                            }
+        
+                            // Set name and description
+                            cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_NAME_INPUT))
+                                .type(`Na${index + 1}`);
+                            
+                            cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DESCRIPTION_INPUT))
+                                .type(`Des${index + 1}`);
+                        });
+        
+                    // Handle dropdown selection outside of within()
+                    if (config.dataType) {
+                        cy.wait(500); // Add a small wait to ensure the dropdown is ready
+                        this.selectDropdownFromATableRow(
+                            this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE),
+                            rowKey,
+                            this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT),
+                            config.dataType
+                        );
+                    }
+                });
+        });
+    
+        // Save the schema after all rows are configured
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_SAVE_AS_DRAFT_BUTTON))
+            .click();
+        
+        cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), { timeout: 8_000 })
+            .should('exist');
+    }
+
+    CreateSchemaManuallyyy()
     {
         var intRowCount = 0;
         var strRowID = "";

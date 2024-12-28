@@ -52,23 +52,13 @@ export class TestBase
     }
 
 
-    selectDropdownFromATableRow(tableID: string, rowID:string, testID: string, optionText: string) 
-        {
-
-            // open select
-            //cy.get(testID).click();
-            cy.get(tableID)
-            .find(rowID)
-            .find((testID)).click();
-
-            return cy
-                .get(this.cidSelect)
-                .find(this.cidSelectOption)
-                .each(el => {
-                if (el.text() === optionText) {
-                    cy.wrap(el).click();
-                }
-        });  
+    selectDropdownFromATableRow(tableSelector: string, rowSelector: string, dropdownSelector: string, optionText: string) {
+        cy.get(tableSelector)
+            .find(rowSelector)
+            .find(dropdownSelector)
+            .click()
+            .type(optionText)
+            .type('{enter}');
     }
 
     selectDropdownFirstElement(testId: string) 

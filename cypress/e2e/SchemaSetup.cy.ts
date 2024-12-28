@@ -22,9 +22,14 @@ describe('Schema Setup related activities', ()=>
 
     
 
-        it('View Dataset of a Schema', () =>
+        // it('View Dataset of a Schema', () =>
+        //     {
+        //         oST.ViewDataSetsOfASchema();
+        //     })
+
+        it('Create Schema Manually', () =>
             {
-                oST.ViewDataSetsOfASchema();
+                oST.CreateSchemaManually();
             })
 
             
