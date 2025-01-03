@@ -1,12 +1,12 @@
 import CypressTestIds from  "../classes/CypressTestIDs";
 //import CypressTestIds from  '../../../front-end/src/cypress/CypressTestIds'
 import { TestBase } from "../classes/TestBase";
-
+import { Roles } from "../classes/Roles";
 
     
     let Permision1= 'SCHEMA MODELS'
     let Permission2= 'DATASETS'
-    
+    const objRoles: Roles= new Roles();   
 export class SignUpTest extends TestBase{
 
     strRole: string = this.TimeStamp('role-');
@@ -224,7 +224,7 @@ test_login(email:string=' ', password:string=' '){
     .should(this.assertBeVisible)
     .click();
    
-    //
+    
     cy.get(this.TestIDLocator(CypressTestIds.VERTICAL_MENU_ROLES), {timeout: 20_000})
     .should(this.assertBeVisible)
     .click();
@@ -241,30 +241,13 @@ test_login(email:string=' ', password:string=' '){
     // click on add permissions
     cy.get(this.TestIDLocator(CypressTestIds.ROLES_PERMISSIONS_LIST_ADD_PERMISSION_BUTTON), {timeout: 20_000})
     .click()
-   // this.selectDropdown1(this.TestIDLocator(CypressTestIds.ROLES_PERMISSIONS_LIST_PERMISSION_NAME_SELECT),permissionName);
     //add schema model
-    cy.get('#basic_permissions_0_name',{timeout:20000})
-    .type(Permision1)
-
-    // Select the desired option from the dropdown
-    cy.get('.ant-select-item-option', {timeout:8000})
-      .contains(Permision1)  
-      .click();
-
-    // add Datasets
+    this.selectDropdown1(this.TestIDLocator(CypressTestIds.ROLES_PERMISSIONS_LIST_PERMISSION_NAME_SELECT),Permision1);
 
     cy.get(this.TestIDLocator(CypressTestIds.ROLES_PERMISSIONS_LIST_ADD_PERMISSION_BUTTON), {timeout: 20_000})
     .click()
-    
-    cy.get('#basic_permissions_1_name',  {timeout:8000})
-    .type(Permission2)
-
-    // Select the desired option from the dropdown
-    cy.get('.ant-select-item-option', {timeout:8000})
-    .should('be.visible')
-    .contains(Permission2)  
-    .click();
-
+    // add Datasets
+    this.selectDropdown1(this.TestIDLocator(CypressTestIds.ROLES_PERMISSIONS_LIST_PERMISSION_NAME_SELECT),Permission2);
    
     //add user
     cy.get('#rc-tabs-0-tab-2', {timeout: 20_000})
@@ -272,15 +255,17 @@ test_login(email:string=' ', password:string=' '){
     .click()
 
     //click on add user
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_USER_LIST_ADD_USER_BUTTON), {timeout: 20_000})
-    .click()
-    this.selectDropdown(this.TestIDLocator(CypressTestIds.ROLES_USER_LIST_USER_ID_SELECT),this.email1);
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_USER_LIST_ADD_USER_BUTTON), {timeout: 8_000})
+    .should(this.assertBeVisible) 
+    .click();
 
-
+    //add user
+    this.selectDropdown(this.TestIDLocator(CypressTestIds.ROLES_USER_LIST_USER_ID_SELECT),this.email)
+    
    //Save
    cy.get(this.TestIDLocator(CypressTestIds.ROLES_MANAGE_ROLE_SAVE_BUTTON), {timeout: 20_000})
    .should(this.assertBeVisible)
-   .click({force:true}) 
+   .click() 
 
 
     //Success Message
@@ -288,16 +273,13 @@ test_login(email:string=' ', password:string=' '){
  .should(this.assertBeVisible)
 
 
-      
-
-
-
-
 }
+
+
+
 
 verificaion(){
 
-this.test_login();
 //Open Schema Page
 cy.contains('Schema', {timeout: 8_000})
 .click();
@@ -317,6 +299,21 @@ cy.get(this.TestIDLocator(CypressTestIds.DATASET_LIST_CREATE_NEW_DATASET_BUTTON)
 
 })
 
+
+
+}
+delete_a_role(){
+    //Open Config
+    cy.get(this.TestIDLocator(CypressTestIds.HEADER_MENU_CONFIGURATION), {timeout: 20_000})
+    .should(this.assertBeVisible)
+    .click();
+   
+    //open roles
+    cy.get(this.TestIDLocator(CypressTestIds.VERTICAL_MENU_ROLES), {timeout: 20_000})
+    .should(this.assertBeVisible)
+    .click();
+
+    objRoles.delete_a_role(this.strRole);
 
 
 }
