@@ -184,6 +184,14 @@ it('Schema Models and Datasets are enabled',()=>{
 
 })
 
+// delete_a_role
+ it('Delete a Role ',()=>{
+ 
+    objSignUpTest.delete_a_role();
+    
+    
+  })
+
 
 })
 
