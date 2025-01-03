@@ -29,7 +29,9 @@ export class TestBase
     Password: string = 'Maria@027';
     TestIDText: string = "[data-testid=\"";
     business_area: string='DEFAULT'
-   email1 :string = 'Testing1@mnniskor.com'
+    email1 :string = 'Testing1@mnniskor.com'
+    corporateEmail :string = 'testing3@malaymo.com'
+    email :string = 'testing2@malaymo.com'
 
 
     
@@ -49,6 +51,28 @@ export class TestBase
                     cy.wrap(el).click();
                 }
         });  
+    }
+
+    selectDropdown1(testId: string, optionText: string) {
+        cy.get(testId)
+          .last()
+          .scrollIntoView()
+          .should('be.visible')
+          .type(optionText)
+          .click({ force: true });
+    
+        cy.get(this.cidSelect, { timeout: 10000 })
+          .find(this.cidSelectOption)
+          .contains(optionText)
+          .then($el => {
+            if ($el.length > 0) {
+              cy.wrap($el).click({ force: true });
+            } else {
+             
+              cy.log(`option "${optionText}" not found`);
+              throw new Error(`opton "${optionText}" not available`);
+            }
+          });
     }
 
 

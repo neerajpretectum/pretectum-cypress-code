@@ -128,9 +128,8 @@ viewHistory(){
     cy.contains(this.strDTName,{timeout:20_000})
     .parent(this.TD)
     .parent(this.TR)   
-   cy.get(this.TestIDLocator(CypressTestIds.DATATAGS_DATATAGLIST_DELETE_BUTTON), {timeout: 20_000})
+    .find(this.TestIDLocator(CypressTestIds.DATATAGS_DATATAGLIST_DELETE_BUTTON), {timeout: 20_000})
    .should(this.assertBeVisible)
-    .last()
     .click()
 
   // confirmation message
@@ -161,18 +160,17 @@ viewHistory(){
 
     //select datatags
     cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT), {timeout: 8_000})
-    .last()
     .click()
-
-    // Verify the first tag
-    cy.get('[title="language (English)"] > .ant-select-item-option-content', {timeout: 20_000})
+    .get('body')
+    .contains('data classifer tag (for test case )')
     .should(this.assertBeVisible)
-    
 
-    // Verify the second tag
-    cy.get('[title="Gender (Female)"] > .ant-select-item-option-content', {timeout: 20_000})
+    cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT), {timeout: 8_000})
+    .click()
+    .get('body')  
+    .contains('Country (Pakistan)')
     .should(this.assertBeVisible)
-    
+
     .then(() => {
         cy.log('Visible: Default Data Tags are visible');
     });
@@ -191,29 +189,31 @@ viewHistory(){
        //select specific business area 
        this.selectDropdown(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_BUSINESS_AREA_NAME_SELECT),business_area_specific)
     
-        //select datatags
+       //select datatags
         cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT), {timeout: 8_000})
-        .last()
         .click()
-
-        //verify "language (English)"
-        cy.get('[title= "language (English)"]> .ant-select-item-option-content', {timeout: 20_000})
+        .get('body')
+        .contains('data classifer tag (for test case )')
         .should(this.assertBeVisible)
-        
-        
-    
-        // Verify "Gender (Female)"
-        cy.get('[title="Gender (Female)"] > .ant-select-item-option-content', {timeout: 20_000})
-        .should(this.assertBeVisible)
-        
 
-        // Verify "Test Tag for Neeraj (Description)"
-       cy.get('[title="Test Tag for Neeraj (Description)"] > .ant-select-item-option-content', {timeout: 20_000})
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT), {timeout: 8_000})
+        .click()
+        .get('body')  
+        .contains('Country (Pakistan)')
         .should(this.assertBeVisible)
-        
 
-        // Verify "Date (start date of business)"
-        cy.get('[title="Date (start date of business )"] > .ant-select-item-option-content', {timeout: 20_000})
+        //specific BA tags
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT), {timeout: 8_000})
+        .click()
+        .get('body')  
+        .contains('languages (English )')
+        .should(this.assertBeVisible)
+
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT), {timeout: 8_000})
+        .click()
+        .get('body')  
+        .contains('Timedate (November 19)')
+        .scrollIntoView()
         .should(this.assertBeVisible)
        
         .then(() => {
