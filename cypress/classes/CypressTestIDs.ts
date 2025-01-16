@@ -63,6 +63,15 @@ const CypressTestIds = {
     USER_RESET_PASSWORD_LINK_SENT_MESSAGE:
         "user-reset-password-link-sent-message",
 
+        // Signup
+    USER_SIGNUP_CORPORATE_EMAIL_INPUT: "user-signup-corporate-email-input",
+    USER_SIGNUP_PASSWORD_INPUT: "user-signup-password-input",
+    USER_SIGNUP_FIRST_NAME_INPUT: "user-signup-first-name-input",
+    USER_SIGNUP_LAST_NAME_INPUT: "user-signup-last-name-input",
+    USER_SIGNUP_AGREE_TERMS_CHECKBOX: "user-signup-agree-terms-checkbox",
+    USER_SIGNUP_SIGNUP_BUTTON: "user-signup-signup-button",
+    USER_SIGNUP_GOBACKTOLOGIN_BUTTON: "user-signup-gobacktologin-button",
+    
     // Change Password
     USER_CHANGE_PASSWORD_INPUT: "user-change-password-input",
     USER_CHANGE_PASSWORD_CONFIRM_INPUT: "user-change-password-confirm-input",
@@ -131,14 +140,14 @@ const CypressTestIds = {
      MANAGE_BUSINESS_AREA_DATA_PURPOSE_INPUT: "manage-business-area-data-purpose-input",
      MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT: "manage-business-area-data-tags-select",
      MANAGE_BUSINESS_AREA_DATA_FILE_INPUT: "manage-business-area-data-file-input",
-     MANAGE_BUSINESS_AREA_DATA_REPLACE_EXISTING_DATA_OPTION: "manage-business-area-data-replace-existing-data-option",
+     MANAGE_BUSINESS_AREA_DATA_REPLACE_DATA_OPTION: "manage-business-area-data-replace-existing-data-option",
      MANAGE_BUSINESS_AREA_DATA_FIRST_ROW_IS_HEADER_CHECKBOX: "manage-business-area-data-first-row-is-header-checkbox",
-     MANAGE_BUSINESS_AREA_DATA_APPEND_THE_DATA_OPTION: "manage-business-area-data-append-the-data-option",
+     MANAGE_BUSINESS_AREA_DATA_APPEND_DATA_OPTION: "manage-business-area-data-append-the-data-option",
      MANAGE_BUSINESS_AREA_DATA_CANCEL_BUTTON: "manage-business-area-data-cancel-button",
      MANAGE_BUSINESS_AREA_DATA_SAVE_BUTTON: "manage-business-area-data-save-button",
      MANAGE_BUSINESS_AREA_DATA_DOMAIN_DATA_PREVIEW_LIST: "manage-business-area-data-domain-data-preview-list",
     
-        //Business Area Data
+        /* //Business Area Data
         BUSINESS_AREA_DATA_LIST_TABLE: "business-area-data-list-table",
         BUSINESS_AREA_DATA_LIST_EDIT_BUTTON: "business-area-data-list-edit-button",
         BUSINESS_AREA_DATA_LIST_VIEW_BUTTON: "business-area-data-list-view-button",
@@ -158,7 +167,7 @@ const CypressTestIds = {
         MANAGE_BUSINESS_AREA_DATA_CANCEL_BUTTON: "manage-business-area-data-cancel-button",
         MANAGE_BUSINESS_AREA_DATA_SAVE_BUTTON: "manage-business-area-data-save-button",
         MANAGE_BUSINESS_AREA_DATA_DOMAIN_DATA_PREVIEW_LIST: "manage-business-area-data-domain-data-preview-list",
-
+ */
     // RoleUserList
     ADD_ROLE_USER_BUTTON: "add-role-user-button",
 
@@ -220,6 +229,34 @@ const CypressTestIds = {
     SCHEMA_CREATE_NEW_SCHEMA_CLONE_SCHEMA_DESC_INPUT: "schema-create-new-schema-clone-schema-desc-input",
     SCHEMA_CREATE_NEW_SCHEMA_CLONE_SCHEMA_CREATE_BUTTON: "schema-create-new-schema-clone-schema-create-button",
     
+    //Manage Dataset 
+    DATASET_MANAGE_DATASET_NAME_INPUT: "manage-dataset-name-input",
+    DATASET_MANAGE_DATASET_DESCRIPTION_INPUT: "manage-dataset-description-input",
+    DATASET_MANAGE_DATASET_CONNECT_TO_A_SYSTEM_BUTTON: "manage-dataset-connect-to-a-system-button",
+    DATASET_MANAGE_DATASET_LOAD_DATA_FILE_INPUT: "manage-dataset-load-data-file-input",
+    DATASET_MANAGE_DATASET_CANCEL_BUTTON: "manage-dataset-cancel-button",
+    DATASET_MANAGE_DATASET_SAVE_BUTTON: "manage-dataset-save-button",
+    DATASET_MANAGE_DATASET_EXPORT_BUTTON: "manage-dataset-export-button",
+
+    //Dataset List
+    DATASET_LIST_TABLE: "dataset-list-table",
+    DATASET_LIST_EDIT_BUTTON: "dataset-list-edit-button",
+    DATASET_LIST_VIEW_BUTTON: "dataset-list-view-button",
+    DATASET_LIST_HISTORY_BUTTON: "dataset-list-history-button",
+    DATASET_LIST_DELETE_BUTTON: "dataset-list-delete-button",
+    DATASET_LIST_CREATE_NEW_DATASET_BUTTON: "dataset-list-create-new-dataset-button",
+    DATASET_LIST_INDEX_DATASET_DATABASETWOTONE: "dataset-list-index-dataset-databasetwotone",
+    DATASET_LIST_EXPORT_DROPDOWN: "dataset-list-export-dropdown",
+    DATASET_LIST_EXPORT_TO_FILE: "dataset-list-export-to-file",
+    DATASET_LIST_EXPORT_TO_DESTINATION: "dataset-list-export-to-destination",
+    DATASET_LIST_CLOUD_DOWNLOAD: "dataset-list-cloud-download",
+
+    //Dataset Export
+    DATASET_EXPORT_CANCEL_BUTTON: "dataset-export-cancel-button",
+    DATASET_EXPORT_EXPORT_BUTTON: "dataset-export-export-button",
+
+    //Dataset Insights
+    DATASET_INSIGHTS_TABLE: "dataset-insights-table",
 
     // Min/Max Length property
     SCHEMA_MAX_LENGTH_PROPERTY_INPUT: "schema-max-length-property-input",
@@ -256,13 +293,132 @@ const CypressTestIds = {
     DATATAGS_DATATAGLIST_EDIT_BUTTON: "datatags-datataglist-edit-button",
     DATATAGS_DATATAGLIST_VIEW_BUTTON: "datatags-datataglist-view-button",
     DATATAGS_DATATAGLIST_HISTORY_BUTTON: "datatags-datataglist-history-button",
-    DATATAGS_DATATAGLIST_DELETE_SWITCH: "datatags-datataglist-delete-button",
+    DATATAGS_DATATAGLIST_DELETE_BUTTON: "datatags-datataglist-delete-button",
     DATATAGS_DATATAG_SAVE_BUTTON: "datatags-save-button",
     DATATAGS_DATATAG_CANCEL_BUTTON: "datatags-cancel-button",
     DATATAGS_DATATAG_BUSINESSAREA_SELECT: "datatags-datatag-businessarea-select",
     DATATAGS_DATATAG_NAME_INPUT: "datatags-datatag-name-input",
     DATATAGS_DATATAG_DESCRIPTION_INPUT: "datatags-datatag-description-input",
 
+  //Roles List
+  ROLES_LIST_EDIT_BUTTON: "roles-list-edit-button",
+  ROLES_LIST_VIEW_BUTTON: "roles-list-view-button",
+  ROLES_LIST_HISTORY_BUTTON: "roles-list-history-button",
+  ROLES_LIST_ACTIVE_SWITCH: "roles-list-active-switch",
+  ROLES_LIST_DELETE_BUTTON: "roles-list-delete-button",
+  ROLES_LIST_ADD_ROLE_BUTTON: "roles-list-add-role-button",
+  ROLES_LIST_TABLE: "roles-list-table",
+
+  //Manage Roles
+  ROLES_MANAGE_ROLE_NAME_INPUT: "role-manage-role-name-input",
+  ROLES_MANAGE_ROLE_DESCRIPTION_INPUT: "role-manage-role-description-input",
+  ROLES_MANAGE_ROLE_TAB_PERMISSIONS_TAB: "role-manage-role-tab-permission-tab",
+  ROLES_MANAGE_ROLE_TAB_USERS_TAB: "role-manage-role-tab-users-tab",
+  ROLES_MANAGE_ROLE_TAB_CREDENTIALS_TAB: "role-manage-role-tab-credentials-tab",
+  ROLES_MANAGE_ROLE_CANCEL_BUTTON: "role-manage-role-cancel-button",
+  ROLES_MANAGE_ROLE_SAVE_BUTTON: "role-manage-role-save-button",
+  ROLES_MANAGE_ROLE_TABLE: "role-manage-role-table",
+
+  //Role Permission List
+  ROLES_PERMISSIONS_LIST_PERMISSION_NAME_SELECT: "roles-permission-list-permission-name-select",
+  ROLES_PERMISSIONS_LIST_PERMISSION_DESCRIPTION_INPUT: "roles-permission-list-permission-description-input",
+  ROLES_PERMISSIONS_LIST_ACTIVE_CHECK: "roles-permission-list-active-check",
+  ROLES_PERMISSIONS_LIST_CAN_ADD_CHECK: "roles-permission-list-can-add-check",
+  ROLES_PERMISSIONS_LIST_CAN_VIEW_CHECK: "roles-permission-list-can-view-check",
+  ROLES_PERMISSIONS_LIST_CAN_EDIT_CHECK: "roles-permission-list-can-edit-check",
+  ROLES_PERMISSIONS_LIST_CAN_DELETE_CHECK: "roles-permission-list-can-delete-check",
+  ROLES_PERMISSIONS_LIST_PERMISSION_DELETE_BUTTON: "roles-permission-list-permission-delete-button",
+  ROLES_PERMISSIONS_LIST_ADD_PERMISSION_BUTTON: "roles-permission-list-add-permission-button",
+  ROLES_PERMISSIONS_LIST_TABLE: "roles-permission-list-table",
+
+
+  //Role Users
+  ROLES_USER_LIST_USER_ID_SELECT: "role-user-list-user-id-select",
+  ROLES_USER_LIST_USER_ACTIVE_CHECK: "role-user-list-user-active-check",
+  ROLES_USER_LIST_USER_DELETE_BUTTON: "role-user-list-user-delete-button",
+  ROLES_USER_LIST_ADD_USER_BUTTON: "role-user-list-add-user-button",
+  ROLES_USER_LIST_TABLE: "role-user-list-table",
+
+  //Role Credentials
+  ROLES_CREDENTIALS_LIST_NAME_SELECT: "role-credentials-list-name-select",
+  ROLES_CREDENTIALS_LIST_ACTIVE_CHECK: "role-credentials-list-active-check",
+  ROLES_CREDENTIALS_LIST_DELETE_BUTTON: "role-credentials-list-delete-button",
+  ROLES_CREDENTIALS_LIST_ADD_CREDENTIAL_BUTTON: "role-credentials-list-add-credential-button",
+  ROLES_CREDENTIALS_LIST_TABLE: "role-credentials-list-table",
+
+  //System Connection List
+  SYSTEM_CONNECTION_LIST_TABLE: "system-connection-list-table",
+  SYSTEM_CONNECTION_LIST_EDIT_BUTTON: "system-connection-list-edit-button",
+  SYSTEM_CONNECTION_LIST_VIEW_BUTTON: "system-connection-list-view-button",
+  SYSTEM_CONNECTION_LIST_HISTORY_BUTTON: "system-connection-list-history-button",
+  SYSTEM_CONNECTION_LIST_ACTIVE_SWITCH: "system-connection-list-active-switch",
+  SYSTEM_CONNECTION_LIST_DELETE_BUTTON: "system-connection-list-delete-button",
+  SYSTEM_CONNECTION_LIST_ADD_BUTTON: "system-connection-list-add-button",
+     
+  //System Connection AWS S3 List
+  SYSTEM_CONNECTION_AWS_S3_LIST_TABLE : "system-connection-aws-s3-list-table-button",
+  SYSTEM_CONNECTION_AWS_S3_LIST_EDIT_BUTTON: "system-connection-aws-s3-list-edit-button",
+  SYSTEM_CONNECTION_AWS_S3_LIST_VIEW_BUTTON: "system-connection-aws-s3-list-view-button",
+  SYSTEM_CONNECTION_AWS_S3_LIST_HISTORY_BUTTON: "system-connection-aws-s3-list-history-button",
+  SYSTEM_CONNECTION_AWS_S3_LIST_DELETE_BUTTON: "system-connection-aws-s3-list-delete-button",
+  SYSTEM_CONNECTION_AWS_S3_LIST_ADD_BUTTON: "system-connection-aws-s3-list-add-button",
+  SYSTEM_CONNECTION_AWS_S3_LIST_ACTIVE_SWITCH: "system-connection-aws-s3-list-active-switch",
+  //System Connection Selector
+
+  //System Keys
+  //System Connection AWS S3 List
+  SYSTEM_KEYS_LIST_TABLE : "system-keys-list-table-button",
+  SYSTEM_KEYS_LIST_EDIT_BUTTON: "system-keys-list-edit-button",
+  SYSTEM_KEYS_LIST_VIEW_BUTTON: "system-keys-list-view-button",
+  SYSTEM_KEYS_LIST_HISTORY_BUTTON: "system-keys-list-history-button",
+  SYSTEM_KEYS_LIST_DELETE_BUTTON: "system-keys-list-delete-button",
+  SYSTEM_KEYS_LIST_ADD_BUTTON: "system-keys-list-add-button",
+  //Manage
+  SYSTEM_KEYS_MANAGE_NAME_INPUT: "system-keys-manage-name-input",
+  SYSTEM_KEYS_MANAGE_DESCRIPTION_INPUT: "system-keys-manage-description-input",
+  SYSTEM_KEYS_MANAGE_TYPE_SELECT: "system-keys-manage-save-button",
+  SYSTEM_KEYS_MANAGE_API_KEY_INPUT: "system-keys-manage-save-button",
+  SYSTEM_KEYS_MANAGE_CANCEL_BUTTON: "system-keys-manage-cancel-button",
+  SYSTEM_KEYS_MANAGE_SAVE_BUTTON: "system-keys-manage-save-button",
+  SYSTEM_KEYS_MANAGE_TABLE: "system-keys-manage-table",
+
+  //App Client List
+  APP_CLIENT_LIST_TABLE: "app-client-list-table-button",
+  APP_CLIENT_LIST_EDIT_BUTTON: "app-client-list-edit-button",
+  APP_CLIENT_LIST_VIEW_BUTTON: "app-client-list-view-button",
+  APP_CLIENT_LIST_HISTORY_BUTTON: "app-client-list-history-button",
+  APP_CLIENT_LIST_DELETE_BUTTON: "app-client-list-delete-button",
+  APP_CLIENT_LIST_ADD_BUTTON: "app-client-list-add-button",
+  APP_CLIENT_LIST_ACTIVE_SWITCH: "app-client-list-active-switch",
+  //Manage
+  APP_CLIENT_MANAGE_NAME_INPUT: "app-client-manage-name-input",
+  APP_CLIENT_MANAGE_ACCESS_TOKEN_VALIDITY_INPUT: "app-client-manage-access-token-validity-input",
+  APP_CLIENT_MANAGE_CLIENT_ID_INPUT: "app-client-manage-client-id-input",
+  APP_CLIENT_MANAGE_SECRET_INPUT: "app-client-manage-secret-input",
+  APP_CLIENT_MANAGE_CLIENT_ID_COPY_INPUT: "app-client-manage-client-id-copy-input",
+  APP_CLIENT_MANAGE_SECRET_COPY_INPUT: "app-client-manage-secret-copy-input",
+  APP_CLIENT_MANAGE_SECRET_REGENERATE_BUTTON: "app-client-manage-secret-regenerate-button",
+  APP_CLIENT_MANAGE_CANCEL_BUTTON: "app-client-manage-cancel-button",
+  APP_CLIENT_MANAGE_SAVE_BUTTON: "app-client-manage-save-button",
+
+  //CDC
+  CDC_LIST_TABLE: "cdc-list-table-button",
+  CDC_LIST_EDIT_BUTTON: "cdc-list-edit-button",
+  CDC_LIST_VIEW_BUTTON: "cdc-list-view-button",
+  CDC_LIST_DELETE_BUTTON: "cdc-list-delete-button",
+  CDC_LIST_ADD_BUTTON: "cdc-list-add-button",
+  CDC_LIST_ACTIVE_SWITCH: "cdc-list-active-switch",
+//Manage
+  CDC_MANAGE_NAME_INPUT: "cdc-manage-name-input",
+  CDC_MANAGE_DESCRIPTION_INPUT: "cdc-manage-description-input",
+  CDC_MANAGE_OBJECTS_SELECT: "cdc-manage-objects-select",
+  CDC_MANAGE_EVENTS_SELECT: "cdc-manage-events-select",
+  CDC_MANAGE_DESTINATION_SELECT: "cdc-manage-destination-select",
+  CDC_MANAGE_KINESIS_REGION_INPUT: "cdc-manage-kinesis-region-input",
+  CDC_MANAGE_KINESIS_STREAM_ARN_INPUT: "cdc-manage-kinesis-stream-arm-input",
+  CDC_MANAGE_KINESIS_ROLE_ARN_INPUT: "cdc-manage-kinesis-role-input",
+  CDC_MANAGE_CANCEL_BUTTON: "cdc-manage-cancel-button",
+  CDC_MANAGE_SAVE_BUTTON: "cdc-manage-save-button",
   
     //common objects
     COMMON_OBJECTS_EVENT_LIST_TABLE: "common-objects-event-list-table",

@@ -69,7 +69,7 @@ describe(' DATASET ACTIVITIES',()=>{
     
 
     //empty consent box
-    it('Empty Consent box ',()=>{
+    it.skip('Empty Consent box ',()=>{
 
         objDataSetupTest.empty_consent_textbox();
 

@@ -59,7 +59,7 @@ addBAdata(){
     this.selectDropdown(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT),Data_tag)
 
   // Close the dropdown with the Escape key
-    cy.get('body').type('{esc}');
+    cy.get(this.cntBody).type(this.cntEscape);
 
    cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_SAVE_BUTTON), {timeout: 20_000})
    .click()
@@ -273,7 +273,7 @@ addBAdata(){
         this.selectDropdown(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT),DT)
     
         // Close the dropdown with the Escape key
-        cy.get('body').type('{esc}');
+        cy.get(this.cntBody).type(this.cntEscape);
 
         //save
         cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_SAVE_BUTTON), {timeout: 20_000})
@@ -311,7 +311,7 @@ addBAdata(){
       this.selectDropdown(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT),DT)
 
       // Close the dropdown with the Escape key
-      cy.get('body').type('{esc}');
+      cy.get(this.cntBody).type(this.cntEscape);
 
       cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_SAVE_BUTTON), {timeout: 20_000})
       .click()
@@ -344,7 +344,7 @@ addBAdata(){
   //DATA TAG
   this.selectDropdown(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DATA_TAGS_SELECT),DT)
    // Close the dropdown with the Escape key
-   cy.get('body').type('{esc}');
+   cy.get(this.cntBody).type(this.cntEscape);
 
   cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_SAVE_BUTTON), {timeout: 20_000})
   .click()

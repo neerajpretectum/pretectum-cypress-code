@@ -22,16 +22,16 @@ export class SchemaSetupTest extends TestBase
         this.Login();
 
         //Open Schema Page
-        cy.contains('Schema', {timeout: 20_000})
+        cy.contains(this.cntSchema, {timeout: 20_000})
         .click();
 
         //Page is loaded
-        cy.contains('Create', {timeout: 16_000})
+        cy.get(this.TestIDLocator(CypressTestIds.CREATE_NEW_SCHEMA_BUTTON), {timeout: 16_000})
         .should(this.assertBeVisible)
 
-        cy.get('[data-testid="schema-list-table"]', {timeout: 8_000})
+        cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_TABLE), {timeout: 8_000})
         .should(this.assertBeVisible)
-
+        
        
     }
 
@@ -39,7 +39,8 @@ export class SchemaSetupTest extends TestBase
     ClickOnCreateButton()
     {
         //get create button
-        cy.contains('Create').click();
+        cy.get(this.TestIDLocator(CypressTestIds.CREATE_NEW_SCHEMA_BUTTON))
+        .click();
     }
 
     //create schema from file
@@ -52,7 +53,7 @@ export class SchemaSetupTest extends TestBase
 */
         
         cy.get(this.TestIDLocator(CypressTestIds.UPLOAD_SCHEMA_FILE_INPUT), {timeout: 8_000})
-        .attachFile('countriesFixtures.csv');
+        .attachFile(this.cntFileCountry);
 
         //cy.get('[data-cy="dropzone"]')
   //.attachFile('myfixture.json', { subjectType: 'drag-n-drop' });
@@ -88,7 +89,7 @@ export class SchemaSetupTest extends TestBase
 */
         
         cy.get(this.TestIDLocator(CypressTestIds.UPLOAD_SCHEMA_FILE_INPUT), {timeout: 8_000})
-        .attachFile('countriesFixturescopy.csv');
+        .attachFile(this.cntFileCountry);
 
         //cy.get('[data-cy="dropzone"]')
   //.attachFile('myfixture.json', { subjectType: 'drag-n-drop' });
@@ -131,7 +132,7 @@ export class SchemaSetupTest extends TestBase
 */
         
         cy.get(this.TestIDLocator(CypressTestIds.UPLOAD_SCHEMA_FILE_INPUT), {timeout: 8_000})
-        .attachFile('countriesFixtures.csv', { subjectType: 'drag-n-drop' });
+        .attachFile(this.cntFileCountry, { subjectType: 'drag-n-drop' });
 
         cy.get(this.TestIDLocator(CypressTestIds.UPLOAD_SCHEMA_NEXT_BUTTON), {timeout: 8_000})
         .should(this.assertBeVisible)
@@ -314,31 +315,31 @@ export class SchemaSetupTest extends TestBase
         
         //IsPrimary
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISPRIMARY_CHECKBOX)))
         .check()
 
         //IsSortKey
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISSORTKEY_CHECKBOX)))
         .check()
 
         //IsActive
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISACTIVE_CHECKBOX)))
         .check()
         
         //field name
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), {timeout:8_000})
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_NAME_INPUT)))
         .type('Na' + (intRowCount+1).toString())
 
         //field description
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DESCRIPTION_INPUT)))
         .type('Des' + (intRowCount+1).toString())
 
@@ -347,18 +348,18 @@ export class SchemaSetupTest extends TestBase
         // .find('[data-row-key="' + intRowCount.toString() + '"]')
         // .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)))
 
-        strRowID = '[data-row-key="' + intRowCount.toString() + '"]';
+        strRowID = this.cntTableRowKey + intRowCount.toString() + '"]';
         this.selectDropdownFromATableRow(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), strRowID, (this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)), "Email")
 
         //IsRequired
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISREQUIRED_CHECKBOX)))
         .check()
 
         //Delete
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DELETE_BUTTON)))
         
 
@@ -373,31 +374,31 @@ export class SchemaSetupTest extends TestBase
         
         //IsPrimary
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISPRIMARY_CHECKBOX)))
         //.check()
 
         //IsSortKey
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISSORTKEY_CHECKBOX)))
         .check()
 
         //IsActive
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISACTIVE_CHECKBOX)))
         .check()
         
         //field name
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), {timeout:8_000})
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_NAME_INPUT)))
         .type('Na' + (intRowCount+1).toString())
 
         //field description
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DESCRIPTION_INPUT)))
         .type('Des' + (intRowCount+1).toString())
 
@@ -411,13 +412,13 @@ export class SchemaSetupTest extends TestBase
 
         //IsRequired
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISREQUIRED_CHECKBOX)))
         .check()
 
         //Delete
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DELETE_BUTTON)))
         
 
@@ -430,31 +431,31 @@ export class SchemaSetupTest extends TestBase
         
         //IsPrimary
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISPRIMARY_CHECKBOX)))
         //.check()
 
         //IsSortKey
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISSORTKEY_CHECKBOX)))
         .check()
 
         //IsActive
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISACTIVE_CHECKBOX)))
         .check()
         
         //field name
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), {timeout:8_000})
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_NAME_INPUT)))
         .type('Na' + (intRowCount+1).toString())
 
         //field description
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DESCRIPTION_INPUT)))
         .type('Des' + (intRowCount+1).toString())
 
@@ -468,13 +469,13 @@ export class SchemaSetupTest extends TestBase
 
         //IsRequired
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISREQUIRED_CHECKBOX)))
         .uncheck()
 
         //Delete
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DELETE_BUTTON)))
         
 
@@ -488,31 +489,31 @@ export class SchemaSetupTest extends TestBase
         
         //IsPrimary
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISPRIMARY_CHECKBOX)))
         //.check()
 
         //IsSortKey
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISSORTKEY_CHECKBOX)))
         .check()
 
         //IsActive
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISACTIVE_CHECKBOX)))
         .check()
         
         //field name
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), {timeout:8_000})
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_NAME_INPUT)))
         .type('Na' + (intRowCount+1).toString())
 
         //field description
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DESCRIPTION_INPUT)))
         .type('Des' + (intRowCount+1).toString())
 
@@ -526,13 +527,13 @@ export class SchemaSetupTest extends TestBase
 
         //IsRequired
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISREQUIRED_CHECKBOX)))
         .uncheck()
 
         //Delete
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DELETE_BUTTON)))
         
 
@@ -546,31 +547,31 @@ export class SchemaSetupTest extends TestBase
         
         //IsPrimary
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISPRIMARY_CHECKBOX)))
         //.check()
 
         //IsSortKey
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISSORTKEY_CHECKBOX)))
         .check()
 
         //IsActive
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISACTIVE_CHECKBOX)))
         .check()
         
         //field name
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), {timeout:8_000})
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_NAME_INPUT)))
         .type('Na' + (intRowCount+1).toString())
 
         //field description
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DESCRIPTION_INPUT)))
         .type('Des' + (intRowCount+1).toString())
 
@@ -583,13 +584,13 @@ export class SchemaSetupTest extends TestBase
         //this.selectDropdownFromATableRow(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), strRowID, (this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DATATYPE_SELECT)), "String")
         //IsRequired
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISREQUIRED_CHECKBOX)))
         .check()
 
         //Delete
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="' + intRowCount.toString() + '"]')
+        .find(this.cntTableRowKey + intRowCount.toString() + this.cntTableRowKeyClose)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DELETE_BUTTON)))
         .click()
 
@@ -679,31 +680,31 @@ export class SchemaSetupTest extends TestBase
 
         //table
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="0"]')
+        .find(this.cntTableRowKey0)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISPRIMARY_CHECKBOX)))
         .check()
 
         //IsSortKey
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="0"]')
+        .find(this.cntTableRowKey0)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISSORTKEY_CHECKBOX)))
         .check()
 
         //IsActive
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="0"]')
+        .find(this.cntTableRowKey0)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISACTIVE_CHECKBOX)))
         .uncheck()
         
         //field name
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE), {timeout:8_000})
-        .find('[data-row-key="0"]')
+        .find(this.cntTableRowKey0)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_NAME_INPUT)))
         .type('Modified Col ')
 
         //field description
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="0"]')
+        .find(this.cntTableRowKey0)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_DESCRIPTION_INPUT)))
         .type('Modified Des')
 
@@ -714,7 +715,7 @@ export class SchemaSetupTest extends TestBase
 
         //IsSortKey
         cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_TABLE))
-        .find('[data-row-key="0"]')
+        .find(this.cntTableRowKey0)
         .find((this.TestIDLocator(CypressTestIds.SCHEMA_FIELD_ISREQUIRED_CHECKBOX)))
         .check()
 
@@ -745,18 +746,18 @@ export class SchemaSetupTest extends TestBase
         .parent(this.TR)
         .find(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_VIEW_BUTTON))
         .click();
-        cy.get('[data-testid="manage-schema-model-name-input"]', {timeout: 8_000})
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_NAME_INPUT), {timeout: 8_000})
         .should(this.assertHaveValue, this.strSchemaNameFile)
         
         //get the cancel button
-        cy.get('[data-testid="manage-schema-model-cancel-button"]')
+        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_CANCEL_BUTTON))
         .click()
         //get back to the schema list and find the table
-        cy.get('[data-testid="schema-list-table"]', {timeout: 8_000})
+        cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_TABLE), {timeout: 8_000})
         .should(this.assertBeVisible)
         //throw new Error("test fails here")
     }
-
+    
     SchemaChangeHistory()
     {
         cy.contains(this.strSchemaNameFile, {timeout: 20_000})
@@ -774,20 +775,30 @@ export class SchemaSetupTest extends TestBase
 
     DeleteSchema()
     {
-        cy.contains(this.strSchemaNameFile, {timeout: 20_000})
+        this.DeleteSchemabyName(this.strSchemaNameFile)
+        this.DeleteSchemabyName(this.strSchemaNameFileWH)
+        this.DeleteSchemabyName(this.strSchemaNameDragDrop)
+        this.DeleteSchemabyName(this.strSchemaNameManual)
+        this.DeleteSchemabyName(this.strSchemaNameClone)
+    }
+
+    DeleteSchemabyName(SchemaName: string)
+    {
+        cy.contains(SchemaName, {timeout: 20_000})
         .parent(this.TD)
         .parent(this.TR)
         .find(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_DELETE_BUTTON))
-        .click();
+        .click({force: true});
         // confirmation message
         cy.get(this.TestIDLocator(CypressTestIds.CONFIRMATION_BOX_OK_BUTTON), {timeout: 8_000})
         .should(this.assertBeVisible)
         .click()
-        cy.get('[data-testid="schema-list-table"]', {timeout: 8_000})
+        cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_TABLE), {timeout: 8_000})
         .should(this.assertBeVisible)
         .should('not.have.text', this.strSchemaNameFile)
+         
     }
-
+    
     ViewDataSetsOfASchema()
     {
         //select schema row

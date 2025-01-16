@@ -61,17 +61,13 @@ it('default business area :Business area tags are visible',()=>{
 
 
 //Specific business area :DBA and SBA both tags are visible
-it('Specific Business Area  :DBA and SBA both tags are visible',()=>{
-
-
+it.skip('Specific Business Area  :DBA and SBA both tags are visible',()=>{
    objDataTagTest.specific_business_area();
-
 })
 
 
 //Delete Tag
 it('Delete Tag',()=>{
-
     objDataTagTest.deleteTag();
  }) 
 

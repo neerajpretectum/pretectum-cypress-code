@@ -12,6 +12,32 @@ export class BusinessAreaTest extends TestBase
         strBusinessAreaName1: string = this.TimeStamp('BA1-');
 
         //Open business area
+        OpenBusinessAreaFirstTime()
+        {
+
+            //cy.viewport(1920, 1080);
+            
+            //open portal
+            this.OpenURL();
+
+            //login into portal with valid creadentials         
+            this.Login();
+            
+            //cy.get('[data-testid="header-menu-configuration"]', {timeout:20_000}).click();
+            //cy.get(CypressTestIds.HEADER_MENU_CONFIGURATION, {timeout:20_000}).click();
+
+            //Open Config
+            cy.get(this.TestIDLocator(CypressTestIds.HEADER_MENU_CONFIGURATION), {timeout: 20000})
+            .should(this.assertBeVisible)
+            .click();
+
+            //Open Business Area
+            cy.get(this.TestIDLocator(CypressTestIds.VERTICAL_MENU_BUSINESSAREAS))
+            .should(this.assertBeVisible)
+            .click();
+        }
+
+        //Open business area
         OpenBusinessArea()
         {
 
@@ -59,7 +85,7 @@ export class BusinessAreaTest extends TestBase
 
             //type BA Description
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DESCRIPTION_INPUT))
-            .type(this.strBusinessAreaName1 + ' Description', {});
+            .type(this.strBusinessAreaName1 + this.cntDes, {});
 
             //save Business Area
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_SAVE_BUTTON))
@@ -83,7 +109,7 @@ export class BusinessAreaTest extends TestBase
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DESCRIPTION_INPUT))
             .should(this.assertBeVisible)
             .clear({})
-            .type(this.strBusinessAreaName1 + ' Description - 1', {});
+            .type(this.strBusinessAreaName1 + this.cntDes1, {});
 
             //save Business Area
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_SAVE_BUTTON))
@@ -223,7 +249,7 @@ export class BusinessAreaTest extends TestBase
 
             //type BA Description
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DESCRIPTION_INPUT))
-            .type(this.strBusinessAreaName1 + ' Description', {});
+            .type(this.strBusinessAreaName1 + this.cntDes, {});
 
             //Click on Add User Button
             cy.get(this.TestIDLocator(CypressTestIds.ADD_BUSINESS_AREA_USER_BUTTON))
@@ -278,7 +304,7 @@ export class BusinessAreaTest extends TestBase
             .click() 
 
             //get table's first row
-            cy.get("[data-testid='business-area-client-list-table']", {timeout: 20_000})
+            cy.get(this.TestIDLocator(CypressTestIds.BUSINESS_AREA_CLIENT_LIST_TABLE), {timeout: 20_000})           
             .eq(0)
             .find((this.TestIDLocator(CypressTestIds.BUSINESS_AREA_CLIENT_LIST_DELETE_BUTTON)))
             .click()
@@ -338,28 +364,4 @@ export class BusinessAreaTest extends TestBase
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_SAVE_BUTTON))
             .click();      
         }
-
-        
-
-/*
-    cy.selectDropdown('select-test-id', 'Some Option Text');
-    */
 }
-
-
- /*
-        Create business area
-
-        assign users
-
-        Create business area and assign users
-        
-        Business area is visible to the assigned user
-        Business area is not visible to the unassigned user
-        remove a user from business area
-        remove a business area
-        Edge case scenarios
-
-
-
-    */

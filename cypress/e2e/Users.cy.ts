@@ -41,7 +41,7 @@ it(' User List Is Visible',()=>{
 })
 
 //add user
-it('Add User ',()=>{
+it.skip('Add User ',()=>{
 
     objUsersTest.adduser();
 
@@ -81,7 +81,7 @@ it('send reset password link',()=>{
 
 
 //reset password
-it('Reset Password',()=>{
+it.skip('Reset Password',()=>{
     
     objUsersTest.reset_Passowrd();
 

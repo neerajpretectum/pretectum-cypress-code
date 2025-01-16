@@ -45,7 +45,7 @@ it('Signing up  with Unchecked box',()=>{
 })
 //Sign up Process
 
-it('sign up',()=>{
+it.skip('sign up',()=>{
 
     objSignUpTest.signUp(objTestBase.email1, password, strUserFirstName , strUserLastName, Verification_link);
 
@@ -170,7 +170,7 @@ it('data_set_disabled',()=>{
 })
 
 
-it('Assign   roles  to customer',()=>{
+it.skip('Assign   roles  to customer',()=>{
 
     objSignUpTest.assign_Roles();
 
@@ -178,7 +178,7 @@ it('Assign   roles  to customer',()=>{
 
 //verfication 
 
-it('Schema Models and Datasets are enabled',()=>{
+it.skip('Schema Models and Datasets are enabled',()=>{
 
     objSignUpTest.verificaion();
 

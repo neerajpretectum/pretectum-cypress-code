@@ -6,7 +6,9 @@ export class TestBase
     //Asserts
     assertBeVisible: string = 'be.visible';
     assertHaveValue: string = 'have.value';
-
+    assertChecked: string = 'be.checked';
+    assertNotChecked: string = 'not.be.checked';
+    
     //regEx
     regCap: string = '[/A-Z/]';
     TimeStampRegex = new RegExp('[:.]', 'gi');
@@ -23,7 +25,18 @@ export class TestBase
     cidNewPass2: string = '#basic_confirmNewPassword';
     cidSelect: string = '.ant-select-dropdown :not(.ant-select-dropdown-hidden)';
     cidSelectOption: string = '.ant-select-item-option';
-    BaseURL: string = 'http://localhost:3000/';
+
+    cntBody: string = 'body';
+    cntEscape: string = '{esc}';
+    cmdDragDrop: string = 'drag-n-drop';
+    cntDes: string = ' Description';
+    cntDes1: string = ' Description - 1';
+    cntSchema: string = 'Schema';
+    cntFileCountry = 'countriesFixtures.csv';
+    cntTableRowKey = '[data-row-key="';
+    cntTableRowKeyClose = '"]';
+    
+        BaseURL: string = 'http://localhost:3000/';
     //BaseURL: string = 'http://pretectum.net/';
     UserName: string = 'testing1@malaymo.com';
     Password: string = 'Maria@027';
@@ -151,9 +164,20 @@ public LoginRun(UserName: string, Password: string, SiteURL?: string)
     } 
 
     //generate timestamp
-    TimeStamp(Prefix: string)
+    TimeStamp(Prefix: string, Separator?: string)
     {      
-        var str = Prefix.concat( new Date().toISOString().replace(this.TimeStampRegex,'-'));
-        return str;
+        if(Separator == null)
+        {
+            Separator = '-';
+        }
+        var str = Prefix.concat( new Date().toISOString().replace(this.TimeStampRegex,Separator));
+
+        if(Separator != '-')
+        {
+            var regs = new RegExp('[-]', 'gi');
+            str = str.replace(regs , Separator);
+        }
+        return str; 
+        //AN1-2025-01-06T08-24-34-223Z
     }
 }

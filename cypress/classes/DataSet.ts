@@ -36,7 +36,7 @@ export class DataSet extends TestBase{
 
     cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_DESCRIPTION_INPUT), {timeout: 20_000})
     .clear()
-    .type('Description')
+    .type(this.cntDes)
 
     cy.get(this.TestIDLocator(CypressTestIds.MANAGE_SCHEMA_MODEL_SAVE_AS_DRAFT_BUTTON), {timeout: 20_000})
     .should(this.assertBeVisible)
@@ -90,7 +90,7 @@ export class DataSet extends TestBase{
 
     //DataSet Description
     cy.get(this.TestIDLocator(CypressTestIds.DATASET_MANAGE_DATASET_DESCRIPTION_INPUT),{timeout:8_000})
-    .type(this.strDSName + ' Description - 1', {});
+    .type(this.strDSName + this.cntDes1, {});
   
 
     //save

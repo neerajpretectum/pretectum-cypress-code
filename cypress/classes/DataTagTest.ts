@@ -51,7 +51,7 @@ addDataTag(){
     
     //tag description
     cy.get(this.TestIDLocator(CypressTestIds.DATATAGS_DATATAG_DESCRIPTION_INPUT),{timeout:8000})
-    .type(this.strDTName+ ' Description', {})
+    .type(this.strDTName+ this.cntDes, {})
     .click()
 
     //save

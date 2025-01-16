@@ -52,7 +52,7 @@ unchecked_box(email: string = '', password: string = '', firstName: string = '',
 
     //enter email
    
-    cy.get(this.TestIDLocator(CypressTestIds. USER_SIGNUP_CORPORATE_EMAIL_INPUT), {timeout: 20_000})
+    cy.get(this.TestIDLocator(CypressTestIds.USER_SIGNUP_CORPORATE_EMAIL_INPUT), {timeout: 20_000})
    .type(email)
 
     //enter Password

@@ -7,7 +7,7 @@ const oTB: TestBase = new TestBase();
 const oST: SchemaSetupTest = new SchemaSetupTest();
 
 //Open Schema Page
-it.skip('Open Schema Page', () =>
+it('Open Schema Page', () =>
 {
     oST.OpenSchemaPage();
 });
@@ -33,12 +33,17 @@ describe('Schema Setup related activities', ()=>
             })
 
             
-    /*
+    
     
 
     it('Create Schema from File Input', () =>
     {
         oST.CreateSchemaFromFileInput();
+    })
+
+    it('Create Schema from File Drag Drop', () =>
+    {
+        oST.CreateSchemaFromFileDragDrop();
     })
 
     it('Create Schema from File Input Without Header Row', () =>
@@ -56,6 +61,12 @@ describe('Schema Setup related activities', ()=>
         oST.CreateSchemaByCloning();
     })
 
+    it('View Schema', () =>
+    {
+        oST.ViewSchema();
+    })
+
+
     it('Edit Schema', () =>
     {
         oST.EditSchema();
@@ -66,15 +77,12 @@ describe('Schema Setup related activities', ()=>
         oST.SchemaChangeHistory();
     })
 
-    it('View Schema', () =>
-    {
-        oST.ViewSchema();
-    })
+
 
     it('Delete a Schema', () =>
     {
         oST.DeleteSchema();
     })
-        */
+        
 })
 
