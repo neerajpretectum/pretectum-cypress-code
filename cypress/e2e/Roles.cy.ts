@@ -1,5 +1,5 @@
 
-import { RolesTest } from "../classes/RolesTest";
+import { RolesTest } from "../classes/Roles";
 import { TestBase } from "../classes/TestBase"
 
 //create Roles Object
