@@ -1,12 +1,12 @@
 
-import { Roles } from "../classes/Roles";
+import { RolesTest } from "../classes/Roles";
 import { TestBase } from "../classes/TestBase"
 
 //create Roles Object
-const objRoles:Roles= new Roles();
+const objRolestest:RolesTest= new RolesTest();
 //first check Roles section is accessible to access Dataset
     it(' Open Roles',()=>{
-        objRoles.open_Role();
+        objRolestest.open_Role();
         
 
     })
@@ -15,7 +15,7 @@ describe('ROLES ACTIVITIES',()=>{
 
     beforeEach(()=>{
         
-        objRoles.open_Role();
+        objRolestest.open_Role();
     
     })
 
@@ -23,7 +23,7 @@ describe('ROLES ACTIVITIES',()=>{
 //create new role
     it(' Create Role',()=>{
    
-        objRoles.Create_Role();   
+        objRolestest.Create_Role();   
 
     })
    
@@ -31,7 +31,7 @@ describe('ROLES ACTIVITIES',()=>{
 
     it('Open Edit Window And Edit a Role ',()=>{
  
-        objRoles.open_edit_window_and_edit_a_role()
+        objRolestest.open_edit_window_and_edit_a_role()
         
     })
 
@@ -40,14 +40,14 @@ describe('ROLES ACTIVITIES',()=>{
     //open_view_window  
     it('Open View Window ',()=>{
  
-        objRoles.open_View_window()
+        objRolestest.open_View_window()
         
     })    
 
     //open_view_History_window  
     it('Open View history Window ',()=>{
     
-        objRoles.open_View_history_window()
+        objRolestest.open_View_history_window()
         
     }) 
 
@@ -57,16 +57,15 @@ describe('ROLES ACTIVITIES',()=>{
      
     it(' add a user to the role',()=>{
     
-        objRoles.add_a_user_to_the_role()
+        objRolestest.add_a_user_to_the_role()
         
     }) 
 
     
-
-   //add_credentials
+ //add_credentials
    it('Add Credentials',()=>{
     
-    objRoles.add_credentials()
+    objRolestest.add_credentials()
     
 }) 
 
@@ -75,77 +74,24 @@ describe('ROLES ACTIVITIES',()=>{
 
 
 // PERMISSION: BUSINESS ARAES 
-describe.skip('Permission:***************** BUSINESS AREAS******************', () => {
+describe('Permission:***************** BUSINESS AREAS******************', () => {
 
     it('Add Permission: BUSINESS ARAES ',()=>{
 
-    objRoles.add_permission('BUSINESS AREAS','Business Areas Management');
+        objRolestest.add_permission('BUSINESS AREAS','Business Areas Management');
+        objRolestest.verify_permisssion_BA();
+    
+    })
+
+
+ it('BA: Revoke permission ',()=>{
+    
+    objRolestest.delete_permission(2)
+    objRolestest.verify_revoke_permission();
     
 })
 
 
-it('BA: verify Actions Enabled ',()=>{
-    
-    objRoles.login_new();
-    objRoles.verify_Actions_Enabled_BA();
-    
-})
-
-  // uncheck_actions
-  it('BA: uncheck_actions',()=>{   
-   
-    objRoles.uncheck__actions_View_active(2);
-   
-})
-
-//verify view and active
-
-it('BA:verify Active and View ',()=>{   
-   
-    objRoles.BA_VA_View_Active();  
-   
-})
-
-
-//check actions  View and Active
-it('BA:Check Actions View, Active ',()=>{   
-   
-    objRoles.check__actions_View_active(2);   
-    
- })
-
- //UnCheck Actions Add, Edit,Del
-it('BA:UnCheck Actions Add, Edit,Del ',()=>{   
-    
-    objRoles.UCA_Add_view_edit(2) ;  
-    
- })
-
-
-// verify Actions disabled
-it('BA: verify Actions disabled',()=>{
-
-    objRoles.login_new();
-    objRoles.BA_VA_add_del_edit();
-
-})
-
-// delete_permission
- it('BA: delete_permission ',()=>{
-    
-    objRoles.open_Role();
-    objRoles.delete_permission(2);
-    
-})
-
-
-//verify delete permission functionality
-it('BA: verify_ delete_permission_functionality',()=>{
-    
-    
-    objRoles.BA_verify_delete_functionality();
-    
-})
 
 })
 
@@ -155,136 +101,46 @@ describe('Permission:***************** BUSINESS AREA DATA******************', ()
 
 it('Add Permission: BUSINESS AREA DATA ',()=>{
     
-    objRoles.add_permission('BUSINESS AREA DATA','Business Area Data Management');
+    objRolestest.add_permission('BUSINESS AREA DATA','Business Area Data Management');
+    objRolestest.verify_permisssion_BADATA();
 })
 
 
-//verify Actions Enabled BA data
-it('BAD: verify Actions Enabled ',()=>{
+
+it('BAD: Revoke permission ',()=>{
     
-    objRoles.login_new();
-    objRoles.verify_actions_enabled_BAD();
+    objRolestest.delete_permission(2)
+    objRolestest.verify_revoke_permission_BADATA();
 
 })
 
-
-// uncheck_actions
-it('BAD:uncheck_actions VA',()=>{   
-     
-    objRoles.uncheck__actions_View_active(2);   
-    
- })
-
- // verify_actions view and edit 
-it('BAD:Verify Actions VA ',()=>{   
-     
-    objRoles.BAD_VA_View_Active();   
-    
- })
-
- //check actions  View and Active
- it('BAD:Check Actions View, Active ',()=>{   
-   
-    objRoles.check__actions_View_active(2); 
-   
- })
-  
-it('BAD:UnCheck Actions Add, Edit,Del ',()=>{   
-   
-    objRoles.UCA_Add_view_edit(2)   
-    
- })
-
- // verify actions diasbled ADD ,EDIT, DEL
- it('BAD:verify add, edit, del ',()=>{   
-     
-    objRoles.BAData_VA_add_del_edit();
-    
- })
-
- //Delete permission BAdata
- it('BAData: delete_permission ',()=>{
-    
-    objRoles.open_Role();
-    objRoles.delete_permission(2);
     
 })
 
-//BAdata : verify Del per
-it('BAdata :verify_ del_per',()=>{
-    
-    objRoles.BAdata_verify_del_per();
-    
-})
-})
+
 
 describe('Permission:***************** USERS******************', () => {
 
     it('Add Permission: USERS ',()=>{
         
-        objRoles.add_permission('USERS','USERS Management');
-    })
-    
-    
-    //verify Actions Enabled BA data
-    it('USERS: verify Actions Enabled ',()=>{
-        
-        objRoles.login_new();
-        objRoles.verify_actions_enabled_USERS();
-    
-    })
-    
-    
-    //// uncheck_actions
-    it('USERS:uncheck_actions VA',()=>{   
-         
-        objRoles.uncheck__actions_View_active(2);   
-        
-     })
-    
-     //// verify_actions view and edit 
-    it('USERS:Verify Actions VA ',()=>{   
-         
-        objRoles.USERS_VA_View_Active();   
-        
-     })
-    
-     //check actions  View and Active
-     it('USERS:Check Actions View, Active ',()=>{   
-       
-        objRoles.check__actions_View_active(2); 
-        
-        
-     })
-      
-    it('USERS:UnCheck Actions Add, Edit,Del ',()=>{   
-        
-        objRoles.UCA_Add_view_edit(2);  
-        
-     })
-    
-     // verify actions diasbled ADD ,EDIT, DEL
-     it('USERS:verify add, edit,  ',()=>{   
-         
-        objRoles.USERS_VA_add__edit() 
-        
-     }) 
+        objRolestest.add_permission('USERS','USERS Management');
+        objRolestest.verify_permisssion_USERS();
 
-      //Delete permission 
-      it('USERS: delete_permission ',()=>{
-            
-        objRoles.open_Role();
-        objRoles.delete_permission(2);
-        
     })
 
-    // verify Del per
-    it('Users:verify_ del_per',()=>{
+
+    it('USERS: Revoke permission',()=>{
         
-        objRoles.USERS_verify_del_per();
-        
+        objRolestest.delete_permission(2);
+        objRolestest.verify_revoke_permission_USERS();
+    
     })
+
+
     })
+    
+    
+    
 
     //Roles
     describe('Permission:***************** ROLES******************', () => {
@@ -292,69 +148,21 @@ describe('Permission:***************** USERS******************', () => {
 
         it('Add Permission: ROLES ',()=>{
         
-            objRoles.add_permission('ROLES','ROLES Management');
+           
+            objRolestest.add_permission('ROLES','ROLES Management');
+            objRolestest.verify_permisssion_ROLES();
         })
         
         
         //verify Actions Enabled BA data
-        it('ROLES: verify Actions Enabled ',()=>{
+        it('ROLES: Revoke permission ',()=>{
             
-            objRoles.login_new();
-           objRoles.verify_actions_enabled_ROLES();
+            objRolestest.delete_permission(2);
+            objRolestest.verify_revoke_permission_ROLES();
+            
         
         })
         
-        
-        //// uncheck_actions
-        it('ROLES:uncheck_actions VA',()=>{   
-             
-            objRoles.uncheck__actions_View_active(2);   
-            
-         })
-        
-         //// verify_actions view and edit 
-        it('ROLES:Verify Actions VA ',()=>{   
-             
-            objRoles.ROLES_VA_View_Active();   
-            
-         })
-        
-         //check actions  View and Active
-         it('ROLES:Check Actions View, Active ',()=>{   
-           
-            objRoles.check__actions_View_active(2); 
-            
-            
-         })
-          
-        it('ROLES:UnCheck Actions Add, Edit,Del ',()=>{   
-            
-            objRoles.UCA_Add_view_edit(2)   
-            
-         })
-        
-         // verify actions diasbled ADD ,EDIT, DEL
-         it('ROLES:verify add, edit,Del',()=>{   
-             
-            objRoles.ROLES_VA_add__edit_del(); 
-            
-         }) 
-
-                
-        //Delete permission 
-        it('ROLES: delete_permission ',()=>{
-            
-            objRoles.open_Role();
-            objRoles.delete_permission(2);
-            
-        })
-
-        // verify Del per
-        it('ROLES :verify_ del_per',()=>{
-            
-            objRoles.ROLES_verify_del_per();
-            
-        })
     })
 
 
@@ -364,69 +172,20 @@ describe('Permission:***************** USERS******************', () => {
 
         it('Add Permission: SCHEMA MODELS ',()=>{
         
-            objRoles.add_permission('SCHEMA MODELS','SCHEMA MODELS Management');
+            objRolestest.add_permission('SCHEMA MODELS','SCHEMA MODELS Management');
+            objRolestest.verify_permisssion_SM();
         })
         
         
-        //verify Actions Enabled 
-        it('SCHEMA: verify Actions Enabled ',()=>{
+      
+        it('SCHEMA: Revoke permission',()=>{
             
-            objRoles.login_new();
-            objRoles.verify_actions_enabled_SCHEMA();
+            objRolestest.delete_permission(2);
+            objRolestest.verify_revoke_permission_SM();
         
         })
         
         
-        //// uncheck_actions
-        it('SCHEMA :uncheck_actions VA',()=>{   
-             
-            objRoles.uncheck__actions_View_active(2);   
-            
-         })
-        
-         //// verify_actions view and edit 
-        it('SCHEMA :Verify Actions VA ',()=>{   
-             
-            objRoles.SCHEMA_VA_View_Active();   
-            
-         })
-        
-         //check actions  View and Active
-         it('SCHEMA:Check Actions View, Active ',()=>{   
-           
-            objRoles.check__actions_View_active(2); 
-            
-            
-         })
-          
-        it('SCHEMA:UnCheck Actions Add, Edit,Del ',()=>{   
-           
-            
-            objRoles.UCA_Add_view_edit(2)   
-            
-         })
-        
-         // verify actions diasbled ADD ,EDIT, DEL
-         it('SCHEMA:verify add, edit,Del  ',()=>{   
-             
-          objRoles.SCHEMA_VA_add__edit_del(); 
-            
-         }) 
-
-          //delete Schema Models 
-          it('SCHEMA: delete_permission ',()=>{
-            
-            objRoles.open_Role();
-            objRoles.delete_permission(2);
-            
-        })
-
-        // verify Del permission Schema Models
-        it('SCHEMA :verify_ del_per',()=>{
-            
-            objRoles.SCHEMA_verify_del_per();
-            
-        })
 
                 
        
@@ -435,87 +194,22 @@ describe('Permission:***************** USERS******************', () => {
 
     describe('Permission:***************** Datasets******************', () => {
 
-        it('Add Permission: SCHEMA MODELS ',()=>{
+        it('Add Permission:DATASETS ',()=>{
         
-            objRoles.add_permission('SCHEMA MODELS','SCHEMA MODELS Management');
+            objRolestest.add_permission('SCHEMA MODELS','SCHEMA MODELS Management');
+            objRolestest.add_permission('DATASETS','DATASETS Management');
+            objRolestest.verify_permisssion_DS();
         })
 
         
-        it('Add Permission: DATASETS ',()=>{
-        
-            objRoles.add_permission('DATASETS','DATASETS Management');
-        })
-        
-        
-        //verify Actions Enabled 
-        it('DS: verify Actions Enabled ',()=>{
+        it('DS: Revoke permission ',()=>{
             
-            objRoles.login_new();
-            objRoles.verify_actions_enabled_DS();
+            objRolestest.delete_permission(3);
+            objRolestest.verify_revoke_permission_DS();
+            objRolestest.delete_permission(2);
         
         })
         
-        
-        //// uncheck_actions
-        it('DS :uncheck_actions VA',()=>{   
-             
-            objRoles.uncheck__actions_View_active(3);   
-            
-         })
-        
-         //// verify_actions view and edit 
-        it('DS :Verify Actions VA ',()=>{   
-             
-            objRoles.DS_VA_View_Active();   
-            
-         })
-        
-         //check actions  View and Active
-         it('DS:Check Actions View, Active ',()=>{   
-           
-            objRoles.check__actions_View_active(3); 
-            
-            
-         })
-          
-        it('DS:UnCheck Actions Add, Edit,Del ',()=>{   
-           
-            
-            objRoles.UCA_Add_view_edit(3)   
-            
-         })
-        
-         // verify actions diasbled ADD ,EDIT, DEL
-         it('DS:verify add, edit,Del  ',()=>{   
-             
-         objRoles.DS_VA_add__edit_del(); 
-            
-         }) 
-
-                
-        //Delete permission Datasets
-        it('DS: delete_permission ',()=>{
-            
-            objRoles.open_Role();
-            objRoles.delete_permission(3);
-            
-        })
-
-        // verify Del per Datasets
-        it('DS :verify_ del_per',()=>{
-            
-            objRoles.DS_verify_del_per();
-            
-        })
-
-        //delete Schema Models 
-         it('SCHEMA: delete_permission ',()=>{
-            
-            objRoles.open_Role();
-            objRoles.delete_permission(2);
-            
-        })
-
 
     })
 
@@ -525,125 +219,18 @@ describe('Permission:***************** USERS******************', () => {
        
         it('Add Permission: DATATAGS ',()=>{
         
-            objRoles.add_permission('DATATAGS','DATATAGS Management');
-        })
-        
-        
-        //verify Actions Enabled BA data
-        it('DT: verify Actions Enabled ',()=>{
-            
-            objRoles.login_new();
-            objRoles.verify_actions_enabled_DT();
-        
-        })
-        
-        
-        //// uncheck_actions
-        it('DT :uncheck_actions VA',()=>{   
-             
-            objRoles.uncheck__actions_View_active(2);   
-            
-         })
-        
-         //// verify_actions view and edit 
-        it('DT :Verify Actions VA ',()=>{   
-             
-          objRoles.DT_VA_View_Active();   
-            
-         })
-        
-         //check actions  View and Active
-         it('DT:Check Actions View, Active ',()=>{   
-           
-            objRoles.check__actions_View_active(2); 
-            
-            
-         })
           
-        it('DT:UnCheck Actions Add, Edit,Del ',()=>{   
-           
-            
-            objRoles.UCA_Add_view_edit(2)   
-            
-         })
-        
-         // verify actions diasbled ADD ,EDIT, DEL
-         it('DT:verify add, edit,Del  ',()=>{   
-             
-            objRoles.DT_VA_add__edit_del(); 
-            
-         }) 
-
-                
-        //Delete permission 
-        it('DT: delete_permission ',()=>{
-            
-            objRoles.open_Role();
-            objRoles.delete_permission(2);
-            
-        })
-
-        // verify Del per
-        it('DT :verify_ del_per',()=>{
-            
-            objRoles.DT_verify_del_per();
-            
-        })
-
-       
-
-    })
-
-    describe('Permission:***************** DataSet Objects Serach******************', () => {
-
-       
-       
-        it('Add Permission: DATASET OBJECTS SEARCH ',()=>{
-        
-            objRoles.add_permission('DATASET OBJECTS SEARCH','DATASET OBJECTS SEARCH Management');
+            objRolestest.add_permission('DATATAGS','DATATAGS Management');
+            objRolestest.verify_permisssion_DT();
         })
         
         
-        //verify Actions Enabled BA data
-        it('DSOS: verify Actions Enabled ',()=>{
+        it('DT: Revoke permission ',()=>{
             
-            objRoles.login_new();
-            objRoles.verify_actions_enabled_DSOS();
+            objRolestest.delete_permission(2);
+            objRolestest.verify_revoke_permission_DT();
         
-        })
-        
-       
-        //// uncheck_actions
-        it('DSOS :uncheck_actions VA',()=>{   
-             
-            objRoles.uncheck__actions_View_active(2);   
-            
-         })
-        
-         //// verify_actions view and edit 
-        it('DSOS :Verify Actions VA ',()=>{   
-             
-         objRoles.DSOS_VA_View_Active();   
-            
-         })
-        
-                
-        //Delete permission 
-        it('DSOS: delete_permission ',()=>{
-            
-            objRoles.open_Role();
-            objRoles.delete_permission(2);
-            
-        })
-
-        // verify Del per
-        it('DSOS :verify_ del_per',()=>{
-            
-            objRoles.DSOS_verify_del_per();
-            
-        })
-
-       
+        })   
 
     })
 
@@ -653,73 +240,18 @@ describe('Permission:***************** USERS******************', () => {
        
         it('Add Permission: CREDENTIALS ',()=>{
         
-            objRoles.add_permission('CREDENTIALS','CREDENTIALS Management');
-        })
-        
-        
-        //verify Actions Enabled BA data
-        it('CR: verify Actions Enabled ',()=>{
-            
-            objRoles.login_new();
-            objRoles.verify_actions_enabled_CR();
-        
-        })
-        
-        
-        //// uncheck_actions
-        it('CR :uncheck_actions VA',()=>{   
-             
-            objRoles.uncheck__actions_View_active(2);   
-            
-         })
-        
-         //// verify_actions view and edit 
-        it('CR :Verify Actions VA ',()=>{   
-             
-          objRoles.CR_VA_View_Active();   
-            
-         })
-        
-         //check actions  View and Active
-         it('CR:Check Actions View, Active ',()=>{   
            
-            objRoles.check__actions_View_active(2); 
-            
-            
-         })
-          
-        it('CR:UnCheck Actions Add, Edit,Del ',()=>{   
-           
-            
-            objRoles.UCA_Add_view_edit(2)   
-            
-         })
+            objRolestest.add_permission('CREDENTIALS','CREDENTIALS Management');
+            objRolestest.verify_permisssion_CR();
+        })
         
-         // verify actions diasbled ADD ,EDIT, DEL
-         it('CR:verify add, edit,Del  ',()=>{   
-             
-            objRoles.CR_VA_add__edit_del(); 
+        it('CR: Revoke permission ',()=>{
             
-         }) 
-
-                
-        //Delete permission 
-        it('CR: delete_permission ',()=>{
-            
-            objRoles.open_Role();
-            objRoles.delete_permission(2);
-            
-        })
-
-        // verify Del per
-        it('CR :verify_ del_per',()=>{
-            
-            objRoles.CR_verify_del_per();
-            
-        })
-
+            objRolestest.delete_permission(2);
+            objRolestest.verify_revoke_permission_CR();
+        
+        })   
        
-
     })
 
     describe('Permission:***************** SYSTEM CONNECTIONS******************', () => {
@@ -728,221 +260,57 @@ describe('Permission:***************** USERS******************', () => {
        
         it('Add Permission: SYSTEM CONNECTIONS ',()=>{
         
-            objRoles.add_permission('SYSTEM CONNECTIONS','SYSTEM CONNECTIONS Management');
+            objRolestest.add_permission('SYSTEM CONNECTIONS','SYSTEM CONNECTIONS Management');
+            objRolestest.verify_permisssion_SC();
         })
         
         
-        //verify Actions Enabled BA data
-        it('SC: verify Actions Enabled ',()=>{
+        it('CR: Revoke permission ',()=>{
             
-            objRoles.login_new();
-            objRoles.verify_actions_enabled_SC();
+            objRolestest.delete_permission(2);
+            objRolestest.verify_revoke_permission_SC();
         
         })
         
-        
-        //// uncheck_actions
-        it('SC :uncheck_actions VA',()=>{   
-             
-            objRoles.uncheck__actions_View_active(2);   
-            
-         })
-        
-         //// verify_actions view and edit 
-        it('SC :Verify Actions VA ',()=>{   
-             
-          objRoles.SC_VA_View_Active();   
-            
-         })
-        
-         //check actions  View and Active
-         it('SC:Check Actions View, Active ',()=>{   
-           
-            objRoles.check__actions_View_active(2); 
-            
-            
-         })
-          
-        it('SC:UnCheck Actions Add, Edit,Del ',()=>{   
-           
-            
-            objRoles.UCA_Add_view_edit(2)   
-            
-         })
-        
-         // verify actions diasbled ADD ,EDIT, DEL
-         it('SC:verify add, edit,Del  ',()=>{   
-             
-            objRoles.SC_VA_add__edit_del(); 
-            
-         }) 
-
-                
-        //Delete permission 
-        it('SC: delete_permission ',()=>{
-            
-            objRoles.open_Role();
-            objRoles.delete_permission(2);
-            
-        })
-
-        // verify Del per
-        it('SC :verify_ del_per',()=>{
-            
-            objRoles.SC_verify_del_per();
-            
-        })
-
-       
-
     })
-
     describe('Permission:***************** SYSTEM KEYS******************', () => {
 
        
        
         it('Add Permission: SYSTEM KEYS ',()=>{
         
-            objRoles.add_permission('SYSTEM KEYS','SYSTEM KEYS Management');
+            objRolestest.add_permission('SYSTEM KEYS','SYSTEM KEYS Management');
+            objRolestest.verify_permisssion_SK();
         })
         
         
-        //verify Actions Enabled 
-        it('SK: verify Actions Enabled ',()=>{
+        it('SK: Revoke permission ',()=>{
             
-            objRoles.login_new();
-            objRoles.verify_actions_enabled_SK();
+            objRolestest.delete_permission(2);
+            objRolestest.verify_revoke_permission_SK();
         
         })
         
-        
-        //// uncheck_actions
-        it('SK :uncheck_actions VA',()=>{   
-             
-            objRoles.uncheck__actions_View_active(2);   
-            
-         })
-        
-         //// verify_actions view and edit 
-        it('SK :Verify Actions VA ',()=>{   
-             
-          objRoles.SK_VA_View_Active();   
-            
-         })
-        
-         //check actions  View and Active
-         it('SK:Check Actions View, Active ',()=>{   
-           
-            objRoles.check__actions_View_active(2); 
-            
-            
-         })
-          
-        it('SK:UnCheck Actions Add, Edit,Del ',()=>{   
-           
-            
-            objRoles.UCA_Add_view_edit(2)   
-            
-         })
-        
-         // verify actions diasbled ADD ,EDIT, DEL
-         it('SK:verify add, edit,Del  ',()=>{   
-             
-            objRoles.SK_VA_add__edit_del(); 
-            
-         }) 
-
-                
-        //Delete permission 
-        it('SK: delete_permission ',()=>{
-            
-            objRoles.open_Role();
-            objRoles.delete_permission(2);
-            
-        })
-
-        // verify Del per
-        it('SK :verify_ del_per',()=>{
-            
-            objRoles.SK_verify_del_per();
-            
-        })
-
-       
-
     })
+
 
     describe('Permission:***************** CDC Destinations ******************', () => {
 
        
        
         it('Add Permission: CDC Destinations ',()=>{
-        
-            objRoles.add_permission('CHANGE DATA CAPTURE DESTINATIONS','CDC Destinations Management');
-        })
-        
-        
-        //verify Actions Enabled BA data
-        it('CDCDs: verify Actions Enabled ',()=>{
-            
-            objRoles.login_new();
-            objRoles.verify_actions_enabled_CDCDs();
-        
-        })
-        
-        
-        //// uncheck_actions
-        it('CDCDs :uncheck_actions VA',()=>{   
-             
-            objRoles.uncheck__actions_View_active(2);   
-            
-         })
-        
-         //// verify_actions view and edit 
-        it('CDCDs :Verify Actions VA ',()=>{   
-             
-          objRoles.CDCDs_VA_View_Active();   
-            
-         })
-        
-         //check actions  View and Active
-         it('CDCDs:Check Actions View, Active ',()=>{   
-           
-            objRoles.check__actions_View_active(2); 
-            
-            
-         })
           
-        it('CDCDs:UnCheck Actions Add, Edit,Del ',()=>{   
-           
-            
-            objRoles.UCA_Add_view_edit(2)   
-            
-         })
+            objRolestest.add_permission('CHANGE DATA CAPTURE DESTINATIONS','CDC Destinations Management');
+            objRolestest.verify_permisssion_CDCD();
+        })
         
-         // verify actions diasbled ADD ,EDIT, DEL
-         it('CDCDs:verify add, edit,Del  ',()=>{   
-             
-            objRoles.CDCDs_VA_add__edit_del(); 
+        
+        it('CDCD: Revoke permission ',()=>{
             
-         }) 
-
-                
-        //Delete permission 
-        it('CDCDs: delete_permission ',()=>{
-            
-            objRoles.open_Role();
-            objRoles.delete_permission(2);
-            
+            objRolestest.delete_permission(2);
+            objRolestest.verify_revoke_permission_CDCD();
+        
         })
-
-        // verify Del per
-        it('CDCDs :verify_ del_per',()=>{
-            
-            objRoles.CDCDs_verify_del_per();
-            
-        })
-
        
 
     })
@@ -952,14 +320,14 @@ describe('Permission:***************** USERS******************', () => {
 
         beforeEach(()=>{
             
-            objRoles.open_Role();
+            objRolestest.open_Role();
         
         })
 
     // Delete credentials
     it('Delete Credentials',()=>{
     
-        objRoles.delete_credentials()
+        objRolestest.delete_credentials()
         
     }) 
 
@@ -967,7 +335,7 @@ describe('Permission:***************** USERS******************', () => {
     //activate and Deactivate  a role
     it('Deactivate a role',()=>{
     
-        objRoles.activate_and_deactivate_a_role()
+        objRolestest.activate_and_deactivate_a_role()
         
     }) 
 
@@ -975,7 +343,7 @@ describe('Permission:***************** USERS******************', () => {
      // delete_a_role
    it('Delete a Role ',()=>{
  
-    objRoles.delete_a_role(objRoles.strRoleName);
+    objRolestest.delete_a_role( objRolestest.strRoleName);
     
     })
 
