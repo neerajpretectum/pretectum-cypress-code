@@ -1,11 +1,5 @@
 import CypressTestIds from  "../classes/CypressTestIDs";
 import { TestBase } from "./TestBase";
-//import { LoginTest } from "./LoginTest";
-import { BusinessAreaTest} from "./BusinessAreaTest";
-
-//const objLoginTest: LoginTest = new LoginTest();
-//const objtestbase:TestBase = new TestBase();
-const objBAT: BusinessAreaTest = new BusinessAreaTest();
 
 export class Roles extends TestBase{
 
@@ -130,7 +124,7 @@ open_edit_window_and_edit_a_role(){
 //Delete a Role
 delete_a_role(rolename: string = ''){
     cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 8000})
-    cy.get('.ant-table-body',{timeout:8_000})
+   // cy.get('.ant-table-body',{timeout:8_000})
     .contains(rolename,{timeout:20_000})
     .parent(this.TR) 
     .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_DELETE_BUTTON), { timeout: 8_000 }) 
