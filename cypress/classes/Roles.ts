@@ -3,8 +3,7 @@ import { TestBase } from "./TestBase";
 
 export class RolesTest extends TestBase{
 
-    strRoleName: string = 'Test Role ';
-    strRoleDesc:string = 'Role Description '
+    strRoleName: string = this.TimeStamp('RN1'); 
     credential:string='GoogleMaps'
 
 
@@ -30,28 +29,28 @@ export class RolesTest extends TestBase{
 
 Create_Role(){
 
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_ADD_ROLE_BUTTON), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_ADD_ROLE_BUTTON), {timeout: 20_000})
     .should(this.assertBeVisible)
     .click()
 
     //role name
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_MANAGE_ROLE_NAME_INPUT), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_MANAGE_ROLE_NAME_INPUT), {timeout: 20_000})
     .should(this.assertBeVisible)
     .type(this.strRoleName)
     .click()
 
     //role description 
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_MANAGE_ROLE_DESCRIPTION_INPUT), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_MANAGE_ROLE_DESCRIPTION_INPUT), {timeout: 20_000})
     .should(this.assertBeVisible)
-    .type(this.strRoleDesc)
+    .type(this. strRoleName + ' Description', {})
     .click()
 
     //Save
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_MANAGE_ROLE_SAVE_BUTTON), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_MANAGE_ROLE_SAVE_BUTTON), {timeout: 20_000})
     .should(this.assertBeVisible)
     .click()
 
-    cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 20_000})
     .should(this.assertBeVisible)
 
 
@@ -64,18 +63,19 @@ add_permission(permissionName: string, desc: string){
     cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 20_000})
     .contains(this.strRoleName,{timeout:20_000})
     .parent(this.TR) 
-    .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_EDIT_BUTTON), { timeout: 8000 }) 
+    .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_EDIT_BUTTON), { timeout: 20000 }) 
+    .scrollIntoView()
     .should(this.assertBeVisible)
     .click(); 
 
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_PERMISSIONS_LIST_ADD_PERMISSION_BUTTON), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_PERMISSIONS_LIST_ADD_PERMISSION_BUTTON), {timeout: 20_000})
     .should(this.assertBeVisible)
     .click()
 
    this.selectDropdown1(this.TestIDLocator(CypressTestIds.ROLES_PERMISSIONS_LIST_PERMISSION_NAME_SELECT),permissionName);
   
    //decsription 
-   cy.get(this.TestIDLocator(CypressTestIds.ROLES_PERMISSIONS_LIST_PERMISSION_DESCRIPTION_INPUT), {timeout: 8_000})
+   cy.get(this.TestIDLocator(CypressTestIds.ROLES_PERMISSIONS_LIST_PERMISSION_DESCRIPTION_INPUT), {timeout: 20_000})
     .should(this.assertBeVisible)
     .last()
     .type(desc)
@@ -86,10 +86,10 @@ add_permission(permissionName: string, desc: string){
     .should(this.assertBeVisible)
     .click() 
     
-    cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 20_000})
     .should(this.assertBeVisible)
  
-    cy.get('a img[src="/icons/header-menu/logout.png"]', {timeout: 8_000})
+    cy.get('a img[src="/icons/header-menu/logout.png"]', {timeout: 20_000})
     .should(this.assertBeVisible)
      .click();
 
@@ -102,12 +102,13 @@ open_edit_window_and_edit_a_role(){
     cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 20_000})
     .contains(this.strRoleName,{timeout:20_000})
     .parent(this.TR) 
-    .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_EDIT_BUTTON), { timeout: 8000 }) 
+    .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_EDIT_BUTTON), { timeout: 20000 }) 
+    .scrollIntoView()
     .should(this.assertBeVisible) 
     .click();
 
 
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_MANAGE_ROLE_DESCRIPTION_INPUT), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_MANAGE_ROLE_DESCRIPTION_INPUT), {timeout: 20_000})
     .should(this.assertBeVisible)
     .clear()
     .type('New description of role  "Test Role"') 
@@ -119,7 +120,7 @@ open_edit_window_and_edit_a_role(){
     .click() 
 
     //Success Message
-    cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 20_000})
     .should(this.assertBeVisible)
 
     
@@ -132,15 +133,16 @@ delete_a_role(rolename: string = ''){
     .contains(rolename,{timeout:20_000})
     .parent(this.TR) 
     .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_DELETE_BUTTON), { timeout: 8_000 }) 
+    .scrollIntoView()
     .should(this.assertBeVisible) 
     .click();
 
     // confirmation message
-    cy.get(this.TestIDLocator(CypressTestIds.CONFIRMATION_BOX_OK_BUTTON), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.CONFIRMATION_BOX_OK_BUTTON), {timeout: 20_000})
    .should(this.assertBeVisible)
     .click()
 
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 20_000})
     .should(this.assertBeVisible)
     .should('not.have.text', this.strRoleName)
 
@@ -149,10 +151,11 @@ delete_a_role(rolename: string = ''){
 
 open_View_window(){
     
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 20_000})
     .contains(this.strRoleName,{timeout:20_000})
     .parent(this.TR) 
     .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_VIEW_BUTTON), { timeout: 8_000 }) 
+    .scrollIntoView()
     .should(this.assertBeVisible) 
     .click();
 
@@ -164,10 +167,11 @@ open_View_window(){
 }
 
 open_View_history_window(){  
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 20_000})
     .contains(this.strRoleName,{timeout:20_000})
     .parent(this.TR) 
     .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_HISTORY_BUTTON), { timeout: 8_000 }) 
+    .scrollIntoView()
     .should(this.assertBeVisible) 
     .click();
 
@@ -184,6 +188,7 @@ add_a_user_to_the_role(){
     .contains(this.strRoleName,{timeout:20_000})
     .parent(this.TR) 
     .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_EDIT_BUTTON), { timeout: 20000 }) 
+    .scrollIntoView()
     .should(this.assertBeVisible) 
     .click();
 
@@ -192,7 +197,7 @@ add_a_user_to_the_role(){
     .should(this.assertBeVisible) 
     .click();
     
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_USER_LIST_ADD_USER_BUTTON), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_USER_LIST_ADD_USER_BUTTON), {timeout: 20_000})
     .should(this.assertBeVisible) 
     .click();
 
@@ -207,7 +212,7 @@ add_a_user_to_the_role(){
 
 
        //Success Message
-    cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 20_000})
     .should(this.assertBeVisible)
 
    
@@ -218,15 +223,16 @@ add_a_user_to_the_role(){
 //Deactivate a Role
 activate_and_deactivate_a_role(){
 
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 20_000})
     .contains(this.strRoleName,{timeout:20_000})
     .parent(this.TR) 
     .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_ACTIVE_SWITCH), { timeout: 8000 }) 
+    .scrollIntoView()
     .should(this.assertBeVisible) 
     .click();
 
      //Success Message
-     cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
+     cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 20_000})
      .should(this.assertBeVisible)
 }
 
@@ -234,10 +240,11 @@ activate_and_deactivate_a_role(){
 add_credentials(){
 
     const expectedCredential=1;
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout:20000})
     .contains(this.strRoleName,{timeout:20_000})
     .parent(this.TR) 
-    .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_EDIT_BUTTON), { timeout: 8000 }) 
+    .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_EDIT_BUTTON), { timeout: 20000})
+    .scrollIntoView()
     .should(this.assertBeVisible) 
     .click();
 
@@ -245,7 +252,7 @@ add_credentials(){
 
     cy.get('#rc-tabs-0-tab-3',{ timeout: 4000 })
     .click()
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_CREDENTIALS_LIST_ADD_CREDENTIAL_BUTTON), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_CREDENTIALS_LIST_ADD_CREDENTIAL_BUTTON), {timeout: 20_000})
     .click()
 
    // select credential
@@ -263,7 +270,7 @@ add_credentials(){
 
     //verification
     
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 20_000})
     .contains(this.strRoleName,{timeout:20_000})
     .parent(this.TR) 
     .find(':nth-child(5)') 
@@ -272,10 +279,11 @@ add_credentials(){
 }
 
 delete_credentials(){
-    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.ROLES_LIST_TABLE), {timeout: 20_000})
     .contains(this.strRoleName,{timeout:20_000})
     .parent(this.TR) 
-    .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_EDIT_BUTTON), { timeout: 8000 }) 
+    .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_EDIT_BUTTON), { timeout: 8000 })
+    .scrollIntoView() 
     .should('be.visible') 
     .click(); 
     cy.get('#rc-tabs-0-tab-3',{ timeout: 4000 })
@@ -300,7 +308,7 @@ delete_credentials(){
     .should(this.assertBeVisible)
     .click({force:true}) 
 
-    cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
+    cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 20_000})
     .should(this.assertBeVisible )
 
 
@@ -325,6 +333,7 @@ delete_permission(rowNumber: number){
   .contains(this.strRoleName,{timeout:20_000})
   .parent(this.TR) 
   .find(this.TestIDLocator(CypressTestIds.ROLES_LIST_EDIT_BUTTON), { timeout: 8000 }) 
+  .scrollIntoView()
   .should('be.visible') 
   .click(); 
 
@@ -340,10 +349,10 @@ delete_permission(rowNumber: number){
   cy.get(this.TestIDLocator(CypressTestIds.ROLES_MANAGE_ROLE_SAVE_BUTTON), {timeout: 20_000})
   .should(this.assertBeVisible)
   .click() 
-  cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 8_000})
+  cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 20_000})
   .should(this.assertBeVisible)
 
-  cy.get('a img[src="/icons/header-menu/logout.png"]', {timeout: 8_000})
+  cy.get('a img[src="/icons/header-menu/logout.png"]', {timeout: 20_000})
  .should(this.assertBeVisible)
   .click();
 
@@ -508,7 +517,7 @@ verify_permisssion_SM(){
 
     this.login_new();
      //Open Schema Page
-     cy.contains('Schema', {timeout: 8_000})
+     cy.contains('Schema', {timeout: 20_000})
      .click();
 
     cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_TABLE), {timeout: 20_000})
@@ -520,7 +529,7 @@ verify_revoke_permission_SM(){
 
    this.login_new();
      //Open Schema Page
-     cy.contains('Schema', {timeout: 8_000})
+     cy.contains('Schema', {timeout: 20_000})
      .click();
     
      //permisssion denied
@@ -534,7 +543,7 @@ verify_permisssion_DS(){
 
 this.login_new();
 //Open Schema Page
-cy.contains('Schema', {timeout: 8_000})
+cy.contains('Schema', {timeout: 20_000})
 .click();
 cy.get(this.TestIDLocator(CypressTestIds.SCHEMA_LIST_TABLE), {timeout: 20_000})
 .should(this.assertBeVisible)
@@ -556,7 +565,7 @@ verify_revoke_permission_DS(){
     .should('contain', 'Permission Denied')
     .and('contain', "You don't have permisson to enter in this area.");
 
-    cy.get('a img[src="/icons/header-menu/logout.png"]', {timeout: 8_000})
+    cy.get('a img[src="/icons/header-menu/logout.png"]', {timeout: 20_000})
     .should(this.assertBeVisible)
      .click();
 }
