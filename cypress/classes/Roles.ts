@@ -1,4 +1,4 @@
-import CypressTestIds from  "../classes/CypressTestIDs";
+import CypressTestIds from  "./CypressTestIDs";
 import { TestBase } from "./TestBase";
 
 export class RolesTest extends TestBase{
