@@ -1,13 +1,16 @@
 //import { LoginTest } from "../classes/LoginTest";
+import { RolesTest} from "../classes/Roles";
 import {SignUpTest}  from "../classes/SignupTest";
 import { TestBase } from "../classes/TestBase";
+
 
 
 //create  Object
 const objSignUpTest :SignUpTest = new SignUpTest ();
 const objTestBase:TestBase= new TestBase();
+const objRolestest:RolesTest= new RolesTest();
 
-let email = 'Testing1@mnniskor.com';
+
 let password = 'Maria@027';
 const strUserFirstName: string = objTestBase.TimeStamp('UFN-');
 const strUserLastName: string = objTestBase.TimeStamp('ULN-');
@@ -40,14 +43,14 @@ it('Signing up Empty Fields',()=>{
 //Signing up  with Unchecked box
 it('Signing up  with Unchecked box',()=>{
     
-    objSignUpTest.unchecked_box(email, password,strUserFirstName , strUserLastName);
+    objSignUpTest.unchecked_box(objTestBase.email, password,strUserFirstName , strUserLastName);
 
 })
 //Sign up Process
 
 it('sign up',()=>{
 
-    objSignUpTest.signUp(objTestBase.email1, password, strUserFirstName , strUserLastName, Verification_link);
+    objSignUpTest.signUp(objTestBase.email, password, strUserFirstName , strUserLastName, Verification_link);
 
 })
 
@@ -67,7 +70,7 @@ it('Edge Case Scenario:invalid email ',()=>{
 //duplicate email
 it('Edge Case Scenario: duplicate email ',()=>{
  
-     objSignUpTest.edge_case_scenarios ('Testing1@mnniskor.com', 'Maria@027', 'Ramsha','khan'); 
+     objSignUpTest.edge_case_scenarios ('testing2@malaymo.com', 'Maria@027', 'Ramsha','khan'); 
      cy.get('.ant-form-item-explain-error',{timeout:20000})
      .should('be.visible')
  })
@@ -139,8 +142,8 @@ it('Edge Case Scenario: First name input length less then minimum ',()=>{
 
 it('test login ',()=>{
 
-    objSignUpTest.open_login_Page();
-    objSignUpTest.test_login(email,password);     
+     
+    objTestBase.LoginWithCorrectPass(objTestBase.email,objTestBase.Password,objTestBase.BaseURL )    
    
 
 })
@@ -150,8 +153,7 @@ describe('TEST LOGIN ACTIVITIES ',()=>{
 
     beforeEach(()=>{
     
-        objSignUpTest.open_login_Page();
-        objSignUpTest.test_login(email,password);
+        objTestBase.LoginWithCorrectPass(objTestBase.email,objTestBase.Password,objTestBase.BaseURL )    
     })
 
 
@@ -173,6 +175,9 @@ it('data_set_disabled',()=>{
 it('Assign   roles  to customer',()=>{
 
     objSignUpTest.assign_Roles();
+    
+
+    
 
 })
 
@@ -184,15 +189,13 @@ it('Schema Models and Datasets are enabled',()=>{
 
 })
 
-// delete_a_role
+ // delete_a_role
  it('Delete a Role ',()=>{
  
     objSignUpTest.delete_a_role();
     
     
-  })
-
-
+    })
 })
 
 
