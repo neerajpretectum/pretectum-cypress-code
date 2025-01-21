@@ -1,4 +1,6 @@
-const { defineConfig } = require("cypress");
+// cypress.config.js
+const { defineConfig } = require('cypress');
+require('dotenv').config(); // Load environment variables from .env file
 
 module.exports = defineConfig({
   projectId: 'skp6fh',
@@ -6,7 +8,12 @@ module.exports = defineConfig({
     watchForFileChanges: false,
 
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      // Load environment variables from .env file into Cypress config
+      config.env.AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
+      config.env.AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+
+      // Return the modified config object
+      return config;
     },
   },
 });
