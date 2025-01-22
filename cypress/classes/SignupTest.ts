@@ -1,12 +1,11 @@
 import CypressTestIds from  "../classes/CypressTestIDs";
-//import CypressTestIds from  '../../../front-end/src/cypress/CypressTestIds'
 import { TestBase } from "../classes/TestBase";
-import { Roles } from "../classes/Roles";
+import { RolesTest } from "../classes/Roles"
 
     
     let Permision1= 'SCHEMA MODELS'
     let Permission2= 'DATASETS'
-    const objRoles: Roles= new Roles();   
+    const objRolestest:RolesTest= new RolesTest();  
 export class SignUpTest extends TestBase{
 
     strRole: string = this.TimeStamp('role-');
@@ -166,35 +165,7 @@ empty_name_and_password(email: string = '', password: string = '', firstName: st
 
 }
 
-//open login page
-open_login_Page(){
- 
-    //open login page
- this.OpenURL();
 
-}
-
-// test_login 
-test_login(email:string=' ', password:string=' '){
-
-    //type user and password
-    cy.get(this.TestIDLocator(CypressTestIds.USER_LOGIN_EMAIL_INPUT),{timeout:8_000})
-    .should(this.assertBeVisible)
-    .type(email)
-
-    cy.get( this.TestIDLocator(CypressTestIds.USER_LOGIN_PASSWORD_INPUT))
-    .type(password, {})
-    //click on button
-    cy.get(this.TestIDLocator(CypressTestIds.USER_LOGIN_SUBMIT_BUTTON))
-    .click({}) 
-    
-
-    //landing pages
-    cy.get('.ant-layout-header > :nth-child(1) > :nth-child(2)',{timeout:20_000})
-    .should(this.assertBeVisible)
-
-    
-}
     
 
     //schema model disabled
@@ -251,7 +222,7 @@ test_login(email:string=' ', password:string=' '){
    
     //add user
     cy.get('#rc-tabs-0-tab-2', {timeout: 20_000})
-    //cy.get(this.TestIDLocator(CypressTestIds. ROLES_MANAGE_ROLE_TAB_USERS_TAB), {timeout: 20_000})
+    
     .click()
 
     //click on add user
@@ -313,7 +284,7 @@ delete_a_role(){
     .should(this.assertBeVisible)
     .click();
 
-    objRoles.delete_a_role(this.strRole);
+    objRolestest.delete_a_role(this.strRole);
 
 
 }
