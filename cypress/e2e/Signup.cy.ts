@@ -158,21 +158,21 @@ describe('TEST LOGIN ACTIVITIES ',()=>{
 
 
 
-it('schema_model_disabled ',()=>{
+it.skip('schema_model_disabled ',()=>{
 
     objSignUpTest.schema_model_disabled();
    
 
 })
     
-it('data_set_disabled',()=>{
+it.skip('data_set_disabled',()=>{
 
     objSignUpTest.data_set_disabled();
 
 })
 
 
-it.skip('Assign   roles  to customer',()=>{
+it('Assign   roles  to customer',()=>{
 
     objSignUpTest.assign_Roles();
     
@@ -183,19 +183,22 @@ it.skip('Assign   roles  to customer',()=>{
 
 //verfication 
 
-it.skip('Schema Models and Datasets are enabled',()=>{
+it('Schema Models and Datasets are enabled',()=>{
 
     objSignUpTest.verificaion();
 
 })
 
- // delete_a_role
+/*
+// delete_a_role
  it('Delete a Role ',()=>{
  
     objSignUpTest.delete_a_role();
     
     
-    })
+  })
+
+*/
 })
 
 

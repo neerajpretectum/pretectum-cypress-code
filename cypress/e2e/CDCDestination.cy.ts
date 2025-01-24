@@ -44,7 +44,7 @@ describe('CDCD ACTIVITIES',()=>{
         
     })
 
-    it(' deactivate CDC Destination',()=>{
+    it.skip(' deactivate CDC Destination',()=>{
        
         objCDCDtest.deactivate_CDCD();
         

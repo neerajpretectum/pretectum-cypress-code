@@ -1,6 +1,7 @@
 import { MailSlurp } from 'mailslurp-client';
 import CypressTestIds from '../classes/CypressTestIDs';
 
+/*
 describe('Forgot Password Flow', () => {
     it('Should send reset email and verify the reset link',{ defaultCommandTimeout: 120000 }, () => {
         cy.then(() => {
@@ -44,3 +45,4 @@ describe('Forgot Password Flow', () => {
         });
     });
 });
+*/

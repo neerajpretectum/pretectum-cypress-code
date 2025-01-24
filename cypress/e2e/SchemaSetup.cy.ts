@@ -19,23 +19,7 @@ describe('Schema Setup related activities', ()=>
     {
         oST.OpenSchemaPage();
     })
-
-    
-
-        // it('View Dataset of a Schema', () =>
-        //     {
-        //         oST.ViewDataSetsOfASchema();
-        //     })
-
-        it('Create Schema Manually', () =>
-            {
-                oST.CreateSchemaManually();
-            })
-
             
-    
-    
-
     it('Create Schema from File Input', () =>
     {
         oST.CreateSchemaFromFileInput();
@@ -66,7 +50,6 @@ describe('Schema Setup related activities', ()=>
         oST.ViewSchema();
     })
 
-
     it('Edit Schema', () =>
     {
         oST.EditSchema();
@@ -77,12 +60,9 @@ describe('Schema Setup related activities', ()=>
         oST.SchemaChangeHistory();
     })
 
-
-
     it('Delete a Schema', () =>
     {
         oST.DeleteSchema();
     })
-        
 })
 

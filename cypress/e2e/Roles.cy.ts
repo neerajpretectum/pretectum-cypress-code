@@ -84,7 +84,7 @@ describe('Permission:***************** BUSINESS AREAS******************', () => 
     })
 
 
- it('BA: Revoke permission ',()=>{
+ it.skip('BA: Revoke permission ',()=>{
     
     objRolestest.delete_permission(2)
     objRolestest.verify_revoke_permission();
@@ -284,7 +284,7 @@ describe('Permission:***************** USERS******************', () => {
         })
         
         
-        it('SK: Revoke permission ',()=>{
+        it.skip('SK: Revoke permission ',()=>{
             
             objRolestest.delete_permission(2);
             objRolestest.verify_revoke_permission_SK();

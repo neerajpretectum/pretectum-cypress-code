@@ -65,9 +65,9 @@ const CypressTestIds = {
 
         // Signup
     USER_SIGNUP_CORPORATE_EMAIL_INPUT: "user-signup-corporate-email-input",
-    USER_SIGNUP_PASSWORD_INPUT: "user-signup-password-input",
-    USER_SIGNUP_FIRST_NAME_INPUT: "user-signup-first-name-input",
-    USER_SIGNUP_LAST_NAME_INPUT: "user-signup-last-name-input",
+    // USER_SIGNUP_PASSWORD_INPUT: "user-signup-password-input",
+    // USER_SIGNUP_FIRST_NAME_INPUT: "user-signup-first-name-input",
+    // USER_SIGNUP_LAST_NAME_INPUT: "user-signup-last-name-input",
     USER_SIGNUP_AGREE_TERMS_CHECKBOX: "user-signup-agree-terms-checkbox",
     USER_SIGNUP_SIGNUP_BUTTON: "user-signup-signup-button",
     USER_SIGNUP_GOBACKTOLOGIN_BUTTON: "user-signup-gobacktologin-button",

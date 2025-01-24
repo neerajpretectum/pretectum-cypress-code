@@ -35,7 +35,7 @@ export class TestBase
     cntFileCountry = 'countriesFixtures.csv';
     cntTableRowKey = '[data-row-key="';
     cntTableRowKeyClose = '"]';
-    
+    cntTableRowKey0 = '[data-row-key="0"]';
         BaseURL: string = 'http://localhost:3000/';
     //BaseURL: string = 'http://pretectum.net/';
     UserName: string = 'testing1@malaymo.com';

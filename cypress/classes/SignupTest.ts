@@ -5,7 +5,9 @@ import { RolesTest } from "../classes/Roles"
     
     let Permision1= 'SCHEMA MODELS'
     let Permission2= 'DATASETS'
-    const objRolestest:RolesTest= new RolesTest();  
+    const objRoles: RolesTest = new RolesTest();   
+
+    
 export class SignUpTest extends TestBase{
 
     strRole: string = this.TimeStamp('role-');
@@ -273,6 +275,7 @@ cy.get(this.TestIDLocator(CypressTestIds.DATASET_LIST_CREATE_NEW_DATASET_BUTTON)
 
 
 }
+
 delete_a_role(){
     //Open Config
     cy.get(this.TestIDLocator(CypressTestIds.HEADER_MENU_CONFIGURATION), {timeout: 20_000})

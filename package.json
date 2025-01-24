@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "cypress": "^13.16.0",
+    "dotenv": "^16.4.7",
     "mailslurp-client": "^15.20.2",
     "typescript": "^5.4.5"
   },
