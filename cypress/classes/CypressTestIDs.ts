@@ -28,6 +28,7 @@ const CypressTestIds = {
     VERTICAL_MENU_SYSTEMCONNECTIONS: "vertical-menu-configuration-systemconnections",
     VERTICAL_MENU_SYSTEMKEYS: "vertical-menu-configuration-systemkeys",
     VERTICAL_MENU_CHANGEDATACAPTURE: "vertical-menu-configuration-changedatacapture",
+    VERTICAL_MENU_TENANCYCUSTOMIZATION: "vertical-menu-configuration-tenancycustomization",
 
     // OkCancelConfirmationBox
     CONFIRMATION_BOX_OK_BUTTON: "confirmation-box-ok-button",
@@ -263,6 +264,32 @@ const CypressTestIds = {
     DATATAGS_DATATAG_NAME_INPUT: "datatags-datatag-name-input",
     DATATAGS_DATATAG_DESCRIPTION_INPUT: "datatags-datatag-description-input",
 
+    // Tenancy Customization
+    TENANCY_CUSTOMIZATION_TITLE_TEXT: "tenancy-customization-title-text",
+    TENANCY_CUSTOMIZATION_TEXT_INPUT_1: "tenancy-customization-text-input-1",
+    TENANCY_CUSTOMIZATION_TEXT_INPUT_2: "tenancy-customization-text-input-2",
+    TENANCY_CUSTOMIZATION_IMAGE_INPUT: "tenancy-customization-image-input",
+    TENANCY_CUSTOMIZATION_IMAGE_PREVIEW: "tenancy-customization-image-preview",
+    TENANCY_CUSTOMIZATION_COLOR_PALETTE_1:
+        "tenancy-customization-color-palette-1",
+    TENANCY_CUSTOMIZATION_COLOR_PALETTE_2:
+        "tenancy-customization-color-palette-2",
+    TENANCY_CUSTOMIZATION_COLOR_PALETTE_3:
+        "tenancy-customization-color-palette-3",
+    TENANCY_CUSTOMIZATION_COLOR_PALETTE_4:
+        "tenancy-customization-color-palette-4",
+    TENANCY_CUSTOMIZATION_COLOR_PALETTE_5:
+        "tenancy-customization-color-palette-5",
+    TENANCY_CUSTOMIZATION_COLOR_PALETTE_6:
+        "tenancy-customization-color-palette-6",
+    TENANCY_CUSTOMIZATION_COLOR_PALETTE_7:
+        "tenancy-customization-color-palette-7",
+    TENANCY_CUSTOMIZATION_COLOR_PALETTE_8:
+        "tenancy-customization-color-palette-8",
+    TENANCY_CUSTOMIZATION_SUBMIT_BUTTON: "tenancy-customization-submit-button",
+    TENANCY_CUSTOMIZATION_CANCEL_BUTTON: "tenancy-customization-cancel-button",
+    TENANCY_CUSTOMIZATION_RESET_BUTTON: "tenancy-customization-reset-button",
+    TENANCY_CUSTOMIZATION_GENERATE_PREVIEW_BUTTON: "tenancy-customization-generate-preview-button",
   
     //common objects
     COMMON_OBJECTS_EVENT_LIST_TABLE: "common-objects-event-list-table",

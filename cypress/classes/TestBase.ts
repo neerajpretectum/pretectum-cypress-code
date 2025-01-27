@@ -6,6 +6,7 @@ export class TestBase
     //Asserts
     assertBeVisible: string = 'be.visible';
     assertHaveValue: string = 'have.value';
+    assertHaveText: string = 'have.text';
 
     //regEx
     regCap: string = '[/A-Z/]';
