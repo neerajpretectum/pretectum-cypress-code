@@ -22,5 +22,8 @@ describe('Tenency Customization Activities', () => {
         objTenancyCustomizationTest.CreateTenancyCustomization();
     })
 
+    it('Delete Tenancy Customization', () => {
+        objTenancyCustomizationTest.DeleteTenancyCustomization();
+    })
     
 })
