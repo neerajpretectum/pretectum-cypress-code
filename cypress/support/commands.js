@@ -24,4 +24,13 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+Cypress.Commands.add('colorPaletteTextInputTest', (test_id, text) => {
+    cy.get(test_id)
+        .should('be.visible')
+        .clear()
+        .type(text)
+        .blur()
+        .should('have.value', text);
+})
+
 import 'cypress-file-upload';
