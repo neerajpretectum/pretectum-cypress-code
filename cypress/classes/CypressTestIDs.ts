@@ -445,6 +445,8 @@ const CypressTestIds = {
     TENANCY_CUSTOMIZATION_SUBMIT_BUTTON: "tenancy-customization-submit-button",
     TENANCY_CUSTOMIZATION_CANCEL_BUTTON: "tenancy-customization-cancel-button",
     TENANCY_CUSTOMIZATION_RESET_BUTTON: "tenancy-customization-reset-button",
+    TENANCY_CUSTOMIZATION_DELETE_IMAGE_BUTTON:
+        "tenancy-customization-delete-image-button",
     TENANCY_CUSTOMIZATION_GENERATE_PREVIEW_BUTTON: "tenancy-customization-generate-preview-button",
     TENANCY_CUSTOMIZATION_PREVIEW_HEADER_FOOTER:
         "tenancy-customization-preview-header-footer",

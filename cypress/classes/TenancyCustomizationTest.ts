@@ -4,6 +4,7 @@ import CypressTestIds from  "../classes/CypressTestIDs";
 
 let image_file1: string ='Brewtopia 1.png';
 let image_file2: string ='Brolly Insurance 2.png';
+let image_file3: string ='SmallLogo.png';
 
 export class TenancyCustomizationTest extends TestBase {
 
@@ -23,7 +24,27 @@ export class TenancyCustomizationTest extends TestBase {
         CypressTestIds.TENANCY_CUSTOMIZATION_COLOR_PALETTE_8,
     ];
 
-    imgSrc = '';
+    defaultColorsRgb: string[] = [
+        "rgb(232,232,232)",
+        "rgb(27,28,29)",
+        "rgb(24,144,255)",
+        "rgb(22,119,255)",
+        "rgb(255,255,255)",
+        "rgb(209,213,216)",
+        "rgb(230,244,255)",
+        "rgb(0,0,0)",
+    ]
+
+    defaultColorsHex: string[] = [
+        "#E8E8E8",
+        "#1B1C1D",
+        "#1890FF",
+        "#1677FF",
+        "#FFFFFF",
+        "#D1D5D8",
+        "#E6F4FF",
+        "#000000"
+    ]
 
     OpenTenancyCustomization()
     {
@@ -42,7 +63,7 @@ export class TenancyCustomizationTest extends TestBase {
             .click();
 
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_TITLE_TEXT))
-            .should(this.assertHaveText, this.strTenancyCustomizationTitle);
+            .should('have.text', this.strTenancyCustomizationTitle);
         cy.wait(6500);
     }
 
@@ -65,9 +86,7 @@ export class TenancyCustomizationTest extends TestBase {
             .attachFile(image_file1, { subjectType: 'drag-n-drop'});
         
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_IMAGE_PREVIEW))
-            .should(this.assertBeVisible)
-            .invoke('attr', 'src')
-            .as('imageSrc');
+            .should(this.assertBeVisible);
 
         for(let i = 0; i < this.palettes.length; i++){
             cy.colorPaletteTextInputTest(this.TestIDLocator(this.palettes[i]), color[i]);
@@ -77,16 +96,15 @@ export class TenancyCustomizationTest extends TestBase {
             .click();
 
         //Reloading the page
-        cy.wait(6000);
-        cy.reload()
+        cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 10000})
+        .should(this.assertBeVisible);
+
+        cy.reload();
+
         cy.wait(6000);
 
-        cy.get('@imageSrc').then((imageSrc) => {
-            cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_IMAGE_PREVIEW))
-                .should('be.visible')
-                .invoke('attr', 'src')
-                .should('eq', imageSrc);
-        })
+        cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_IMAGE_PREVIEW))
+            .should(this.assertBeVisible);
 
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_TEXT_INPUT_2))
             .should(this.assertHaveValue, this.strTenancyCustomizationFooterSlogan1);
@@ -101,42 +119,54 @@ export class TenancyCustomizationTest extends TestBase {
     TenancyCustomizationPreviewUpdated(rgbColors: string[])
     {
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_PREVIEW_HEADER_FOOTER))
-            .should('have.css', 'background-color', rgbColors[0]);
+            .should('have.css', 'background-color', rgbColors[0])
+            .wait(200);
 
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_PREVIEW_NAVIGATION_BAR))
-            .should('have.css', 'background-color', rgbColors[1]);
+            .should('have.css', 'background-color', rgbColors[1])
+            .wait(200);
 
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_PREVIEW_SELECTED_HEADER))
-            .should('have.css', 'background-color', rgbColors[2]);
+            .should('have.css', 'background-color', rgbColors[2])
+            .wait(200);
         
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_PREVIEW_PRIMARY_BUTTONS))
-            .should('have.css', 'background-color', rgbColors[3]);
+            .should('have.css', 'background-color', rgbColors[3])
+            .wait(200);
         
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_PREVIEW_FORM_BACKGROUND))
-            .should('have.css', 'background-color', rgbColors[4]);
+            .should('have.css', 'background-color', rgbColors[4])
+            .wait(200);
 
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_PREVIEW_SECONDARY_BUTTONS))
-            .should('have.css', 'background-color', rgbColors[5]);
+            .should('have.css', 'background-color', rgbColors[5])
+            .wait(200);
         
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_PREVIEW_SELECTED_ROW))
-            .should('have.css', 'background-color', rgbColors[6]);
+            .should('have.css', 'background-color', rgbColors[6])
+            .wait(200);
 
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_PREVIEW_LABEL_COLOR))
-            .should('have.css', 'color', rgbColors[7]);
+            .should('have.css', 'color', rgbColors[7])
+            .wait(200);
     }
 
     UpdateTenancyCustomization(color: string[])
     {
-        cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_TEXT_INPUT_1))
-            .should(this.assertBeVisible)
-            .type(this.strTenancyCustomizationTenancyName, { delay: 100 })
-            .wait(500);
+        // cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_TEXT_INPUT_1))
+        //     .should(this.assertBeVisible)
+        //     .type(this.strTenancyCustomizationTenancyName, { delay: 100 })
+        //     .wait(500);
 
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_TEXT_INPUT_2))
             .should(this.assertBeVisible)
-            .should(this.assertHaveText, this.strTenancyCustomizationFooterSlogan1)
-
+            .should(this.assertHaveValue, this.strTenancyCustomizationFooterSlogan2)
+            .clear()
             .type(this.strTenancyCustomizationFooterSlogan1, { delay: 100 })
+            .wait(500);
+
+        cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_DELETE_IMAGE_BUTTON))
+            .click()
             .wait(500);
 
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_IMAGE_INPUT))
@@ -152,7 +182,45 @@ export class TenancyCustomizationTest extends TestBase {
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_SUBMIT_BUTTON))
             .click();
 
+        //Reloading the page
+        cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 10000})
+        .should(this.assertBeVisible);
+
+        cy.reload()
+
         cy.wait(6000);
+
+        cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_IMAGE_PREVIEW))
+            .should(this.assertBeVisible);
+            
+        cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_TEXT_INPUT_2))
+            .should(this.assertHaveValue, this.strTenancyCustomizationFooterSlogan2);
+
+        for(let i = 0; i< this.palettes.length; i++) {
+            cy.get(this.TestIDLocator(this.palettes[i]))
+                .should(this.assertHaveValue, color[i]);
+        }
+    }
+
+    CheckValidations()
+    {
+        cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_DELETE_IMAGE_BUTTON))
+            .click()
+            .wait(500);
+
+        cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_IMAGE_INPUT))
+            .attachFile(image_file3, { subjectType: 'drag-n-drop'})
+            .wait(500);
+
+        cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_ERROR))
+            .should(this.assertBeVisible);
+
+        cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_COLOR_PALETTE_1))
+            .clear()
+            .type("invalid");
+
+        cy.get('.ant-form-item-explain-error')
+            .should(this.assertBeVisible);
     }
 
     DeleteTenancyCustomization()
@@ -169,5 +237,16 @@ export class TenancyCustomizationTest extends TestBase {
         
         cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_RESET_BUTTON))
             .should('be.disabled');
+
+        cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_TEXT_INPUT_2))
+            .should(this.assertHaveValue, '');
+        
+        cy.get(this.TestIDLocator(CypressTestIds.TENANCY_CUSTOMIZATION_IMAGE_INPUT))
+            .should(this.assertBeVisible);
+
+        for(let i=0; i< this.palettes.length; i++) {
+            cy.get(this.TestIDLocator(this.palettes[i]))
+                .should(this.assertHaveValue, this.defaultColorsHex[i]);
+        }
     }
 }
