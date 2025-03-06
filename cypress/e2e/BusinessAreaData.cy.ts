@@ -1,5 +1,6 @@
 import { BADataTest } from "../classes/BusinessAreaData"
 import { TestBase } from "../classes/TestBase"
+import CypressTestIds from  "../classes/CypressTestIDs"
 
 var blnUsersopened: Boolean=false;
 
@@ -10,7 +11,6 @@ let csv_file1: string = 'countriesFixtures.csv';
 let csv_file2: string = 'BAdata.csv';
 let xlsx_file: string = 'BADataFile.xlsx';
 let csv_file3: string = 'Appendingdata.csv';
-var Data_tag1='Date (start Dtae of business)'
 
 
 //first check Users section is accessible 
@@ -43,31 +43,26 @@ it(' add BAData  ',()=>{
 it('Drag and Drop a Non-CSV File  ',()=>{
 
     //xlsxfile
-    objBADataTest.drag_and_drop_non_csv_file(xlsx_file); 
-   
+   // objBADataTest.drag_and_drop_non_csv_file();
+    objBADataTest.drag_and_drop_non_csv_file(xlsx_file);
+    //objBADataTest. drag_and_drop_csv_file(xlsx_file); 
+    
 
 })
 
-// drag and drop a  non-CSV file
-it('verify non csv file  ',()=>{
 
-    //xlsxfile
-    objBADataTest.check_table();
-   
-
-})
 
 // drag and drop a CSV file
 it('drag and drop a CSV file  ',()=>{
 
-    objBADataTest. drag_and_drop_file(csv_file1); 
+    objBADataTest. drag_and_drop_csv_file(csv_file1); 
+   
      
-
 })
 
 it('View BAdata  ',()=>{
 
-    //xlsxfile
+   
     objBADataTest.viewBAdata(); 
 
 })
@@ -94,6 +89,13 @@ it('Appending Data  ',()=>{
     objBADataTest.appending_data(csv_file3);
 })
 
+//View Business Data history
+
+it('View Business Area Data HISTORY',()=>{
+
+    objBADataTest.view_BA_history();
+})
+
 // File Preview
 
 it ('File Preview',()=>{
@@ -103,12 +105,7 @@ it ('File Preview',()=>{
 })
 
 
-//View Business Data history
 
-it('View Business Area Data HISTORY',()=>{
-
-    objBADataTest.view_BA_history();
-})
 
 
 // Edge Case Scenarios
