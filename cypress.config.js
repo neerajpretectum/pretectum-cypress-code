@@ -11,6 +11,8 @@ module.exports = defineConfig({
       // Load environment variables from .env file into Cypress config
       config.env.AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
       config.env.AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+      config.env.OPEN_AI_API_KEY= process.env.OPEN_AI_API_KEY;
+      config.env.GOOGLE_MAPS_API_KEY=process.env.GOOGLE_MAPS_API_KEY;
 
       // Return the modified config object
       return config;
