@@ -3,7 +3,7 @@ import { TestBase } from "./TestBase"
 
 
 var purpose ='Picklist For Validation'
-var Data_tag='language (English)'
+var Data_tag='data classifer tag (for test case )'
 
 export class BADataTest extends TestBase{
 
@@ -70,9 +70,10 @@ addBAdata(){
     }
     
 
-// drag and drop a CSV file
-    drag_and_drop_file( fileName: string){
 
+    drag_and_drop_non_csv_file(fileName: string ){
+
+        //const fileName = 'BADataFile.xlsx';
         cy.contains(this.strDomainName,{timeout:20_000})
         .parent(this.TD)
         .parent(this.TR)
@@ -80,22 +81,18 @@ addBAdata(){
          .find(this.TestIDLocator(CypressTestIds.BUSINESS_AREA_DATA_LIST_EDIT_BUTTON), {timeout: 8_000})
          .click()
 
-         cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_FILE_INPUT), { timeout: 8_000 })
-        .attachFile( fileName, { subjectType: 'drag-n-drop'});
+         cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_FILE_INPUT), { timeout: 20_000 })
+         .attachFile( fileName, { subjectType: 'drag-n-drop',force:true})
+         .trigger('change', { force: true });
 
-        // Wait for the file to upload
-         cy.wait(8000);
-
-         cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_SAVE_BUTTON), { timeout: 20_000 })      
-         .click();   
-     
-         cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 20_000})
-        .should(this.assertBeVisible)
-
+          //Error Message
+          cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_ERROR), {timeout: 20_000})
+          .should(this.assertBeVisible)
+         
     }
 
     // drag and drop a CSV file
-    drag_and_drop_non_csv_file( fileName: string){
+    drag_and_drop_csv_file( fileName: string){
 
       cy.contains(this.strDomainName,{timeout:20_000})
       .parent(this.TD)
@@ -105,15 +102,17 @@ addBAdata(){
        .click()
 
        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_FILE_INPUT), { timeout: 20_000 })
-      .attachFile( fileName, { subjectType: 'drag-n-drop' });
+       .attachFile( fileName, { subjectType: 'drag-n-drop' });
 
       // Wait for the file to upload
        cy.wait(8000);
        cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_SAVE_BUTTON), { timeout: 20_000 }) 
-      .click();   
+      .click();
+      
+      cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 20_000})
+        .should(this.assertBeVisible)
    
-       cy.get(this.TestIDLocator(CypressTestIds.TOAST_ALERT_MESSAGE_SUCCESS), {timeout: 20_000})
-      .should(this.assertBeVisible)
+       
 
   }
 
@@ -130,10 +129,10 @@ addBAdata(){
          .click()
 
          cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_FILE_INPUT), {timeout: 20_000})
-         .attachFile(fileName);
+         .attachFile(fileName); 
         
          // Wait for the file to upload
-         cy.wait(10000);
+         cy.wait(8000);
 
          cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_SAVE_BUTTON))
          .click();
@@ -160,9 +159,13 @@ addBAdata(){
              cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_FILE_INPUT), {timeout: 20_000})
              .attachFile(fileName)
 
+             // Wait for the file to upload
+              cy.wait(8000);
+
               // MANAGE_BUSINESS_AREA_DATA_APPEND_THE_DATA_OPTION
              cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_APPEND_DATA_OPTION), {timeout: 20_000})
              .check()
+
             // Wait for the file to upload
             cy.wait(8000);
             cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_SAVE_BUTTON))
@@ -172,32 +175,7 @@ addBAdata(){
             .should(this.assertBeVisible)
 
         }
-
-        check_table(){
-          cy.contains(this.strDomainName ,{timeout: 20_000})
-          .parent(this.TD)
-          .parent(this.TR)
-          .find(this.TestIDLocator(CypressTestIds.BUSINESS_AREA_DATA_LIST_EDIT_BUTTON), {timeout: 20_000})
-          
-          .click({force:true})
-          cy.wait(8000)
-  
-          cy.get('.ant-table-content', {timeout: 20_000})
-
-          .find('tr') // Find all the rows in the table
-          .then((rows) => {
-            // If there are no rows, log the message
-            if (rows.length === 2) {
-              cy.log('Only CSV files are acceptable.');
-            } else {
-              cy.log(`Table contains ${rows.length} row(s).`);
-            }
-          });
-
-
-
-        }
-        
+    
         //View business area data
 
     viewBAdata(){
@@ -209,23 +187,39 @@ addBAdata(){
     
         cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DESCRIPTION_INPUT), {timeout: 20_000})
         .should(this.assertBeVisible)
+       
   
 
     }
 
         File_Preview(){
+
+          cy.reload()
           cy.contains(this.strDomainName, { timeout: 20000 })
           .parent(this.TD)
           .parent(this.TR)
-          .find(this.TestIDLocator(CypressTestIds.BUSINESS_AREA_DATA_LIST_EDIT_BUTTON), { timeout: 20000 })
+          .find(this.TestIDLocator(CypressTestIds.BUSINESS_AREA_DATA_LIST_VIEW_BUTTON), { timeout: 20000 })
           .click()
-          //cy.get(this.TestIDLocator(CypressTestIds.MANAGE_BUSINESS_AREA_DATA_DOMAIN_DATA_PREVIEW_LIST), { timeout: 20000 })
-          cy.get('.ant-col-20 > .ui', { timeout: 20000 })
+
+          cy.wait(8000)
+
+          cy.get('.ant-table-content')
+          .scrollIntoView()
           .should(this.assertBeVisible)
+          .scrollTo('bottom', { ensureScrollable: false });
+          
+          cy.get('.ant-table-content tbody tr').its('length').then((rowCount) => {
+                for (let i = 0; i < rowCount; i++) {
+                  cy.get('.ant-table-content tbody tr').eq(i).scrollIntoView().should(this.assertBeVisible);
+                }
+              });
+           
+      
+          
       
         }
 
-
+      
     // Business Area data History 
     view_BA_history(){
 
