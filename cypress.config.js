@@ -1,5 +1,5 @@
 // cypress.config.js
-const { defineConfig } = require('cypress');
+/*const { defineConfig } = require('cypress');
 require('dotenv').config(); // Load environment variables from .env file
 
 module.exports = defineConfig({
@@ -18,4 +18,13 @@ module.exports = defineConfig({
       return config;
     },
   },
-});
+});*/
+
+module.exports = {
+  e2e: {
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+    },
+  },
+};
+
