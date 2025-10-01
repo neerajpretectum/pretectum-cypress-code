@@ -1,0 +1,14 @@
+{
+  "Boolean": "Boolean",
+  "currency": "Currency",
+  "order date": "Date",
+  "birth date": "Date-Year",
+  "date time": "Datetime",
+  "contract-doc": "Document",
+  "email": "Email",
+  "geolatitude": "GeoLatitude",
+  "geolong": "Geolatitude",
+  "geoc": "GeoCoordinates",
+  "pho no": "Phone",
+  "website link": "URL"
+}
