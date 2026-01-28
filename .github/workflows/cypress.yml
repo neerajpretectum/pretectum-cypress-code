@@ -2,8 +2,10 @@ name: Run Cypress Tests
 
 on:
   schedule:
-    # Daily at 2:30 PM PKT → 09:30 UTC
+    # Daily at 11:05 UTC (Approx 4:05 PM PKT)
     - cron: '5 11 * * *'
+  workflow_dispatch: # Allows you to trigger this manually for testing
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
@@ -15,7 +17,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          ref: main   # <-- branch name goes here
+          ref: main
 
       # -----------------------------
       # Setup Node.js
@@ -24,7 +26,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'  # speeds up install
+          cache: 'npm'
 
       # -----------------------------
       # Install dependencies
@@ -33,7 +35,7 @@ jobs:
         run: npm ci
 
       # -----------------------------
-      # Build React App (fast + env injected)
+      # Build React App
       # -----------------------------
       - name: Build React App
         run: npm run build
@@ -41,7 +43,6 @@ jobs:
           CI: false
           NODE_OPTIONS: "--max-old-space-size=4096"
           GENERATE_SOURCEMAP: false
-           # React build-time env vars
           REACT_APP_BACKEND_API: "https://dev-api.pretectum.io/"
           REACT_APP_BUCKET_NAME: "pretectum-dev"
           REACT_APP_BUCKET_REGION: "us-east-2"
@@ -50,8 +51,6 @@ jobs:
           REACT_APP_GMAPS_API_KEY: "SET"
           REACT_APP_NOVU_APPLICATION_IDENTIFIER: "gBy6dc7D3weB"
           SKIP_PREFLIGHT_CHECK: "true"
-
-          # Amplify
           AMPLIFY_NATIVECLIENT_ID: "2bi4o2llifpcjnfpv0no1slj0k"
           AMPLIFY_USERPOOL_ID: "us-east-2_C7Zl7OTI1"
           AMPLIFY_WEBCLIENT_ID: "61junkfaas0egho45e9q71uljj"
@@ -67,7 +66,7 @@ jobs:
           wait-on-timeout: 180
           project: .
           browser: chrome
-          spec: src/cypress/e2e/18_Cypress_daily.cy.ts   # <- exact file path
+          spec: src/cypress/e2e/18_Cypress_daily.cy.ts
         env:
           CYPRESS_BASE_URL: http://127.0.0.1:3000
           NODE_OPTIONS: "--openssl-legacy-provider"
