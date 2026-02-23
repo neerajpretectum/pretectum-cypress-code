@@ -3,7 +3,7 @@ name: Run Cypress Tests
 on:
   schedule:
     # Daily at 22 13 UTC (Approx 3:13 AM PKT)
-   - cron: '13 22 * * *'
+   #- cron: '13 22 * * *'
   workflow_dispatch: # Allows you to trigger this manually for testing
 
 jobs:
@@ -91,6 +91,7 @@ jobs:
             cypress/videos/
             cypress/screenshots/
           if-no-files-found: ignore
+
 
 
 
